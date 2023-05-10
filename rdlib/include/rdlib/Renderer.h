@@ -6,6 +6,7 @@
 #define ESIR_PROJETPROG_RENDERER_H
 
 #include <SDL.h>
+#include <GL/gl.h>
 
 namespace rdlib {
 
