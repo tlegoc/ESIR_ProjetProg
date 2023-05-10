@@ -5,6 +5,8 @@
 #ifndef ESIR_PROJETPROG_RENDERER_H
 #define ESIR_PROJETPROG_RENDERER_H
 
+#include <SDL.h>
+
 namespace rdlib {
 
     class Renderer {
