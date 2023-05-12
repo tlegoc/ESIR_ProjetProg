@@ -6,6 +6,7 @@
 #define ESIR_PROJETPROG_ENGINE_H
 
 #include <GL/gl.h>
+#include <SDL2/SDL.h>
 
 namespace rdlib {
 
@@ -21,6 +22,8 @@ namespace rdlib {
 
         static void update();
 
+        static void render();
+
         static void run();
 
     private:
@@ -32,6 +35,10 @@ namespace rdlib {
 
         static Engine *s_engine;
         bool m_should_continue;
+
+        SDL_Window *m_mainwindow;
+        SDL_GLContext m_maincontext; /* Our opengl context handle */
+
     };
 
 } // rdlib

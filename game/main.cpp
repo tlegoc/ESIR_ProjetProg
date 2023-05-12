@@ -7,8 +7,6 @@
 #include <iostream>
 #include <thread>
 
-#include <glm/glm.hpp>
-
 using namespace rdlib;
 
 class Test : public Agent {

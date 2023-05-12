@@ -6,7 +6,9 @@ add_library(RDLIB SHARED
         include/rdlib/Agent.h
         src/Agent.cpp
         src/Time.cpp
-        include/rdlib/Time.h)
+        include/rdlib/Time.h
+        src/Sprite.cpp
+        include/rdlib/Sprite.h)
 
 target_include_directories(RDLIB PUBLIC include)
 
@@ -21,8 +23,9 @@ else ()
 endif ()
 add_subdirectory(thirdparty/GLM)
 find_package(Threads)
+find_package(OpenGL REQUIRED)
 
-target_link_libraries(RDLIB PUBLIC Threads::Threads SDL2main SDL2-static glm)
+target_link_libraries(RDLIB PUBLIC Threads::Threads OpenGL::GL OpenGL::GLU SDL2 glm)
 
 # Installation so you can use it with #include <rdlib/file.h>
 install(TARGETS RDLIB DESTINATION lib/rdlib)
