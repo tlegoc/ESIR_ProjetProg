@@ -4,7 +4,7 @@
 
 #include "LivableObject.h"
 
-#include "rdlib/Renderer.h"
+#include "rdlib/Engine.h"
 
 namespace rdlib {
     LivableObject::LivableObject() {

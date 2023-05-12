@@ -2,27 +2,27 @@
 // Created by theo on 10/05/2023.
 //
 
-#include "rdlib/Renderer.h"
+#include "rdlib/Engine.h"
 
 #include <iostream>
 
 namespace rdlib {
 
-    Renderer * Renderer::s_renderer = nullptr;
+    Engine * Engine::s_renderer = nullptr;
 
-    Renderer::Renderer() {
+    Engine::Engine() {
 
     }
 
-    Renderer *Renderer::instanciate() {
+    Engine *Engine::instanciate() {
         if (s_renderer) throw std::runtime_error("A renderer instance already exists !");
 
-        s_renderer = new Renderer();
+        s_renderer = new Engine();
 
         return s_renderer;
     }
 
-    void Renderer::finalize() {
+    void Engine::finalize() {
         delete s_renderer;
     }
 } // rdlib

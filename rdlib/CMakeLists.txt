@@ -2,7 +2,7 @@
 
 message("-- Setting up rdlib")
 add_library(RDLIB SHARED
-        src/Renderer.cpp
+        src/Engine.cpp
         src/LivableObject.h
         )
 
