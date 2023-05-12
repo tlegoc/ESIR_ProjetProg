@@ -5,22 +5,33 @@
 #ifndef ESIR_PROJETPROG_ENGINE_H
 #define ESIR_PROJETPROG_ENGINE_H
 
-#include <SDL.h>
 #include <GL/gl.h>
 
 namespace rdlib {
 
     class Engine {
     public:
+        static void quit();
+
         static Engine *instanciate();
 
         static void finalize();
+
+        static bool shouldContinue();
+
+        static void update();
+
+        static void run();
+
     private:
         Engine();
-        Engine(const Engine & other) = delete;
-        Engine(const Engine && other) = delete;
 
-        static Engine * s_renderer;
+        Engine(const Engine &other) = delete;
+
+        Engine(const Engine &&other) = delete;
+
+        static Engine *s_engine;
+        bool m_should_continue;
     };
 
 } // rdlib

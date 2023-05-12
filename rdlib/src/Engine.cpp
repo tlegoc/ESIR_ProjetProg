@@ -4,25 +4,47 @@
 
 #include "rdlib/Engine.h"
 
+#include "rdlib/Agent.h"
+#include "rdlib/Time.h"
+
 #include <iostream>
+#include <chrono>
+#include <thread>
 
 namespace rdlib {
 
-    Engine * Engine::s_renderer = nullptr;
+    Engine *Engine::s_engine = nullptr;
 
-    Engine::Engine() {
-
+    void Engine::quit() {
+        s_engine->m_should_continue = false;
     }
 
     Engine *Engine::instanciate() {
-        if (s_renderer) throw std::runtime_error("A renderer instance already exists !");
+        if (s_engine) throw std::runtime_error("A renderer instance already exists !");
 
-        s_renderer = new Engine();
+        s_engine = new Engine();
 
-        return s_renderer;
+        Time::update();
+
+        return s_engine;
     }
 
     void Engine::finalize() {
-        delete s_renderer;
+        std::cout << "Cleaning engine" << std::endl;
+        Agent::finalize();
+        delete s_engine;
+    }
+
+    bool Engine::shouldContinue() {
+        return s_engine->m_should_continue;
+    }
+
+    void Engine::update() {
+        Agent::updateAll();
+        Time::update();
+    }
+
+    Engine::Engine() {
+        m_should_continue = true;
     }
 } // rdlib
