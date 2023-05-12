@@ -10,7 +10,13 @@ target_include_directories(RDLIB PUBLIC include)
 
 
 # Adding libs
-add_subdirectory(thirdparty/SDL)
+find_package(SDL2 REQUIRED)
+if (!${SL2_FOUND})
+    message("-- SDL Not found, downloading")
+    add_subdirectory(thirdparty/SDL)
+else ()
+    message("-- SDL2 Found")
+endif ()
 add_subdirectory(thirdparty/GLM)
 find_package(Threads)
 
