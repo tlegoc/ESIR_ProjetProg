@@ -22,7 +22,8 @@ if (UNIX AND NOT APPLE)
     message("-- Building on linux, using find_package")
 
     find_package(SDL2 REQUIRED)
-    find_package(Threads)
+    set(THREADS_PREFER_PTHREAD_FLAG ON)
+    find_package(Threads REQUIRED)
 
     target_include_directories(RDLIB ${SDL2_INCLUDE_DIRS})
     target_link_libraries(RDLIB PUBLIC ${SDL2_LIBRARIES} Threads::Threads)
