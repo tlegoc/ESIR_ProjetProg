@@ -8,7 +8,8 @@ add_library(RDLIB SHARED
         src/Time.cpp
         include/rdlib/Time.h
         src/Sprite.cpp
-        include/rdlib/Sprite.h)
+        include/rdlib/Sprite.h
+        include/rdlib/include_sdl.h)
 
 target_include_directories(RDLIB PUBLIC include)
 

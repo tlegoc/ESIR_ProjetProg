@@ -24,7 +24,7 @@ namespace rdlib {
 
         Time(const Time &&other) = delete;
 
-        static std::chrono::high_resolution_clock::time_point s_last_time;
+        static unsigned int s_last_time;
     };
 } // rdlib
 

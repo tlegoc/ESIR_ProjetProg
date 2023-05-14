@@ -36,7 +36,7 @@ int main() {
         // Timer, on met un délai de 1ms.
         // On peut faire en sorte que le delai varie de façon à ce que cet
         // Ajout ne se fasse pas si Engine::update() est déjà assez long.
-        std::this_thread::sleep_for(std::chrono::milliseconds(16));
+        rdlib::Engine::render();
     }
 
     // On oublie pas de finaliser le moteur, sinon il se ferme pas

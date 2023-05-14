@@ -6,12 +6,8 @@
 #define ESIR_PROJETPROG_ENGINE_H
 
 #include <GL/gl.h>
-#if LINUX
-#include <SDL2/SDL.h>
-#else
-#define SDL_MAIN_HANDLED
-#include <SDL.h>
-#endif
+
+#include "include_sdl.h"
 
 
 namespace rdlib {
@@ -44,6 +40,7 @@ namespace rdlib {
 
         SDL_Window *m_mainwindow;
         SDL_GLContext m_maincontext; /* Our opengl context handle */
+        unsigned int m_start_time;
 
     };
 
