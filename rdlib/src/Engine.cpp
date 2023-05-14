@@ -58,6 +58,10 @@ namespace rdlib {
     }
 
     void Engine::update() {
+        SDL_Event e;
+        while (SDL_PollEvent(&e)) {
+
+        }
         Agent::updateAll();
         Time::update();
     }
