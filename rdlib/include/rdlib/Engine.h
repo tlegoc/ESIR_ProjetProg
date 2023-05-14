@@ -6,7 +6,13 @@
 #define ESIR_PROJETPROG_ENGINE_H
 
 #include <GL/gl.h>
+#if LINUX
 #include <SDL2/SDL.h>
+#else
+#define SDL_MAIN_HANDLED
+#include <SDL.h>
+#endif
+
 
 namespace rdlib {
 
