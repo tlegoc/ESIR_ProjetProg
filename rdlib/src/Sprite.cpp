@@ -38,7 +38,7 @@ namespace rdlib {
                                           "\n"
                                           "void main()\n"
                                           "{    \n"
-                                          "    color = vec4(spriteColor, 1.0) * texture(image, TexCoords);\n"
+                                          "    color = vec4(spriteColor, 1.0) * texture(image, TexCoords * vec2(1.0, -1.0));\n"
                                           "}";
 
     Sprite::Sprite(std::string image, vec3 position, float angle, float size, vec3 color) : VisibleAgent() {
@@ -117,8 +117,12 @@ namespace rdlib {
         // Take rotation and translation into account
 
         mat4 model = mat4(1.0f);
-        model = translate(model, m_pos);
+        model = scale(model, vec3(m_size, m_size, 1.0f));
         model = rotate(model, m_angle, vec3(0.0f, 0.0f, 1.0f));
+        // Calculate the center of the sprite
+        model = translate(model, vec3(-0.5f, -0.5f, 0.0f));
+        // Translate to the position
+        model = translate(model, m_pos);
         return model;
     }
 

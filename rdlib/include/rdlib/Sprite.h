@@ -32,6 +32,8 @@ namespace rdlib {
         unsigned int m_shader_id;
         unsigned int m_vao;
         unsigned int m_texture;
+        unsigned int m_texture_height;
+        unsigned int m_texture_width;
 
         vec3 m_pos;
         float m_angle;
