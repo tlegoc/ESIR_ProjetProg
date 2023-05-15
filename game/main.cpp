@@ -25,8 +25,40 @@ public:
         m_lifetime += rdlib::Time::getDelta();
 
         // On fait tourner l'image de 1 degré par seconde
+        if (rdlib::InputManager::isKeyPressed('a')) {
+            m_angle += rdlib::Time::getDelta() * 1;
+        }
+
+        if (rdlib::InputManager::isKeyPressed('e')) {
+            m_angle -= rdlib::Time::getDelta() * 1;
+        }
+
+        // On change la taille de l'image
+        if (rdlib::InputManager::isKeyPressed('r')) {
+            m_size.x += rdlib::Time::getDelta() * 1;
+            m_size.y += rdlib::Time::getDelta() * 1;
+        }
+
+        if (rdlib::InputManager::isKeyPressed('t')) {
+            m_size.x -= rdlib::Time::getDelta() * 1;
+            m_size.y -= rdlib::Time::getDelta() * 1;
+        }
+
+        // On bouge en fonction des touches
         if (rdlib::InputManager::isKeyPressed('z')) {
-            m_angle = m_lifetime * 3.14159265358979;
+            m_pos.y += rdlib::Time::getDelta() * 1;
+        }
+
+        if (rdlib::InputManager::isKeyPressed('s')) {
+            m_pos.y -= rdlib::Time::getDelta() * 1;
+        }
+
+        if (rdlib::InputManager::isKeyPressed('q')) {
+            m_pos.x -= rdlib::Time::getDelta() * 1;
+        }
+
+        if (rdlib::InputManager::isKeyPressed('d')) {
+            m_pos.x += rdlib::Time::getDelta() * 1;
         }
     };
 };
@@ -35,7 +67,7 @@ int main() {
     // Notre jeu
     rdlib::Engine::instanciate();
 
-    rdlib::Sprite *s = new Test("Gamejam.png", glm::vec3(0, 0, 0), 0, vec2(.5f, .5f), glm::vec3(1, 1, 1));
+    rdlib::Sprite *s = new Test("Gamejam.png");
 
     // Rien après cette ligne ne s'éxecute tant que le jeu n'est pas quitté
     while (rdlib::Engine::shouldContinue()) {

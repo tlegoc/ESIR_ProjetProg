@@ -87,6 +87,7 @@ namespace rdlib {
         Agent::updateAll();
         Time::update();
     }
+        unsigned int m_start_time{};
 
     void Engine::render() {
         glClearColor(0.0, 0.0, 0.0, 1.0);

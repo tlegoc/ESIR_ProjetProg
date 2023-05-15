@@ -125,8 +125,9 @@ namespace rdlib {
 
         mat4 model = mat4(1.0f);
         model = glm::translate(model, m_pos);
-        model = glm::rotate(model, m_angle, vec3(0.0f, 0.0f, 1.0f));
         model = glm::scale(model, vec3(m_size.x, m_size.y * aspect, 1.0f));
+        model = glm::rotate(model, m_angle, vec3(0.0f, 0.0f, 1.0f));
+        model = glm::translate(model, vec3(-0.5f, -0.5f, 0.0f));
 
         return model;
     }
