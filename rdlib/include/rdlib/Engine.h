@@ -26,20 +26,30 @@ namespace rdlib {
 
         static void render();
 
+        static unsigned int getWidth() {
+            return s_engine->m_width;
+        }
+
+        static unsigned int getHeight() {
+            return s_engine->m_height;
+        }
+
         Engine(const Engine &other) = delete;
 
         Engine(const Engine &&other) = delete;
 
+        Engine &operator=(const Engine &other) = delete;
+
     private:
-        Engine();
+        explicit Engine(unsigned int width = 1280, unsigned int height = 720);
 
         static Engine *s_engine;
         bool m_should_continue;
+        unsigned int m_width;
+        unsigned int m_height;
 
         SDL_Window *m_mainwindow;
         SDL_GLContext m_maincontext; /* Our opengl context handle */
-        unsigned int m_start_time;
-
     };
 
 } // rdlib

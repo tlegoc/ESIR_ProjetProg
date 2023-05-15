@@ -74,6 +74,7 @@ namespace rdlib {
                     Engine::quit();
                     break;
                 case SDL_KEYDOWN:
+                    if (e.key.keysym.sym == SDLK_ESCAPE) Engine::quit();
                     InputManager::addKey(e.key.keysym.sym);
                     break;
                 case SDL_KEYUP:
@@ -96,8 +97,10 @@ namespace rdlib {
         SDL_GL_SwapWindow(s_engine->m_mainwindow);
     }
 
-    Engine::Engine() {
+    Engine::Engine(unsigned int width, unsigned int height) {
         m_should_continue = true;
+        m_width = width;
+        m_height = height;
 
         if (SDL_Init(SDL_INIT_VIDEO) < 0) {
             std::cout << "Unable to initialize SDL" << std::endl;

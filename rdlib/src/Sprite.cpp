@@ -8,6 +8,7 @@
 
 #include "stb_image.h"
 #include "rdlib/Shader.h"
+#include "rdlib/Engine.h"
 
 #include <GL/glew.h>
 #include <iostream>
@@ -118,8 +119,8 @@ namespace rdlib {
         // Take into account the position, angle and size
         // And the aspect ratio
 
-        int width = 1280;
-        int height = 720;
+        unsigned int width = Engine::getWidth();
+        unsigned int height = Engine::getHeight();
         float aspect = (float) width / (float) height;
 
         mat4 model = mat4(1.0f);
