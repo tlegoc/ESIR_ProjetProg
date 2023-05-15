@@ -124,7 +124,7 @@ namespace rdlib {
         float aspect = (float) width / (float) height;
 
         mat4 model = mat4(1.0f);
-        model = glm::translate(model, m_pos);
+        model = glm::translate(model, m_pos * vec3(1.0f, aspect, 1.0f));
         model = glm::scale(model, vec3(m_size.x, m_size.y * aspect, 1.0f));
         model = glm::rotate(model, m_angle, vec3(0.0f, 0.0f, 1.0f));
         model = glm::translate(model, vec3(-0.5f, -0.5f, 0.0f));
@@ -137,11 +137,8 @@ namespace rdlib {
     }
 
     void Sprite::renderAll() {
-        for (auto &sprite: s_objects) {
-            auto *s = dynamic_cast<Sprite *>(sprite);
-            if (s) {
-                s->render();
-            }
+        for (auto &sprite: Agent::getObjectsOfType<Sprite>()) {
+            sprite->render();
         }
     }
 

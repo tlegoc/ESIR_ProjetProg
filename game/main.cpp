@@ -4,21 +4,22 @@
 #include <rdlib/Agent.h>
 #include <rdlib/Time.h>
 #include <rdlib/Sprite.h>
+#include <rdlib/ColliderSpriteAgent.h>
 #include <rdlib/InputManager.h>
 
 #include <iostream>
 #include <thread>
 
 
-class Test : public rdlib::Sprite {
+class Test : public rdlib::ColliderSpriteAgent {
 public:
     float m_lifetime = 0;
 
-    Test(const std::string &filename) : rdlib::Sprite(filename) {
+    Test(const std::string &filename) : rdlib::ColliderSpriteAgent(filename) {
     };
 
     Test(const std::string &filename, const glm::vec3 &position, float angle, const glm::vec2 &size,
-         const glm::vec3 &color) : rdlib::Sprite(filename, position, angle, size, color) {
+         const glm::vec3 &color) : rdlib::ColliderSpriteAgent(filename, position, angle, size, color) {
     };
 
     void update() override {
@@ -60,6 +61,32 @@ public:
         if (rdlib::InputManager::isKeyPressed('d')) {
             m_pos.x += rdlib::Time::getDelta() * 1;
         }
+
+        if (!isColliding().empty()) {
+            m_color = glm::vec3(1, 0, 0);
+        } else {
+            m_color = glm::vec3(1, 1, 1);
+        }
+    };
+};
+
+class Test2 : public rdlib::ColliderSpriteAgent {
+public:
+    float m_lifetime = 0;
+
+    Test2(const std::string &filename) : rdlib::ColliderSpriteAgent(filename) {
+    };
+
+    Test2(const std::string &filename, const glm::vec3 &position, float angle, const glm::vec2 &size,
+         const glm::vec3 &color) : rdlib::ColliderSpriteAgent(filename, position, angle, size, color) {
+    };
+
+    void update() override {
+        if (!isColliding().empty()) {
+            m_color = glm::vec3(1, 0, 0);
+        } else {
+            m_color = glm::vec3(1, 1, 1);
+        }
     };
 };
 
@@ -67,7 +94,8 @@ int main() {
     // Notre jeu
     rdlib::Engine::instanciate();
 
-    rdlib::Sprite *s = new Test("Gamejam.png");
+    rdlib::Agent *s = new Test("Gamejam.png");
+    rdlib::Agent *s2 = new Test2("Gamejam.png", glm::vec3(0, 0, 0), 0, glm::vec2(.5, .5), glm::vec3(1, 1, 1));
 
     // Rien après cette ligne ne s'éxecute tant que le jeu n'est pas quitté
     while (rdlib::Engine::shouldContinue()) {

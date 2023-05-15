@@ -10,13 +10,16 @@ add_library(RDLIB SHARED
         src/Sprite.cpp
         include/rdlib/Sprite.h
         include/rdlib/include_sdl.h
-        src/VisibleAgent.cpp
         include/rdlib/VisibleAgent.h
         src/Shader.cpp
         include/rdlib/Shader.h
         include/stb_image.h
         src/InputManager.cpp
-        include/rdlib/InputManager.h)
+        include/rdlib/InputManager.h
+        src/ColliderAgent.cpp
+        include/rdlib/ColliderAgent.h
+        src/ColliderSpriteAgent.cpp
+        include/rdlib/ColliderSpriteAgent.h)
 
 target_include_directories(RDLIB PUBLIC include)
 

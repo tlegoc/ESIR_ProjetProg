@@ -33,12 +33,21 @@ namespace rdlib {
 
         static void finalize();
 
+        template<class T>
+        static std::vector<T *> getObjectsOfType() {
+            std::vector<T *> result;
+            for (auto a: s_objects) {
+                if (dynamic_cast<T *>(a)) {
+                    result.push_back(dynamic_cast<T *>(a));
+                }
+            }
+            return result;
+        }
+
     protected:
         Status m_status;
 
     private:
-        friend class Sprite;
-
         static std::vector<Agent *> s_objects;
     };
 }
