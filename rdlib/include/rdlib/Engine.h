@@ -26,14 +26,12 @@ namespace rdlib {
 
         static void render();
 
-        static void run();
-
-    private:
-        Engine();
-
         Engine(const Engine &other) = delete;
 
         Engine(const Engine &&other) = delete;
+
+    private:
+        Engine();
 
         static Engine *s_engine;
         bool m_should_continue;
