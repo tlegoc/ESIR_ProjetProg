@@ -10,6 +10,8 @@
 namespace rdlib {
     class VisibleAgent : public virtual Agent {
     public:
+        VisibleAgent() : Agent() {}
+
         virtual void render() = 0;
 
     private:

@@ -11,6 +11,8 @@
 namespace rdlib {
     std::vector<Agent *> Agent::s_objects = {};
 
+    /// \brief Constructor
+    /// \details Must be called by all subclasses
     Agent::Agent() {
         m_status = Status::ALIVE;
         s_objects.push_back(this);

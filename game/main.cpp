@@ -62,6 +62,14 @@ public:
             m_pos.x += rdlib::Time::getDelta() * 1;
         }
 
+        if (rdlib::InputManager::isKeyPressed('w')) {
+            rdlib::Engine::setCameraZoom(rdlib::Engine::getCameraZoom() + rdlib::Time::getDelta() * 10);
+        }
+
+        if (rdlib::InputManager::isKeyPressed('x')) {
+            rdlib::Engine::setCameraZoom(rdlib::Engine::getCameraZoom() - rdlib::Time::getDelta() * 10);
+        }
+
         if (!isColliding().empty()) {
             m_color = glm::vec3(1, 0, 0);
         } else {
@@ -96,6 +104,7 @@ int main() {
 
     rdlib::Agent *s = new Test("Gamejam.png");
     rdlib::Agent *s2 = new Test2("Gamejam.png", glm::vec3(0, 0, 0), 0, glm::vec2(.5, .5), glm::vec3(1, 1, 1));
+    rdlib::Agent *s3 = new Test2("Gamejam.png", glm::vec3(0, 0.6, 0), 0, glm::vec2(.5, .5), glm::vec3(1, 1, 1));
 
     // Rien après cette ligne ne s'éxecute tant que le jeu n'est pas quitté
     while (rdlib::Engine::shouldContinue()) {

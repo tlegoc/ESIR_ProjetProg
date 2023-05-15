@@ -7,6 +7,9 @@
 
 #include "include_sdl.h"
 
+#include <iostream>
+#include <glm/glm.hpp>
+#include <glm/gtc/matrix_transform.hpp>
 
 namespace rdlib {
 
@@ -16,7 +19,11 @@ namespace rdlib {
 
         static Engine *instanciate();
 
-        static Engine *getInstance();
+        static Engine *getInstance() {
+            if (!s_engine) throw std::runtime_error("No renderer instance exists !");
+
+            return s_engine;
+        }
 
         static void finalize();
 
@@ -34,6 +41,24 @@ namespace rdlib {
             return s_engine->m_height;
         }
 
+        static float getCameraZoom() {
+            return s_engine->m_camera_zoom;
+        }
+
+        static void setCameraZoom(float zoom) {
+            s_engine->m_camera_zoom = glm::max(zoom, 0.1f);
+        }
+
+        static glm::mat4 getCameraMatrix();
+
+        static glm::vec2 getCameraPosition() {
+            return s_engine->m_camera_position;
+        }
+
+        static void setCameraPosition(glm::vec2 position) {
+            s_engine->m_camera_position = position;
+        }
+
         Engine(const Engine &other) = delete;
 
         Engine(const Engine &&other) = delete;
@@ -47,6 +72,8 @@ namespace rdlib {
         bool m_should_continue;
         unsigned int m_width;
         unsigned int m_height;
+        float m_camera_zoom;
+        glm::vec2 m_camera_position;
 
         SDL_Window *m_mainwindow;
         SDL_GLContext m_maincontext; /* Our opengl context handle */

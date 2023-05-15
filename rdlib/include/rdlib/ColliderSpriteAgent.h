@@ -10,6 +10,7 @@
 
 namespace rdlib {
     class ColliderSpriteAgent : public Sprite, public ColliderAgent {
+
         // Same constructor as sprite
         using Sprite::Sprite;
 

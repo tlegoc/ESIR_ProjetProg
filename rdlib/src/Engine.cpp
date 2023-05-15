@@ -9,7 +9,6 @@
 #include "rdlib/Sprite.h"
 #include "rdlib/InputManager.h"
 
-#include <iostream>
 #include <GL/glew.h>
 
 
@@ -40,12 +39,6 @@ namespace rdlib {
 
         Time::update();
         InputManager::instanciate();
-
-        return s_engine;
-    }
-
-    Engine *Engine::getInstance() {
-        if (!s_engine) throw std::runtime_error("No renderer instance exists !");
 
         return s_engine;
     }
@@ -87,7 +80,6 @@ namespace rdlib {
         Agent::updateAll();
         Time::update();
     }
-        unsigned int m_start_time{};
 
     void Engine::render() {
         glClearColor(0.0, 0.0, 0.0, 1.0);
@@ -102,6 +94,8 @@ namespace rdlib {
         m_should_continue = true;
         m_width = width;
         m_height = height;
+        m_camera_zoom = 1.0f;
+        m_camera_position = glm::vec2(0.0f, 0.0f);
 
         if (SDL_Init(SDL_INIT_VIDEO) < 0) {
             std::cout << "Unable to initialize SDL" << std::endl;
@@ -132,5 +126,20 @@ namespace rdlib {
         }
 
         SDL_GL_SetSwapInterval(1);
+    }
+
+    glm::mat4 Engine::getCameraMatrix() {
+        // Calculate orthographic projection based on camera zoom and position
+        unsigned int width = Engine::getWidth();
+        unsigned int height = Engine::getHeight();
+        float aspect = (float) width / (float) height;
+
+        glm::mat4 camera = glm::ortho(-aspect * s_engine->m_camera_zoom + s_engine->m_camera_position.x,
+                                      aspect * s_engine->m_camera_zoom + s_engine->m_camera_position.x,
+                                      -s_engine->m_camera_zoom + s_engine->m_camera_position.y,
+                                      s_engine->m_camera_zoom + s_engine->m_camera_position.y,
+                                      -1.0f, 1.0f);
+
+        return camera;
     }
 } // rdlib

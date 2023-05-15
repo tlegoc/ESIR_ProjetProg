@@ -23,11 +23,12 @@ namespace rdlib {
                                         "out vec2 TexCoords;\n"
                                         "\n"
                                         "uniform mat4 model;\n"
+                                        "uniform mat4 camera;\n"
                                         "\n"
                                         "void main()\n"
                                         "{\n"
                                         "    TexCoords = vertex.zw;\n"
-                                        "    gl_Position = model * vec4(vertex.xy, 0.0, 1.0);\n"
+                                        "    gl_Position = camera * model * vec4(vertex.xy, 0.0, 1.0);\n"
                                         "}";
 
     std::string Sprite::s_fragment_code = "#version 330 core\n"
@@ -42,7 +43,7 @@ namespace rdlib {
                                           "    color = vec4(spriteColor, 1.0) * texture(image, TexCoords * vec2(1.0, -1.0));\n"
                                           "}";
 
-    Sprite::Sprite(std::string image, vec3 position, float angle, vec2 size, vec3 color) : VisibleAgent() {
+    Sprite::Sprite(const std::string& image, vec3 position, float angle, vec2 size, vec3 color) : VisibleAgent() {
         m_image_id = 0;
         m_pos = position;
         m_angle = angle;
@@ -102,9 +103,11 @@ namespace rdlib {
     void Sprite::render() {
         // prepare transformations
         glUseProgram(m_shader_id);
-        glm::mat4 model = getModelMatrix();
+        mat4 model = getModelMatrix();
+        mat4 camera = Engine::getCameraMatrix();
 
         glUniformMatrix4fv(glGetUniformLocation(m_shader_id, "model"), 1, GL_FALSE, glm::value_ptr(model));
+        glUniformMatrix4fv(glGetUniformLocation(m_shader_id, "camera"), 1, GL_FALSE, glm::value_ptr(camera));
         glUniform3f(glGetUniformLocation(m_shader_id, "spriteColor"), m_color.r, m_color.g, m_color.b);
 
         glActiveTexture(GL_TEXTURE0);
@@ -117,23 +120,14 @@ namespace rdlib {
 
     mat4 Sprite::getModelMatrix() {
         // Take into account the position, angle and size
-        // And the aspect ratio
-
-        unsigned int width = Engine::getWidth();
-        unsigned int height = Engine::getHeight();
-        float aspect = (float) width / (float) height;
 
         mat4 model = mat4(1.0f);
-        model = glm::translate(model, m_pos * vec3(1.0f, aspect, 1.0f));
-        model = glm::scale(model, vec3(m_size.x, m_size.y * aspect, 1.0f));
+        model = glm::translate(model, m_pos);
+        model = glm::scale(model, vec3(m_size.x, m_size.y, 1.0f));
         model = glm::rotate(model, m_angle, vec3(0.0f, 0.0f, 1.0f));
         model = glm::translate(model, vec3(-0.5f, -0.5f, 0.0f));
 
         return model;
-    }
-
-    void Sprite::update() {
-
     }
 
     void Sprite::renderAll() {
