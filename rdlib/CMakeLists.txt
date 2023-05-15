@@ -14,7 +14,9 @@ add_library(RDLIB SHARED
         include/rdlib/VisibleAgent.h
         src/Shader.cpp
         include/rdlib/Shader.h
-        include/stb_image.h)
+        include/stb_image.h
+        src/InputManager.cpp
+        include/rdlib/InputManager.h)
 
 target_include_directories(RDLIB PUBLIC include)
 

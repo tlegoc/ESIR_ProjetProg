@@ -7,6 +7,7 @@
 #include "rdlib/Agent.h"
 #include "rdlib/Time.h"
 #include "rdlib/Sprite.h"
+#include "rdlib/InputManager.h"
 
 #include <iostream>
 #include <GL/glew.h>
@@ -38,6 +39,13 @@ namespace rdlib {
         s_engine = new Engine();
 
         Time::update();
+        InputManager::instanciate();
+
+        return s_engine;
+    }
+
+    Engine *Engine::getInstance() {
+        if (!s_engine) throw std::runtime_error("No renderer instance exists !");
 
         return s_engine;
     }
@@ -45,6 +53,7 @@ namespace rdlib {
     void Engine::finalize() {
         std::cout << "Cleaning engine" << std::endl;
         Agent::finalize();
+        InputManager::finalize();
 
         /* Delete our opengl context, destroy our window, and shutdown SDL */
         SDL_GL_DeleteContext(s_engine->m_maincontext);
@@ -63,6 +72,12 @@ namespace rdlib {
             switch (e.type) {
                 case SDL_QUIT:
                     Engine::quit();
+                    break;
+                case SDL_KEYDOWN:
+                    InputManager::addKey(e.key.keysym.sym);
+                    break;
+                case SDL_KEYUP:
+                    InputManager::removeKey(e.key.keysym.sym);
                     break;
                 default:
                     break;

@@ -11,18 +11,18 @@
 namespace rdlib {
     class Time {
     public:
+        Time() = delete;
+
+        Time(const Time &other) = delete;
+
+        Time &operator=(const Time &other) = delete;
+
         static float getDelta();
 
     private:
         friend Engine;
 
         static void update();
-
-        Time() = delete;
-
-        Time(const Time &other) = delete;
-
-        Time(const Time &&other) = delete;
 
         static unsigned int s_last_time;
     };

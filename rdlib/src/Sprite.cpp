@@ -41,7 +41,7 @@ namespace rdlib {
                                           "    color = vec4(spriteColor, 1.0) * texture(image, TexCoords * vec2(1.0, -1.0));\n"
                                           "}";
 
-    Sprite::Sprite(std::string image, vec3 position, float angle, float size, vec3 color) : VisibleAgent() {
+    Sprite::Sprite(std::string image, vec3 position, float angle, vec2 size, vec3 color) : VisibleAgent() {
         m_image_id = 0;
         m_pos = position;
         m_angle = angle;
@@ -65,6 +65,7 @@ namespace rdlib {
         unsigned char *data = stbi_load(image.c_str(), &width, &height, &nr_channels, 0);
         if (data) {
             glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, width, height, 0, GL_RGB, GL_UNSIGNED_BYTE, data);
+            glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
             glGenerateMipmap(GL_TEXTURE_2D);
         } else {
             std::cout << "Failed to load texture" << std::endl;
@@ -114,15 +115,18 @@ namespace rdlib {
     }
 
     mat4 Sprite::getModelMatrix() {
-        // Take rotation and translation into account
+        // Take into account the position, angle and size
+        // And the aspect ratio
+
+        int width = 1280;
+        int height = 720;
+        float aspect = (float) width / (float) height;
 
         mat4 model = mat4(1.0f);
-        model = scale(model, vec3(m_size, m_size, 1.0f));
-        model = rotate(model, m_angle, vec3(0.0f, 0.0f, 1.0f));
-        // Calculate the center of the sprite
-        model = translate(model, vec3(-0.5f, -0.5f, 0.0f));
-        // Translate to the position
-        model = translate(model, m_pos);
+        model = glm::translate(model, m_pos);
+        model = glm::rotate(model, m_angle, vec3(0.0f, 0.0f, 1.0f));
+        model = glm::scale(model, vec3(m_size.x, m_size.y * aspect, 1.0f));
+
         return model;
     }
 
@@ -131,7 +135,7 @@ namespace rdlib {
     }
 
     void Sprite::renderAll() {
-        for (auto &sprite : s_objects) {
+        for (auto &sprite: s_objects) {
             auto *s = dynamic_cast<Sprite *>(sprite);
             if (s) {
                 s->render();

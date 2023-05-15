@@ -20,12 +20,18 @@ namespace rdlib {
         static std::string s_fragment_code;
 
 
-        Sprite(std::string image, vec3 position = vec3(0, 0, 0), float angle = 0.0f, float size = 1.0f, vec3 color = vec3(1.0f, 1.0f, 1.0f));
+        explicit Sprite(std::string image, vec3 position = vec3(0, 0, 0), float angle = 0.0f, vec2 size = vec2(1, 1), vec3 color = vec3(1.0f, 1.0f, 1.0f));
         void render() override;
         void update() override;
         mat4 getModelMatrix();
 
         static void renderAll();
+
+    protected:
+        vec3 m_pos;
+        float m_angle;
+        vec2 m_size;
+        vec3 m_color;
 
     private:
         unsigned int m_image_id;
@@ -34,11 +40,6 @@ namespace rdlib {
         unsigned int m_texture;
         unsigned int m_texture_height;
         unsigned int m_texture_width;
-
-        vec3 m_pos;
-        float m_angle;
-        float m_size;
-        vec3 m_color;
     };
 
 } // rdlib

@@ -16,6 +16,8 @@ namespace rdlib {
 
         static Engine *instanciate();
 
+        static Engine *getInstance();
+
         static void finalize();
 
         static bool shouldContinue();

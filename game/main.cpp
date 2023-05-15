@@ -9,17 +9,18 @@
 #include <thread>
 
 
-class Test : public rdlib::Agent {
+class Test : public rdlib::Sprite {
 public:
     float m_lifetime = 0;
+
+    Test(const std::string &filename) : rdlib::Sprite(filename) {
+    };
 
     void update() override {
         m_lifetime += rdlib::Time::getDelta();
 
-        // Exit program after 5 seconds
-        // if (m_lifetime >= 5.0f) {
-        //     rdlib::Engine::quit();
-        // }
+        // On fait tourner l'image de 1 degré par seconde
+        //m_angle = m_lifetime * 3.14159265358979;
     };
 };
 
@@ -27,8 +28,7 @@ int main() {
     // Notre jeu
     rdlib::Engine::instanciate();
 
-    Test *t = new Test();
-    rdlib::Sprite *s = new rdlib::Sprite("Gamejam.png");
+    rdlib::Sprite *s = new rdlib::Sprite("Gamejam.png", glm::vec3(0, 0, 0), 0, vec2(.5f, .5f), glm::vec3(1, 1, 1));
 
     // Rien après cette ligne ne s'éxecute tant que le jeu n'est pas quitté
     while (rdlib::Engine::shouldContinue()) {
