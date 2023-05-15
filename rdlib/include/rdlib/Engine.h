@@ -5,8 +5,6 @@
 #ifndef ESIR_PROJETPROG_ENGINE_H
 #define ESIR_PROJETPROG_ENGINE_H
 
-#include <GL/gl.h>
-
 #include "include_sdl.h"
 
 

@@ -5,6 +5,7 @@
 #ifndef ESIR_PROJETPROG_INCLUDE_SDL_H
 #define ESIR_PROJETPROG_INCLUDE_SDL_H
 
+//#define NO_SDL_GLEXT
 #if LINUX
 #include <SDL2/SDL.h>
 #else

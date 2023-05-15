@@ -25,7 +25,7 @@ namespace rdlib {
 
         virtual void update() = 0;
 
-        virtual void kill() { m_status == Status::DEAD; }
+        void kill() { m_status == Status::DEAD; }
 
         static void updateAll();
 
@@ -37,6 +37,8 @@ namespace rdlib {
         Status m_status;
 
     private:
+        friend class Sprite;
+
         static std::vector<Agent *> s_objects;
     };
 }

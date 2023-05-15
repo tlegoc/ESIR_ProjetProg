@@ -6,10 +6,10 @@
 
 #include "rdlib/Agent.h"
 #include "rdlib/Time.h"
+#include "rdlib/Sprite.h"
 
 #include <iostream>
-#include <chrono>
-#include <thread>
+#include <GL/glew.h>
 
 
 void checkSDLError(int line = -1) {
@@ -60,15 +60,23 @@ namespace rdlib {
     void Engine::update() {
         SDL_Event e;
         while (SDL_PollEvent(&e)) {
-
+            switch (e.type) {
+                case SDL_QUIT:
+                    Engine::quit();
+                    break;
+                default:
+                    break;
+            }
         }
         Agent::updateAll();
         Time::update();
     }
 
     void Engine::render() {
-        glClearColor(1.0, 0.0, 0.0, 1.0);
+        glClearColor(0.0, 0.0, 0.0, 1.0);
         glClear(GL_COLOR_BUFFER_BIT);
+
+        Sprite::renderAll();
 
         SDL_GL_SwapWindow(s_engine->m_mainwindow);
     }
@@ -97,6 +105,12 @@ namespace rdlib {
 
         m_maincontext = SDL_GL_CreateContext(m_mainwindow);
         checkSDLError(__LINE__);
+
+
+        auto init_res = glewInit();
+        if (init_res != GLEW_OK) {
+            std::cout << glewGetErrorString(glewInit()) << std::endl;
+        }
 
         SDL_GL_SetSwapInterval(1);
     }

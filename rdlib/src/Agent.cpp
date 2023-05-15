@@ -39,4 +39,10 @@ namespace rdlib {
             it = s_objects.erase(it);
         }
     }
+
+    void Agent::killAll() {
+        for (auto a : s_objects) {
+            a->m_status = Status::DEAD;
+        }
+    }
 }

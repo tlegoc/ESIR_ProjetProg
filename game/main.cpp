@@ -3,6 +3,7 @@
 #include <rdlib/Engine.h>
 #include <rdlib/Agent.h>
 #include <rdlib/Time.h>
+#include <rdlib/Sprite.h>
 
 #include <iostream>
 #include <thread>
@@ -16,9 +17,9 @@ public:
         m_lifetime += rdlib::Time::getDelta();
 
         // Exit program after 5 seconds
-        if (m_lifetime >= 5.0f) {
-            rdlib::Engine::quit();
-        }
+        // if (m_lifetime >= 5.0f) {
+        //     rdlib::Engine::quit();
+        // }
     };
 };
 
@@ -27,6 +28,7 @@ int main() {
     rdlib::Engine::instanciate();
 
     Test *t = new Test();
+    rdlib::Sprite *s = new rdlib::Sprite("Gamejam.png");
 
     // Rien après cette ligne ne s'éxecute tant que le jeu n'est pas quitté
     while (rdlib::Engine::shouldContinue()) {

@@ -9,7 +9,12 @@ add_library(RDLIB SHARED
         include/rdlib/Time.h
         src/Sprite.cpp
         include/rdlib/Sprite.h
-        include/rdlib/include_sdl.h)
+        include/rdlib/include_sdl.h
+        src/VisibleAgent.cpp
+        include/rdlib/VisibleAgent.h
+        src/Shader.cpp
+        include/rdlib/Shader.h
+        include/stb_image.h)
 
 target_include_directories(RDLIB PUBLIC include)
 
@@ -47,8 +52,10 @@ endif ()
 add_subdirectory(thirdparty/GLM)
 
 find_package(OpenGL REQUIRED)
+find_package(GLEW REQUIRED)
+include_directories(${GLEW_INCLUDE_DIRS})
 
-target_link_libraries(RDLIB PUBLIC OpenGL::GL OpenGL::GLU glm)
+target_link_libraries(RDLIB PUBLIC OpenGL::GL OpenGL::GLU glm ${GLEW_LIBRARIES})
 
 # Installation so you can use it with #include <rdlib/file.h>
 install(TARGETS RDLIB DESTINATION lib/rdlib)
