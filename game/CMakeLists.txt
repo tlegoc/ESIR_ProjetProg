@@ -3,6 +3,6 @@
 
 add_executable(Game
         main.cpp
-        )
+        entity/character/hero.cpp entity/character/hero.h)
 
 target_link_libraries(Game RDLIB)
