@@ -119,7 +119,7 @@ int main() {
     Hero *s1 = new Hero(glm::vec3(1, 0, 0), 2, 20, 50, 2, 1, 2);
 
     Sword *s3 = new Sword(1, "Epée 1", "Pour Demacaia !");
-    s3->setPos(glm::vec3(1, 1, 0));
+    s3->setPos(glm::vec3(2, 1, 0));
 
     // rdlib::Agent *s = new Sword( 10,  ("Sword"),("A sword"));
 

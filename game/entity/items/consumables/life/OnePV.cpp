@@ -9,8 +9,8 @@ OnePV::OnePV() : GenericConsumable("assets/PV_Buff/RedFullHeart.png") { }
 
 
 void OnePV::use(Hero &player) {
-    if(player.getMPv() + 2 <player.getMaxPv() ){
-        player.setMPv(player.getMPv() + 2);
+    if(player.getPv() + 2 <player.getMaxPv() ){
+        player.setPv(player.getPv() + 2);
     }
     kill();
 

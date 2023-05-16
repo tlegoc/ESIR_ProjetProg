@@ -4,12 +4,12 @@
 
 #include "ShieldImprove.h"
 
-ShieldImprove::ShieldImprove(int shieldImprove) : GenericConsumable( " " ),
-                                                  m_shieldImprove(shieldImprove) {}
+ShieldImprove::ShieldImprove(int shield_improve) : GenericConsumable(" " ),
+                                                   m_shield_improve(shield_improve) {}
 
 void ShieldImprove::use(Hero & hero) {
-    if(hero.getMShield() + m_shieldImprove < hero.getMMaxShield()){
-        hero.setMShield(hero.getMShield() + m_shieldImprove);
+    if(hero.getShield() + m_shield_improve < hero.getMaxShield()){
+        hero.setShield(hero.getShield() + m_shield_improve);
     }
     kill();
 }

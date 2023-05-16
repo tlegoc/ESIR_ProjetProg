@@ -125,19 +125,19 @@ void Hero::setShield(int shield) {
 }
 
 int Hero::getMaxDamage() const {
-    return m_maxDamage;
+    return m_max_damage;
 }
 
-void Hero::setMMaxDamage(int max_damage) {
-    m_maxDamage = max_damage;
+void Hero::setMaxDamage(int max_damage) {
+    m_max_damage = max_damage;
 }
 
 int Hero::getMaxShield() const {
-    return m_maxShield;
+    return m_max_shield;
 }
 
 void Hero::setMaxShield(int max_shield) {
-    m_maxShield = max_shield;
+    m_max_shield = max_shield;
 };
 
 

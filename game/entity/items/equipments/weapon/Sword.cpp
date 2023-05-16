@@ -9,7 +9,7 @@ Sword::Sword( int damage, std::string  name, std::string  description) : Generic
 }
 
 void Sword::use(Hero & e) {
-    e.setMDamage(e.getMDamage() + this->getDamage());
+    e.setDamage(e.getDamage() + this->getDamage());
     kill();
 }
 

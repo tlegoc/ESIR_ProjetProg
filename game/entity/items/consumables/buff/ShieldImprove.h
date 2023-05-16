@@ -10,11 +10,11 @@
 
 class ShieldImprove : public GenericConsumable {
 
-    int m_shieldImprove;
+    int m_shield_improve;
 
 public:
 
-    ShieldImprove(int shieldImprove);
+    ShieldImprove(int shield_improve);
 
     void use(Hero & hero) override;
 
