@@ -21,7 +21,9 @@ add_library(RDLIB
         src/ColliderSpriteAgent.cpp
         include/rdlib/ColliderSpriteAgent.h
         src/Map.cpp
-        include/rdlib/Map.h)
+        include/rdlib/Map.h
+        src/SpriteSheetAgent.cpp
+        include/rdlib/SpriteSheetAgent.h)
 
 target_include_directories(RDLIB PUBLIC include)
 
