@@ -14,9 +14,9 @@ using namespace glm;
 namespace rdlib {
     class ColliderAgent : public virtual Agent {
     public:
-        ColliderAgent() : Agent() {};
+        ColliderAgent() : Agent(), m_passthrough(false) {};
 
-        bool isColliding(ColliderAgent *other, bool checkPassthrough = false) const;
+        bool isColliding(ColliderAgent *other, bool check_passthrough = false) const;
 
         std::vector<ColliderAgent *> isColliding(bool checkPassthrough = false) const;
 

@@ -8,8 +8,8 @@
 
 namespace rdlib {
 
-    bool ColliderAgent::isColliding(ColliderAgent *other, bool checkPassthrough) const {
-        if (checkPassthrough && (other->isPassthrough() || isPassthrough())) return false;
+    bool ColliderAgent::isColliding(ColliderAgent *other, bool check_passthrough) const {
+        if (check_passthrough && (other->isPassthrough() || isPassthrough())) return false;
 
         return checkCollisions(other->getColliderPosition(), other->getColliderSize());
     }

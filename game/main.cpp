@@ -121,9 +121,6 @@ int main() {
     Sword *s3 = new Sword(1, "Epée 1", "Pour Demacaia !");
     s3->setPos(glm::vec3(2, 1, 2));
 
-    // rdlib::Agent *s = new sword( 10,  ("sword"),("A sword"));
-
-
     // Rien après cette ligne ne s'éxecute tant que le jeu n'est pas quitté
     while (rdlib::Engine::shouldContinue()) {
         rdlib::Engine::update();
