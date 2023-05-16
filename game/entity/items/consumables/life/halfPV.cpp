@@ -5,7 +5,7 @@
 #include "halfPV.h"
 
 
-halfPV::halfPV() : GenericConsumable("assets/PV_Buff/RedHalfHeart.png") {
+halfPV::halfPV() : GenericConsumable("assets/buffs/RedHalfHeart.png") {
     //std::cout << "halfPV created" << std::endl;
 }
 

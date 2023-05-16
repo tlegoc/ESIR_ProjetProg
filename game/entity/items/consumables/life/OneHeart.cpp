@@ -5,7 +5,7 @@
 #include "OneHeart.h"
 
 
-OneHeart::OneHeart() : GenericConsumable("assets/PV_Buff/heartAdd.jpeg") {
+OneHeart::OneHeart() : GenericConsumable("assets/buffs/heartAdd.jpeg") {
 
 }
 

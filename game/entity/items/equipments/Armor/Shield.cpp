@@ -5,7 +5,7 @@
 #include "Shield.h"
 
 
-Shield::Shield(int armor, std::string  name, std::string  description) : GenericArmor("assets/Sword/Shield Pack.png", armor, name, description) {
+Shield::Shield(int armor, std::string  name, std::string  description) : GenericArmor("assets/sword/Shield Pack.png", armor, name, description) {
 
 }
 

@@ -13,7 +13,7 @@ class Sword : public GenericWeapon {
 public :
 
     /**
-     * @brief Constructeur de la classe Sword
+     * @brief Constructeur de la classe sword
      * @param damage  degats de l'arme
      * @param name  nom de l'arme
      * @param description  description de l'arme

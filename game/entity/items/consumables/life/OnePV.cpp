@@ -4,7 +4,7 @@
 
 #include "OnePV.h"
 
-OnePV::OnePV() : GenericConsumable("assets/PV_Buff/RedFullHeart.png") { }
+OnePV::OnePV() : GenericConsumable("assets/buffs/RedFullHeart.png") { }
 
 
 
