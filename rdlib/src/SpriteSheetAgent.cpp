@@ -24,11 +24,12 @@ namespace rdlib {
                                                         "\n"
                                                         "uniform mat4 model;\n"
                                                         "uniform mat4 camera;\n"
+                                                        "uniform vec2 size;\n"
                                                         "\n"
                                                         "void main()\n"
                                                         "{\n"
                                                         "    TexCoords = vertex.zw;\n"
-                                                        "    gl_Position = camera * model * vec4(vertex.xy, 0.0, 1.0);\n"
+                                                        "    gl_Position = camera * model * vec4(vertex.xy, vertex.y*size.y, 1.0);\n"
                                                         "}";
 
     const std::string SpriteSheetAgent::s_fragment_code = "#version 330 core\n"
@@ -60,7 +61,9 @@ namespace rdlib {
                                                           "    // Finally to UV texture coordinates\n"
                                                           "    vec2 uv = vec2(dx * TexCoords.x + col * dx, 1.0 - dy - row * dy + dy * TexCoords.y);\n"
                                                           "\n"
-                                                          "    color = vec4(spriteColor, 1.0) * texture(image, uv * vec2(1.0, -1.0));\n"
+                                                          "    vec4 t_color = vec4(spriteColor, 1.0) * texture(image, uv * vec2(1.0, -1.0));\n"
+                                                          "    if(t_color.a < 0.1) discard;\n"
+                                                          "    color = t_color;\n"
                                                           "}";
 
     SpriteSheetAgent::SpriteSheetAgent(const std::string &image, uvec2 tile_size, float frametime, vec3 position,
@@ -79,8 +82,6 @@ namespace rdlib {
     void SpriteSheetAgent::render() {
         // prepare transformations
         glUseProgram(s_shader_id);
-        glEnable(GL_BLEND);
-        glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
         mat4 model = getModelMatrix();
         mat4 camera = Engine::getCameraMatrix();
@@ -91,7 +92,7 @@ namespace rdlib {
         glUniform1ui(glGetUniformLocation(s_shader_id, "currentTile"),
                      m_anim[(int) (m_current_anim_pos / m_frametime)]);
         glUniform2ui(glGetUniformLocation(s_shader_id, "tileSize"), m_tile_size.x, m_tile_size.y);
-
+        glUniform2f(glGetUniformLocation(s_shader_id, "size"), m_size.x, m_size.y);
 
         glActiveTexture(GL_TEXTURE0);
         glBindTexture(GL_TEXTURE_2D, m_texture);
@@ -111,6 +112,10 @@ namespace rdlib {
     void SpriteSheetAgent::playAnimation(std::vector<unsigned int> anim, bool loop) {
         m_anim = anim;
         m_loop = loop;
+    }
+
+    bool SpriteSheetAgent::animationFinished() {
+        return m_current_anim_pos >= m_frametime * m_anim.size();
     }
 
 } // rdlib
