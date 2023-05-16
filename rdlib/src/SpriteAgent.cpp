@@ -66,11 +66,11 @@ namespace rdlib {
         glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
 
         // load and generate the texture
-        int width, height, nr_channels;
-        unsigned char *data = stbi_load(image.c_str(), &width, &height, &nr_channels, 0);
-        std::cout << "Loaded: " << image.c_str() << ", nr_channels: " << nr_channels << std::endl;
+        int width, height, nb_channels;
+        unsigned char *data = stbi_load(image.c_str(), &width, &height, &nb_channels, 0);
+        std::cout << "Loaded: " << image.c_str() << ", nb_channels: " << nb_channels << std::endl;
         if (data) {
-            auto format = nr_channels == 3 ? GL_RGB : GL_RGBA;
+            auto format = nb_channels == 3 ? GL_RGB : GL_RGBA;
             glTexImage2D(GL_TEXTURE_2D, 0, format, width, height, 0, format, GL_UNSIGNED_BYTE, data);
             glGenerateMipmap(GL_TEXTURE_2D);
         } else {

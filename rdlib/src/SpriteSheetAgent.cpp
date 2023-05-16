@@ -17,19 +17,19 @@ namespace rdlib {
     unsigned int SpriteSheetAgent::s_shader_id = 0;
 
     const std::string SpriteSheetAgent::s_vertex_code = "\n"
-                                                   "#version 330 core\n"
-                                                   "layout (location = 0) in vec4 vertex; // <vec2 position, vec2 texCoords>\n"
-                                                   "\n"
-                                                   "out vec2 TexCoords;\n"
-                                                   "\n"
-                                                   "uniform mat4 model;\n"
-                                                   "uniform mat4 camera;\n"
-                                                   "\n"
-                                                   "void main()\n"
-                                                   "{\n"
-                                                   "    TexCoords = vertex.zw;\n"
-                                                   "    gl_Position = camera * model * vec4(vertex.xy, 0.0, 1.0);\n"
-                                                   "}";
+                                                        "#version 330 core\n"
+                                                        "layout (location = 0) in vec4 vertex; // <vec2 position, vec2 texCoords>\n"
+                                                        "\n"
+                                                        "out vec2 TexCoords;\n"
+                                                        "\n"
+                                                        "uniform mat4 model;\n"
+                                                        "uniform mat4 camera;\n"
+                                                        "\n"
+                                                        "void main()\n"
+                                                        "{\n"
+                                                        "    TexCoords = vertex.zw;\n"
+                                                        "    gl_Position = camera * model * vec4(vertex.xy, 0.0, 1.0);\n"
+                                                        "}";
 
     const std::string SpriteSheetAgent::s_fragment_code = "#version 330 core\n"
                                                           "in vec2 TexCoords;\n"
@@ -63,7 +63,9 @@ namespace rdlib {
                                                           "    color = vec4(spriteColor, 1.0) * texture(image, uv * vec2(1.0, -1.0));\n"
                                                           "}";
 
-    SpriteSheetAgent::SpriteSheetAgent(const std::string& image, uvec2 tile_size, float frametime, vec3 position, float angle, vec2 size, vec3 color) : SpriteAgent(image, position, angle, size, color) {
+    SpriteSheetAgent::SpriteSheetAgent(const std::string &image, uvec2 tile_size, float frametime, vec3 position,
+                                       float angle, vec2 size, vec3 color) : SpriteAgent(image, position, angle, size,
+                                                                                         color) {
         m_tile_size = tile_size;
         m_frametime = frametime;
         m_current_anim_pos = 0;
@@ -86,7 +88,8 @@ namespace rdlib {
         glUniformMatrix4fv(glGetUniformLocation(s_shader_id, "model"), 1, GL_FALSE, glm::value_ptr(model));
         glUniformMatrix4fv(glGetUniformLocation(s_shader_id, "camera"), 1, GL_FALSE, glm::value_ptr(camera));
         glUniform3f(glGetUniformLocation(s_shader_id, "spriteColor"), m_color.r, m_color.g, m_color.b);
-        glUniform1ui(glGetUniformLocation(s_shader_id, "currentTile"), m_anim[(int) (m_current_anim_pos / m_frametime)]);
+        glUniform1ui(glGetUniformLocation(s_shader_id, "currentTile"),
+                     m_anim[(int) (m_current_anim_pos / m_frametime)]);
         glUniform2ui(glGetUniformLocation(s_shader_id, "tileSize"), m_tile_size.x, m_tile_size.y);
 
 
@@ -97,13 +100,17 @@ namespace rdlib {
         glDrawArrays(GL_TRIANGLES, 0, 6);
         glBindVertexArray(0);
         glActiveTexture(0);
-        m_current_anim_pos += Time::getDelta();
-        m_current_anim_pos = glm::mod(m_current_anim_pos, m_frametime*m_anim.size());
-        std::cout << (int) (m_current_anim_pos / m_frametime) << std::endl;
+
+        if (m_current_anim_pos < m_frametime * m_anim.size() || m_loop) {
+            m_current_anim_pos += Time::getDelta();
+            if (m_loop)
+                m_current_anim_pos = glm::mod(m_current_anim_pos, m_frametime * m_anim.size());
+        }
     }
 
     void SpriteSheetAgent::playAnimation(std::vector<unsigned int> anim, bool loop) {
         m_anim = anim;
+        m_loop = loop;
     }
 
 } // rdlib
