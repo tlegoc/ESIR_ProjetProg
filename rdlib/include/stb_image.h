@@ -119,8 +119,8 @@ RECENT REVISION HISTORY:
 
                      Jacko Dirks
 
-  To add your name to the credits, pick a random blank space in the middle and fill it.
-  80% of merge conflicts on stb PRs are due to people adding their name at the end
+  To add your m_name to the credits, pick a random blank space in the middle and fill it.
+  80% of merge conflicts on stb PRs are due to people adding their m_name at the end
   of the credits.
 */
 
@@ -746,7 +746,7 @@ static int stbi__cpuid3(void)
 }
 #endif
 
-#define STBI_SIMD_ALIGN(type, name) __declspec(align(16)) type name
+#define STBI_SIMD_ALIGN(type, m_name) __declspec(align(16)) type m_name
 
 #if !defined(STBI_NO_JPEG) && defined(STBI_SSE2)
 static int stbi__sse2_available(void)
@@ -780,14 +780,14 @@ static int stbi__sse2_available(void)
 #ifdef STBI_NEON
 #include <arm_neon.h>
 #ifdef _MSC_VER
-#define STBI_SIMD_ALIGN(type, name) __declspec(align(16)) type name
+#define STBI_SIMD_ALIGN(type, m_name) __declspec(align(16)) type m_name
 #else
-#define STBI_SIMD_ALIGN(type, name) type name __attribute__((aligned(16)))
+#define STBI_SIMD_ALIGN(type, m_name) type m_name __attribute__((aligned(16)))
 #endif
 #endif
 
 #ifndef STBI_SIMD_ALIGN
-#define STBI_SIMD_ALIGN(type, name) type name
+#define STBI_SIMD_ALIGN(type, m_name) type m_name
 #endif
 
 #ifndef STBI_MAX_DIMENSIONS

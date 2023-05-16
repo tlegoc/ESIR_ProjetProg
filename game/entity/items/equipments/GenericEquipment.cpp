@@ -9,3 +9,4 @@ GenericEquipment::GenericEquipment(const std::string &image, vec3 position, bool
         : GenericItem(image, position,
                       isCollect, angle, size,
                       color) {}
+

@@ -5,7 +5,7 @@
 
 add_executable(Game
         main.cpp entity/items/GenericItem.cpp entity/items/GenericItem.h
-        entity/items/equipments/GenericEquipment.h entity/items/equipments/GenericEquipment.cpp)
+        entity/items/equipments/GenericEquipment.h entity/items/equipments/GenericEquipment.cpp entity/items/equipments/weapon/Sword.h entity/items/equipments/weapon/Sword.cpp entity/items/equipments/Armor/Shield.h entity/items/equipments/Armor/Shield.cpp entity/items/equipments/Armor/GenericArmor.h entity/items/equipments/Armor/GenericArmor.cpp entity/items/equipments/weapon/GenericWeapon.h entity/items/equipments/weapon/GenericWeapon.cpp)
 
 target_link_libraries(Game RDLIB)
 
