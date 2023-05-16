@@ -6,12 +6,14 @@
 #include <rdlib/SpriteAgent.h>
 #include <rdlib/ColliderSpriteAgent.h>
 #include <rdlib/InputManager.h>
+#include <rdlib/Map.h>
 
 #include <iostream>
 #include <thread>
 #include "entity/character/Hero.h"
 #include "entity/character/Monster.h"
 #include "entity/items/equipments/weapon/Sword.h"
+#include "glm/fwd.hpp"
 
 /*class Test : public rdlib::ColliderSpriteAgent {
 public:
@@ -100,20 +102,41 @@ public:
     };
 };*/
 
+class MoveCamera : public rdlib::Agent {
+    private:
+        float m_speed;
+    public:
+        MoveCamera(float speed) : m_speed(speed) { }
+        void update() override {
+            if(rdlib::InputManager::isKeyPressed('q'))
+                rdlib::Engine::setCameraPosition(rdlib::Engine::getCameraPosition() + vec2(-1, 0) * m_speed);
+            if(rdlib::InputManager::isKeyPressed('d'))
+                rdlib::Engine::setCameraPosition(rdlib::Engine::getCameraPosition() + vec2(1, 0) * m_speed);
+            if(rdlib::InputManager::isKeyPressed('z'))
+                rdlib::Engine::setCameraPosition(rdlib::Engine::getCameraPosition() + vec2(0, 1) * m_speed);
+            if(rdlib::InputManager::isKeyPressed('s'))
+                rdlib::Engine::setCameraPosition(rdlib::Engine::getCameraPosition() + vec2(0, -1) * m_speed);
+        }
+};
+
+
 int main() {
     // Notre jeu
     rdlib::Engine::instanciate();
     rdlib::Engine::setCameraZoom(3);
 
+    new MoveCamera(0.1);
+    rdlib::Map::load("assets/map/map.json");
+
     //rdlib::Agent *s = new Test("Gamejam.png");
     //rdlib::Agent *s2 = new Test("Gamejam.png", glm::vec3(0, 0, 0), 0, glm::vec2(.5, .5), glm::vec3(1, 1, 1));
     //rdlib::Agent *s3 = new Test2("Gamejam.png", glm::vec3(0, 0.6, 0), 0, glm::vec2(.5, .5), glm::vec3(1, 1, 1));
 
-    Monster *s2 = new Monster("assets/character/monster_red.png", glm::vec3(0, 0, 0), 0,
-                              glm::vec2(1), glm::vec3(1, 1, 1), 10, 1);
+    // Monster *s2 = new Monster("assets/character/monster_red.png", glm::vec3(0, 0, 0), 0,
+                              //glm::vec2(1), glm::vec3(1, 1, 1), 10, 1);
 
-    Hero *s1 = new Hero("assets/props/tower11x3.png", glm::vec3(0, 0, 0), 0,
-                        glm::vec2(1), glm::vec3(1, 1, 1), 20, 50, 2, 1, 2);
+    // Hero *s1 = new Hero("assets/props/tower11x3.png", glm::vec3(0, 0, 0), 0,
+                        //glm::vec2(1), glm::vec3(1, 1, 1), 20, 50, 2, 1, 2);
 
 
     // rdlib::Agent *s = new Sword( 10,  ("Sword"),("A sword"));
