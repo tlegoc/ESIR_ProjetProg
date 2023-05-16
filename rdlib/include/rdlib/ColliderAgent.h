@@ -16,14 +16,22 @@ namespace rdlib {
     public:
         ColliderAgent() : Agent() {};
 
-        bool isColliding(ColliderAgent *other) const;
+        bool isColliding(ColliderAgent *other, bool checkPassthrough = false) const;
 
-        std::vector<ColliderAgent*> isColliding() const;
+        std::vector<ColliderAgent *> isColliding(bool checkPassthrough = false) const;
 
         bool checkCollisions(vec2 pos, vec2 size) const;
 
+        bool isPassthrough() const { return m_passthrough; }
+
+        void setPassthrough(bool passthrough) { m_passthrough = passthrough; }
+
         virtual vec2 getColliderPosition() const = 0;
+
         virtual vec2 getColliderSize() const = 0;
+
+    private:
+        bool m_passthrough;
     };
 }  // rdlib
 

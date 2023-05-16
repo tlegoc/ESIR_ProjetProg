@@ -16,7 +16,7 @@ public:
 
     ShieldImprove(int shield_improve);
 
-    void use(Hero & hero) override;
+    void use(Hero *hero) override;
 
 };
 

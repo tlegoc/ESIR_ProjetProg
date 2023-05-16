@@ -9,9 +9,9 @@ Shield::Shield(int armor, std::string  name, std::string  description) : Generic
 
 }
 
-void Shield::use(Hero & e) {
-    if(e.getShield() + this->getArmor() < e.getMaxShield()){
-        e.setShield(e.getShield() + this->getArmor());
+void Shield::use(Hero *e) {
+    if(e->getShield() + this->getArmor() < e->getMaxShield()){
+        e->setShield(e->getShield() + this->getArmor());
     }
     kill();
 }

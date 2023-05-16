@@ -10,8 +10,8 @@
 
 Hero::Hero(vec3 position, float speed, int pv, int max_pv, int damage, int shield, int max_shield)
         : rdlib::ColliderSpriteSheetAgent("assets/character/player.png",
-                                          vec2(7.0f/32.0f, 7.0f / 64.0f),
-                                          vec2(20.0f/32.0f, 19.0f / 64.0f),
+                                          vec2(7.0f / 32.0f, 7.0f / 64.0f),
+                                          vec2(20.0f / 32.0f, 19.0f / 64.0f),
                                           vec2(32, 64),
                                           .16f,
                                           position,
@@ -54,13 +54,13 @@ void Hero::update() {
         // We move the x direction first,
         // check collisions and if there is one, we go back
         m_pos.x += dir.x * m_speed * rdlib::Time::getDelta();
-        if (!isColliding().empty()) {
+        if (!isColliding(true).empty()) {
             m_pos.x -= dir.x * m_speed * rdlib::Time::getDelta();
         }
 
         // We do the same for the y direction
         m_pos.y += dir.y * m_speed * rdlib::Time::getDelta();
-        if (!isColliding().empty()) {
+        if (!isColliding(true).empty()) {
             m_pos.y -= dir.y * m_speed * rdlib::Time::getDelta();
         }
 
@@ -82,11 +82,20 @@ void Hero::update() {
     }
 
     m_attack_delay -= rdlib::Time::getDelta();
-    if (rdlib::InputManager::isKeyPressed('e') && m_attack_delay < 0) {
+    if (rdlib::InputManager::isKeyPressed('a') && m_attack_delay < 0) {
         // Get the position in front of the player
         vec3 sword_pos = m_pos + vec3(m_direction, 0) * 0.5f;
         new SwordAgent(sword_pos, getDamage());
         m_attack_delay = 0.2f;
+    }
+
+    if (rdlib::InputManager::isKeyPressed('e')) {
+        for (auto a: isColliding()) {
+            if (dynamic_cast<GenericItem *>(a) != nullptr) {
+                auto item = dynamic_cast<GenericItem *>(a);
+                item->use(this);
+            }
+        }
     }
 
     rdlib::Engine::setCameraPosition(m_pos);

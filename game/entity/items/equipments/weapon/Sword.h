@@ -20,7 +20,7 @@ public :
      */
     Sword(int damage , std::string  name, std::string  description);
 
-    void use (Hero & e) override;
+    void use (Hero *e) override;
 };
 
 

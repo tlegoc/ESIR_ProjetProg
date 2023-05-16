@@ -45,7 +45,7 @@ public:
      * @brief Permet de mettre à jour l'item
      * @param hero  Héro
      */
-     virtual void use(Hero & hero) = 0;
+     virtual void use(Hero *hero) = 0;
 
 };
 

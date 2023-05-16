@@ -8,16 +8,18 @@
 
 namespace rdlib {
 
-    bool ColliderAgent::isColliding(ColliderAgent *other) const {
+    bool ColliderAgent::isColliding(ColliderAgent *other, bool checkPassthrough) const {
+        if (checkPassthrough && (other->isPassthrough() || isPassthrough())) return false;
+
         return checkCollisions(other->getColliderPosition(), other->getColliderSize());
     }
 
-    std::vector<ColliderAgent*> ColliderAgent::isColliding() const {
+    std::vector<ColliderAgent *> ColliderAgent::isColliding(bool checkPassthrough) const {
         auto colliders = Agent::getObjectsOfType<ColliderAgent>();
-        std::vector<ColliderAgent*> colliding;
+        std::vector<ColliderAgent *> colliding;
 
-        for (auto collider : colliders) {
-            if (collider != this && isColliding(collider)) {
+        for (auto collider: colliders) {
+            if (collider != this && isColliding(collider, checkPassthrough)) {
                 colliding.push_back(collider);
             }
         }

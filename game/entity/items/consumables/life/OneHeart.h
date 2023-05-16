@@ -15,7 +15,7 @@ public :
     OneHeart();
 
 
-    void use(Hero & hero) override;
+    void use(Hero *hero) override;
 };
 
 

@@ -11,7 +11,9 @@ GenericItem::GenericItem(const std::string &image, vec2 collider_pos, vec2 colli
                               collider_pos, collider_size,
                               position,
                               angle, size,
-                              color), m_isCollect(isCollect) {}
+                              color), m_isCollect(isCollect) {
+    setPassthrough(true);
+}
 
 bool GenericItem::isCollect() const {
     return m_isCollect;

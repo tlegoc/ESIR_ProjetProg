@@ -22,7 +22,7 @@ public :
      * Use the consumable
      * @param hero  The hero who use the consumable
      */
-    void use(Hero & hero) override;
+    void use(Hero *hero) override;
 };
 
 
