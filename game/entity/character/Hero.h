@@ -15,15 +15,36 @@
 class Hero : public rdlib::ColliderSpriteAgent {
 
 public:
-    Hero(const std::string &image, vec3 position, float angle, vec2 size, vec3 color, int pv, int max_pv, int m_damage, int m_shield);
+    Hero(const std::string &image, vec3 position, float angle, vec2 size, vec3 color, int pv, int max_pv, int m_damage, int m_shield, int maxShield);
 
    // Hero(const std::string &image, vec3 position, float angle, vec2 size, vec3 color, int pv);
 
     int m_pv;
-    int max_pv;
+    int m_maxPv;
+    int m_invisibility;
     int m_damage;
     int m_shield;
+    int m_maxShield;
     float m_lifetime = 0;
+
+
+    int getMPv() const;
+
+    int getMaxPv() const;
+
+    int getMDamage() const;
+
+    void setMPv(int mPv);
+
+    void setMaxPv(int maxPv);
+
+    void setMDamage(int mDamage);
+
+    void setMShield(int mShield);
+
+    int getMShield() const;
+
+
 
     void update() override;
     //set d'object d'Aubry

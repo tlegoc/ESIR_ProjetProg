@@ -10,6 +10,7 @@
 #include <iostream>
 #include <thread>
 #include "entity/character/Hero.h"
+#include "entity/character/Monster.h"
 
 class Test : public rdlib::ColliderSpriteAgent {
 public:
@@ -106,8 +107,10 @@ int main() {
     //rdlib::Agent *s2 = new Test("Gamejam.png", glm::vec3(0, 0, 0), 0, glm::vec2(.5, .5), glm::vec3(1, 1, 1));
     //rdlib::Agent *s3 = new Test2("Gamejam.png", glm::vec3(0, 0.6, 0), 0, glm::vec2(.5, .5), glm::vec3(1, 1, 1));
 
-    Hero *s1 = new Hero("Gamejam.png", glm::vec3(0, 0, 0), 0,
-                      glm::vec2(.5, .5), glm::vec3(1, 1, 1), 20, 50, 2, 1);
+    Hero *s1 = new Hero("assets/character/hero_vert.png", glm::vec3(0, 0, 0), 0,
+                      glm::vec2(.5, .5), glm::vec3(1, 1, 1), 20, 50, 2, 1, 2);
+    Monster *s2 = new Monster("assets/character/monster_red.png", glm::vec3(0, 0, 0), 0,
+                        glm::vec2(.2, .2), glm::vec3(1, 1, 1), 5, 1);
 
 
     // Rien après cette ligne ne s'éxecute tant que le jeu n'est pas quitté

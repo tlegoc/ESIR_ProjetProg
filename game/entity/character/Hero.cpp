@@ -2,14 +2,19 @@
 // Created by Thibault on 16/05/2023.
 //
 
-#include <rdlib/ColliderSpriteAgent.h>
 #include "Hero.h"
+#include "Monster.h"
 
 Hero::Hero(const std::string &image, vec3 position, float angle,
-           vec2 size, vec3 color, int pv, int max_pv, int m_damage, int m_shield): rdlib::ColliderSpriteAgent(image, position, angle, size, color), m_pv(20), max_pv(1), m_damage(1), m_shield(1){};
+           vec2 size, vec3 color, int pv, int max_pv, int m_damage, int m_shield, int m_maxShield): rdlib::ColliderSpriteAgent(image, position, angle, size, color), m_pv(pv), m_maxPv(max_pv), m_damage(m_damage), m_shield(m_shield), m_maxShield(m_maxShield), m_invisibility(0){};
+
+
 
     void Hero::update() {
             m_lifetime += rdlib::Time::getDelta();
+        if (m_invisibility > 0){
+            m_invisibility--;
+        }
 
             // On fait tourner l'image de 1 degré par seconde
             if (rdlib::InputManager::isKeyPressed('a')) {
@@ -56,11 +61,53 @@ Hero::Hero(const std::string &image, vec3 position, float angle,
                 rdlib::Engine::setCameraZoom(rdlib::Engine::getCameraZoom() - rdlib::Time::getDelta() * 10);
             }
 
-            if (!isColliding().empty()) {
+            if (!isColliding().empty()) { //inflige des dégâts au monstre qui est touché par le héro
                 m_color = glm::vec3(1, 0, 0);
+                if(m_invisibility == 0) {
+                    for (auto a: isColliding()) {
+                        if (dynamic_cast<Monster *>(a) != nullptr) {
+                            auto monster = dynamic_cast<Monster *>(a);
+                            monster->setMPv(monster->getMPv() - this->getMDamage());
+                            std::cout << " Vie monstre " << monster->getMPv() << " " << std::endl;
+                            m_invisibility = 100;
+                        }
+                    }
+                }
             } else {
                 m_color = glm::vec3(1, 1, 1);
             }
-    };
+    }
+
+int Hero::getMPv() const {
+    return m_pv;
+}
+
+int Hero::getMaxPv() const {
+    return m_maxPv;
+}
+
+int Hero::getMDamage() const {
+    return m_damage;
+}
+
+int Hero::getMShield() const {
+    return m_shield;
+}
+
+void Hero::setMPv(int mPv) {
+    m_pv = mPv;
+}
+
+void Hero::setMaxPv(int maxPv) {
+    m_maxPv = maxPv;
+}
+
+void Hero::setMDamage(int mDamage) {
+    m_damage = mDamage;
+}
+
+void Hero::setMShield(int mShield) {
+    m_shield = mShield;
+};
 
 
