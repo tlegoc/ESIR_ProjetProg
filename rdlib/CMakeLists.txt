@@ -19,7 +19,9 @@ add_library(RDLIB SHARED
         src/ColliderAgent.cpp
         include/rdlib/ColliderAgent.h
         src/ColliderSpriteAgent.cpp
-        include/rdlib/ColliderSpriteAgent.h)
+        include/rdlib/ColliderSpriteAgent.h
+        src/Map.cpp
+        include/rdlib/Map.h)
 
 target_include_directories(RDLIB PUBLIC include)
 
