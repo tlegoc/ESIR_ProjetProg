@@ -22,7 +22,6 @@ namespace rdlib {
     Agent::~Agent() = default;
 
     void Agent::updateAll() {
-        std::cout << "Updating agents: " << s_objects.size() << std::endl;
         auto it = s_objects.begin();
         while (it != s_objects.end()) {
             if ((*it)->m_status == Status::DEAD) {
