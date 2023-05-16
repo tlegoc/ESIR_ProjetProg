@@ -12,45 +12,48 @@
 
 #include <GL/glew.h>
 #include <iostream>
-#include "glm/gtc/matrix_transform.hpp"
 #include "glm/gtc/type_ptr.hpp"
 
 namespace rdlib {
-    std::string SpriteAgent::s_vertex_code = "\n"
-                                        "#version 330 core\n"
-                                        "layout (location = 0) in vec4 vertex; // <vec2 position, vec2 texCoords>\n"
-                                        "\n"
-                                        "out vec2 TexCoords;\n"
-                                        "\n"
-                                        "uniform mat4 model;\n"
-                                        "uniform mat4 camera;\n"
-                                        "\n"
-                                        "void main()\n"
-                                        "{\n"
-                                        "    TexCoords = vertex.zw;\n"
-                                        "    gl_Position = camera * model * vec4(vertex.xy, 0.0, 1.0);\n"
-                                        "}";
+    unsigned int SpriteAgent::s_shader_id = 0;
 
-    std::string SpriteAgent::s_fragment_code = "#version 330 core\n"
-                                          "in vec2 TexCoords;\n"
-                                          "out vec4 color;\n"
-                                          "\n"
-                                          "uniform sampler2D image;\n"
-                                          "uniform vec3 spriteColor;\n"
-                                          "\n"
-                                          "void main()\n"
-                                          "{    \n"
-                                          "    color = vec4(spriteColor, 1.0) * texture(image, TexCoords * vec2(1.0, -1.0));\n"
-                                          "}";
+    const std::string SpriteAgent::s_vertex_code = "\n"
+                                             "#version 330 core\n"
+                                             "layout (location = 0) in vec4 vertex; // <vec2 position, vec2 texCoords>\n"
+                                             "\n"
+                                             "out vec2 TexCoords;\n"
+                                             "\n"
+                                             "uniform mat4 model;\n"
+                                             "uniform mat4 camera;\n"
+                                             "\n"
+                                             "void main()\n"
+                                             "{\n"
+                                             "    TexCoords = vertex.zw;\n"
+                                             "    gl_Position = camera * model * vec4(vertex.xy, 0.0, 1.0);\n"
+                                             "}";
 
-    SpriteAgent::SpriteAgent(const std::string& image, vec3 position, float angle, vec2 size, vec3 color) : VisibleAgent() {
+    const std::string SpriteAgent::s_fragment_code = "#version 330 core\n"
+                                               "in vec2 TexCoords;\n"
+                                               "out vec4 color;\n"
+                                               "\n"
+                                               "uniform sampler2D image;\n"
+                                               "uniform vec3 spriteColor;\n"
+                                               "\n"
+                                               "void main()\n"
+                                               "{    \n"
+                                               "    color = vec4(spriteColor, 1.0) * texture(image, TexCoords * vec2(1.0, -1.0));\n"
+                                               "}";
+
+    SpriteAgent::SpriteAgent(const std::string &image, vec3 position, float angle, vec2 size, vec3 color)
+            : VisibleAgent() {
         m_image_id = 0;
         m_pos = position;
         m_angle = angle;
         m_size = size;
         m_color = color;
 
-        m_shader_id = Shader::LoadShader(s_vertex_code, s_fragment_code);
+        if (s_shader_id == 0)
+            s_shader_id = Shader::LoadShader(s_vertex_code, s_fragment_code);
 
         // Image
         glGenTextures(1, &m_texture);
@@ -59,20 +62,22 @@ namespace rdlib {
         // set the texture wrapping/filtering options (on the currently bound texture object)
         glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
         glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
-        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_LINEAR);
-        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
+        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
 
         // load and generate the texture
-        int width, height, nr_channels;
-        unsigned char *data = stbi_load(image.c_str(), &width, &height, &nr_channels, 0);
+        int width, height, nb_channels;
+        unsigned char *data = stbi_load(image.c_str(), &width, &height, &nb_channels, 0);
+        std::cout << "Loaded: " << image.c_str() << ", nb_channels: " << nb_channels << std::endl;
         if (data) {
-            glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, width, height, 0, GL_RGB, GL_UNSIGNED_BYTE, data);
-            glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
+            auto format = nb_channels == 3 ? GL_RGB : GL_RGBA;
+            glTexImage2D(GL_TEXTURE_2D, 0, format, width, height, 0, format, GL_UNSIGNED_BYTE, data);
             glGenerateMipmap(GL_TEXTURE_2D);
         } else {
             std::cout << "Failed to load texture" << std::endl;
         }
         stbi_image_free(data);
+
 
         // configure VAO/VBO
         unsigned int VBO;
@@ -102,13 +107,13 @@ namespace rdlib {
 
     void SpriteAgent::render() {
         // prepare transformations
-        glUseProgram(m_shader_id);
+        glUseProgram(s_shader_id);
         mat4 model = getModelMatrix();
         mat4 camera = Engine::getCameraMatrix();
 
-        glUniformMatrix4fv(glGetUniformLocation(m_shader_id, "model"), 1, GL_FALSE, glm::value_ptr(model));
-        glUniformMatrix4fv(glGetUniformLocation(m_shader_id, "camera"), 1, GL_FALSE, glm::value_ptr(camera));
-        glUniform3f(glGetUniformLocation(m_shader_id, "spriteColor"), m_color.r, m_color.g, m_color.b);
+        glUniformMatrix4fv(glGetUniformLocation(s_shader_id, "model"), 1, GL_FALSE, glm::value_ptr(model));
+        glUniformMatrix4fv(glGetUniformLocation(s_shader_id, "camera"), 1, GL_FALSE, glm::value_ptr(camera));
+        glUniform3f(glGetUniformLocation(s_shader_id, "spriteColor"), m_color.r, m_color.g, m_color.b);
 
         glActiveTexture(GL_TEXTURE0);
         glBindTexture(GL_TEXTURE_2D, m_texture);
@@ -116,6 +121,7 @@ namespace rdlib {
         glBindVertexArray(m_vao);
         glDrawArrays(GL_TRIANGLES, 0, 6);
         glBindVertexArray(0);
+        glActiveTexture(0);
     }
 
     mat4 SpriteAgent::getModelMatrix() {
