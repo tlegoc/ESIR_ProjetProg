@@ -6,7 +6,21 @@
 #define ESIR_PROJETPROG_SHIELD_H
 
 
-class Shield {
+#include "GenericArmor.h"
+
+class Shield : public GenericArmor {
+
+public :
+    /**
+     * @brief Constructeur de la classe Shield
+     * @param armor  armure de l'armure
+     * @param name  nom de l'armure
+     * @param description  description de l'armure
+     */
+    Shield(int armor , std::string  name, std::string  description);
+
+    void update() override;
+
 
 };
 

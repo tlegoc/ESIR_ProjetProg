@@ -5,7 +5,7 @@
 
 add_executable(Game
         main.cpp entity/items/GenericItem.cpp entity/items/GenericItem.h
-        entity/items/equipments/GenericEquipment.h entity/items/equipments/GenericEquipment.cpp entity/items/equipments/weapon/Sword.h entity/items/equipments/weapon/Sword.cpp entity/items/equipments/Armor/Shield.h entity/items/equipments/Armor/Shield.cpp entity/items/equipments/Armor/GenericArmor.h entity/items/equipments/Armor/GenericArmor.cpp entity/items/equipments/weapon/GenericWeapon.h entity/items/equipments/weapon/GenericWeapon.cpp)
+        entity/items/equipments/GenericEquipment.h entity/items/equipments/GenericEquipment.cpp entity/items/equipments/weapon/Sword.h entity/items/equipments/weapon/Sword.cpp entity/items/equipments/Armor/Shield.h entity/items/equipments/Armor/Shield.cpp entity/items/equipments/Armor/GenericArmor.h entity/items/equipments/Armor/GenericArmor.cpp entity/items/equipments/weapon/GenericWeapon.h entity/items/equipments/weapon/GenericWeapon.cpp entity/items/consumables/GenericConsumable.h entity/items/consumables/GenericConsumable.cpp entity/items/consumables/life/OnePV.h entity/items/consumables/life/OnePV.cpp entity/items/consumables/life/halfPV.cpp entity/items/consumables/life/OneHeart.h entity/items/consumables/life/OneHeart.cpp entity/items/consumables/buff/ShieldImprove.cpp entity/items/consumables/buff/DamageBuff.h entity/items/consumables/buff/DamageBuff.cpp)
 
 target_link_libraries(Game RDLIB)
 

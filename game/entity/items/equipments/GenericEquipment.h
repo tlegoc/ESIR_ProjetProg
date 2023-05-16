@@ -11,7 +11,11 @@
 class GenericEquipment : public GenericItem {
 
 public:
-
+    /**
+     * @brief Constructor of GenericEquipment
+     * @param image  Path to the image of the equipment
+     * @param position  Position of the equipment
+     */
     GenericEquipment(const std::string &image, vec3 position = vec3(0, 0, 0));
 
 

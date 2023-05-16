@@ -3,3 +3,12 @@
 //
 
 #include "Shield.h"
+
+
+Shield::Shield(int armor, std::string  name, std::string  description) : GenericArmor("assets/Sword/Shield Pack.png", armor, name, description) {
+
+}
+
+void Shield::update() {
+
+}

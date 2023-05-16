@@ -6,7 +6,7 @@
 
 
 GenericItem::GenericItem(const std::string &image, vec3 position, bool isCollect, float angle, vec2 size, vec3 color)
-        : SpriteAgent(image, position,
+        : ColliderSpriteAgent(image, position,
                       angle, size,
                       color) , m_isCollect(isCollect){}
 

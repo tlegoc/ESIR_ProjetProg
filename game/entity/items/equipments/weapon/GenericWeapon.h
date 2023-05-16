@@ -21,13 +21,8 @@ private :
 public:
 
     /**
-     * @brief Constructeur de la classe GenericWeapon
-     * @param image  path de l'image
-     * @param position  position de l'arme
-     * @param isCollect  si l'arme est ramassé
-     * @param angle  angle de l'arme
-     * @param size  taille de l'arme
-     * @param color  couleur de l'arme
+     * @brief constructeur de GenericWeapon
+     * @param img  image de l'arme
      * @param damage  degats de l'arme
      * @param name  nom de l'arme
      * @param description  description de l'arme

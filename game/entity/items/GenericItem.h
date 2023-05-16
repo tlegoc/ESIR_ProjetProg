@@ -6,31 +6,45 @@
 #define ESIR_PROJETPROG_GENERICITEM_H
 
 #include <rdlib/SpriteAgent.h>
+#include "rdlib/ColliderSpriteAgent.h"
 
-class GenericItem : public rdlib::SpriteAgent {
+class GenericItem : public rdlib::ColliderSpriteAgent {
 
 private:
-
+    // Si l'item est collecter
     bool m_isCollect;
 
 public:
+
     /**
      * @brief Constructeur de l'item
-     * Objectif : faire une hierarchie d'item de façon a ce que cela ce spécialise de plus en plus
-     * @param image  chemin vers l'image
-     * @param position  position de l'item
-     * @param isCollect si l'item est collecter
-     * @param angle  angle de l'item
-     * @param size  taille de l'item
-     * @param color  couleur de l'item
+     * @param image  Image de l'item
+     * @param position  Position de l'item
+     * @param isCollect  Si l'item est collecter
+     * @param angle  Angle de l'item
+     * @param size  Taille de l'item
+     * @param color  Couleur de l'item
      */
     explicit GenericItem(const std::string& image, vec3 position = vec3( 0,0,0), bool isCollect = false, float angle = 0, vec2 size =vec2 ( 0.2,0.2), vec3 color = vec3(1, 1, 1));
 
     /**
      * Si l'item est collecter
-     * @return
+     * @return Si l'item est collecter
      */
     bool isCollect() const;
+
+    /**
+     * @brief Permet de changer l'état de l'item
+     * @param isCollect
+     */
+    void setIsCollect(bool isCollect);
+
+    /**
+     * @brief Permet de mettre à jour l'item
+     * @param hero  Héro
+     */
+    void use(Agent & hero);
+
 };
 
 
