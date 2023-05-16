@@ -10,7 +10,7 @@
 #include <SDL2/SDL.h>
 #else
 #define SDL_MAIN_HANDLED
-#include "SDL.h"
+#include "SDL2/SDL.h"
 #endif
 
 #endif //ESIR_PROJETPROG_INCLUDE_SDL_H
