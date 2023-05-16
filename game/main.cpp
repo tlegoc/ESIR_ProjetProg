@@ -9,6 +9,7 @@
 
 #include <iostream>
 #include <thread>
+#include "entity/items/equipments/weapon/Sword.h"
 
 
 class Test : public rdlib::ColliderSpriteAgent {
@@ -97,6 +98,9 @@ int main() {
     Test *s = new Test("assets/ground_stone/tile001.png");
     s->setSize(vec2(1, 3));
     rdlib::Agent *s2 = new Test2("assets/ground_stone/tile001.png");
+
+    // rdlib::Agent *s = new Sword( 10,  ("Sword"),("A sword"));
+
 
     // Rien après cette ligne ne s'éxecute tant que le jeu n'est pas quitté
     while (rdlib::Engine::shouldContinue()) {
