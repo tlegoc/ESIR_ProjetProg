@@ -8,6 +8,8 @@
 #include "../items/GenericItem.h"
 #include <typeinfo>
 
+#include <rdlib/UserInterface.h>
+
 Hero::Hero(vec3 position, float speed, int pv, int max_pv, int damage, int shield, int max_shield)
         : rdlib::ColliderSpriteSheetAgent("assets/character/player.png",
                                           vec2(7.0f / 32.0f, 7.0f / 64.0f),
@@ -84,7 +86,7 @@ void Hero::update() {
     m_attack_delay -= rdlib::Time::getDelta();
     if (rdlib::InputManager::isKeyPressed('a') && m_attack_delay < 0) {
         // Get the position in front of the player
-        vec3 sword_pos = m_pos + vec3(m_direction, 0) * 0.5f;
+        vec3 sword_pos = m_pos + vec3(m_direction, 0) * 0.5f + vec3(0, 0, 2.0f);
         new SwordAgent(sword_pos, getDamage());
         m_attack_delay = 0.2f;
     }
@@ -99,6 +101,7 @@ void Hero::update() {
     }
 
     rdlib::Engine::setCameraPosition(m_pos);
+    rdlib::UserInterface::addImage("assets/character/player.png", vec2(-0.95f, 0.8f), vec2(0.2f, 0.2f), vec3(1));
 }
 
 int Hero::getPv() const {

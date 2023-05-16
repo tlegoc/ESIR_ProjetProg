@@ -9,6 +9,7 @@
 #include "rdlib/SpriteAgent.h"
 #include "rdlib/InputManager.h"
 #include "rdlib/TextureManager.h"
+#include "rdlib/UserInterface.h"
 
 #include <GL/glew.h>
 
@@ -40,6 +41,7 @@ namespace rdlib {
 
         Time::update();
         InputManager::instanciate();
+        UserInterface::init();
 
         return s_engine;
     }
@@ -87,6 +89,7 @@ namespace rdlib {
         glClear(GL_COLOR_BUFFER_BIT);
 
         SpriteAgent::renderAll();
+        UserInterface::renderAll();
 
         SDL_GL_SwapWindow(s_engine->m_mainwindow);
     }
