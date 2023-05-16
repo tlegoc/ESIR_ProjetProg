@@ -4,15 +4,14 @@
 
 #include "rdlib/ColliderSpriteAgent.h"
 
+#include <iostream>
 
 namespace rdlib {
-    float ColliderSpriteAgent::getRadius() const {
-        return (m_size.x > m_size.y ? m_size.x : m_size.y) / 2;
+    vec2 ColliderSpriteAgent::getColliderPosition() const {
+        return (m_collider_pos - vec2(0.5f)) * m_size + vec2(getPos().x, getPos().y);
     }
 
-
-    vec2 ColliderSpriteAgent::getCenter() const {
-        // Return the center of the sprite
-        return m_pos + vec3(.5f, .5f, 0);
+    vec2 ColliderSpriteAgent::getColliderSize() const {
+        return (m_collider_size) * m_size;
     }
 }

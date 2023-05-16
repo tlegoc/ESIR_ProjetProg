@@ -20,6 +20,8 @@ add_library(RDLIB
         include/rdlib/ColliderAgent.h
         src/ColliderSpriteAgent.cpp
         include/rdlib/ColliderSpriteAgent.h
+        src/Map.cpp
+        include/rdlib/Map.h
         src/SpriteSheetAgent.cpp
         include/rdlib/SpriteSheetAgent.h
         src/TextureManager.cpp

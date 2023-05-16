@@ -16,8 +16,8 @@ class Test : public rdlib::ColliderSpriteAgent {
 public:
     float m_lifetime = 0;
 
-    //Test(const std::string &filename) : rdlib::ColliderSpriteAgent(filename) {
-    //};
+    Test(const std::string &filename) : rdlib::ColliderSpriteAgent(filename) {
+    };
 
     Test(const std::string &filename, const glm::vec3 &position, float angle, const glm::vec2 &size,
          const glm::vec3 &color) : rdlib::ColliderSpriteAgent(filename, position, angle, size, color) {
@@ -102,6 +102,7 @@ public:
 int main() {
     // Notre jeu
     rdlib::Engine::instanciate();
+    rdlib::Engine::setCameraZoom(3);
 
     //rdlib::Agent *s = new Test("Gamejam.png");
     //rdlib::Agent *s2 = new Test("Gamejam.png", glm::vec3(0, 0, 0), 0, glm::vec2(.5, .5), glm::vec3(1, 1, 1));
