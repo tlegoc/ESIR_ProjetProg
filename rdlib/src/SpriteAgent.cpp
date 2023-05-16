@@ -9,9 +9,9 @@
 #include "stb_image.h"
 #include "rdlib/Shader.h"
 #include "rdlib/Engine.h"
+#include "rdlib/TextureManager.h"
 
 #include <GL/glew.h>
-#include <iostream>
 #include "glm/gtc/type_ptr.hpp"
 
 namespace rdlib {
@@ -56,28 +56,7 @@ namespace rdlib {
             s_shader_id = Shader::LoadShader(s_vertex_code, s_fragment_code);
 
         // Image
-        glGenTextures(1, &m_texture);
-        glBindTexture(GL_TEXTURE_2D, m_texture);
-
-        // set the texture wrapping/filtering options (on the currently bound texture object)
-        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
-        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
-        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
-        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
-
-        // load and generate the texture
-        int width, height, nb_channels;
-        unsigned char *data = stbi_load(image.c_str(), &width, &height, &nb_channels, 0);
-        std::cout << "Loaded: " << image.c_str() << ", nb_channels: " << nb_channels << std::endl;
-        if (data) {
-            auto format = nb_channels == 3 ? GL_RGB : GL_RGBA;
-            glTexImage2D(GL_TEXTURE_2D, 0, format, width, height, 0, format, GL_UNSIGNED_BYTE, data);
-            glGenerateMipmap(GL_TEXTURE_2D);
-        } else {
-            std::cout << "Failed to load texture" << std::endl;
-        }
-        stbi_image_free(data);
-
+        m_texture = TextureManager::getTexture(image);
 
         // configure VAO/VBO
         unsigned int VBO;
@@ -142,4 +121,35 @@ namespace rdlib {
         }
     }
 
+    vec3 SpriteAgent::getPos() const {
+        return m_pos;
+    }
+
+    void SpriteAgent::setPos(const vec3 pos) {
+        m_pos = pos;
+    }
+
+    float SpriteAgent::getAngle() const {
+        return m_angle;
+    }
+
+    void SpriteAgent::setAngle(float angle) {
+        m_angle = angle;
+    }
+
+    vec2 SpriteAgent::getSize() const {
+        return m_size;
+    }
+
+    void SpriteAgent::setSize(const vec2 size) {
+        m_size = size;
+    }
+
+    vec3 SpriteAgent::getColor() const {
+        return m_color;
+    }
+
+    void SpriteAgent::setColor(const vec3 color) {
+        m_color = color;
+    }
 } // rdlib

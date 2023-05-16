@@ -23,7 +23,9 @@ add_library(RDLIB
         src/Map.cpp
         include/rdlib/Map.h
         src/SpriteSheetAgent.cpp
-        include/rdlib/SpriteSheetAgent.h)
+        include/rdlib/SpriteSheetAgent.h
+        src/TextureManager.cpp
+        include/rdlib/TextureManager.h)
 
 target_include_directories(RDLIB PUBLIC include)
 

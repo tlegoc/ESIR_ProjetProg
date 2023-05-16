@@ -31,6 +31,18 @@ namespace rdlib {
 
         static void renderAll();
 
+        vec3 getPos() const;
+        void setPos(vec3 pos);
+
+        float getAngle() const;
+        void setAngle(float angle);
+
+        vec2 getSize() const;
+        void setSize(vec2 size);
+
+        vec3 getColor() const;
+        void setColor(vec3 color);
+
     protected:
         vec3 m_pos{};
         float m_angle;

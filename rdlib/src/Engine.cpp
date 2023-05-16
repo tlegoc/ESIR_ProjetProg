@@ -8,6 +8,7 @@
 #include "rdlib/Time.h"
 #include "rdlib/SpriteAgent.h"
 #include "rdlib/InputManager.h"
+#include "rdlib/TextureManager.h"
 
 #include <GL/glew.h>
 
