@@ -16,8 +16,8 @@ namespace rdlib {
 
     class SpriteAgent : public VisibleAgent {
     public:
-        static std::string s_vertex_code;
-        static std::string s_fragment_code;
+        const static std::string s_vertex_code;
+        const static std::string s_fragment_code;
 
 
         explicit SpriteAgent(const std::string &image, vec3 position = vec3(0, 0, 0), float angle = 0.0f,
@@ -37,9 +37,9 @@ namespace rdlib {
         vec2 m_size{};
         vec3 m_color{};
 
-    private:
+    protected:
         unsigned int m_image_id;
-        unsigned int m_shader_id;
+        static unsigned int s_shader_id;
         unsigned int m_vao{};
         unsigned int m_texture{};
         unsigned int m_texture_height{};
