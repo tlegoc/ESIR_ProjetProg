@@ -109,10 +109,10 @@ int main() {
     //rdlib::Agent *s2 = new Test("Gamejam.png", glm::vec3(0, 0, 0), 0, glm::vec2(.5, .5), glm::vec3(1, 1, 1));
     //rdlib::Agent *s3 = new Test2("Gamejam.png", glm::vec3(0, 0.6, 0), 0, glm::vec2(.5, .5), glm::vec3(1, 1, 1));
 
-    Hero *s1 = new Hero("Gamejam.png",glm::vec3(0, 0, 0), 0,
-                      glm::vec2(.5, .5), glm::vec3(1, 1, 1), 20, 50, 2, 1, 2);
+    Hero *s1 = new Hero("assets/character/perso.png",glm::vec3(0, 0, 0), 0,
+                      glm::vec2(1), glm::vec3(1, 1, 1), 20, 50, 2, 1, 2);
     Monster *s2 = new Monster("assets/character/monster_red.png", glm::vec3(0, 0, 0), 0,
-                        glm::vec2(.2, .2), glm::vec3(1, 1, 1), 10, 1);
+                        glm::vec2(1), glm::vec3(1, 1, 1), 10, 1);
 
 
     // rdlib::Agent *s = new Sword( 10,  ("Sword"),("A sword"));
