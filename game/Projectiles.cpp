@@ -6,36 +6,43 @@
 #include "entity/character/Hero.h"
 #include "entity/character/Monster.h"
 
-#include <typeinfo>
-
-
-Projectiles::Projectiles(const std::string imgpath, vec3 pos, int damage, vec2 direction, float speed) : ColliderSpriteAgent(imgpath, pos, vec2(1) ){
-    this->m_damage = damage;
-    this->m_direction = direction;
-    this->m_speed = speed;
+Projectiles::Projectiles(std::string image,
+                         vec3 pos,
+                         int damage,
+                         vec2 direction,
+                         float speed)
+        : ColliderSpriteAgent(image,
+                              vec2(0),
+                              vec2(1),
+                              pos) {
+    m_damage = damage;
+    m_direction = direction;
+    m_speed = speed;
+    setPassthrough(true);
 }
 
-void Projectiles::update(){
-    vec2 deplacement = m_direction * m_speed * rdlib::Time::getDelta() ;
+void Projectiles::update() {
+    vec2 deplacement = m_direction * m_speed * rdlib::Time::getDelta();
     setPos(getPos() + vec3(deplacement, 0));
-    for (auto &collider : this->isColliding(true)) {
-        this->onCollision(collider);
+    for (auto &collider: isColliding(true)) {
+        onCollision(collider);
     }
     m_lifetime -= rdlib::Time::getDelta();
+    if (m_lifetime <= 0)
+        kill();
 }
 
-void Projectiles::onCollision(rdlib::ColliderAgent *other){
+void Projectiles::onCollision(rdlib::ColliderAgent *other) {
 
-    if(dynamic_cast<Hero *>(other)){
-        Hero *hero = dynamic_cast<Hero *>(other);
-        hero->setMaxPv(hero->getPv()-this->m_damage);
+    // if (dynamic_cast<Hero *>(other) != nullptr) {
+    //     Hero *hero = dynamic_cast<Hero *>(other);
+    //     hero->setMaxPv(hero->getPv() - m_damage);
+    // }
 
-    }
-
-    if(dynamic_cast<Monster *>(other)){
+    if (dynamic_cast<Monster *>(other) != nullptr) {
         auto *monster = dynamic_cast<Monster *>(other);
-        monster->setPv(monster->getPv()-this->m_damage);
+        monster->setPv(monster->getPv() - m_damage);
+        kill();
     }
-    kill();
 
 }

@@ -12,8 +12,8 @@ OneHeart::OneHeart() : GenericConsumable("assets/buffs/heartAdd.jpeg") {
 
 void OneHeart::use(Hero *hero) {
 
-    hero->setMaxPv(hero->getMaxPv()+2);
-    hero->setPv(hero->getPv()+2);
+    hero->setMaxPv(hero->getMaxPv() + 2);
+    hero->setPv(hero->getPv() + 2);
     kill();
 }
 

@@ -13,15 +13,15 @@ class Projectiles : public rdlib::ColliderSpriteAgent{
 private:
 
     int m_damage;
-    vec2 m_direction;
+    vec2 m_direction{};
     float m_speed;
     float m_lifetime = 10;
 
 public:
 
-    Projectiles(const std::string imgpath, vec3 pos, int damage, vec2 direction, float speed);
+    Projectiles(std::string image, vec3 pos, int damage, vec2 direction, float speed);
 
-    void update()override;
+    void update() override;
 
     void onCollision(rdlib::ColliderAgent *other);
 

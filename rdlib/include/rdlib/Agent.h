@@ -37,7 +37,7 @@ namespace rdlib {
         static std::vector<T *> getObjectsOfType() {
             std::vector<T *> result;
             for (auto a: s_objects) {
-                if (dynamic_cast<T *>(a)) {
+                if (dynamic_cast<T *>(a) != nullptr) {
                     result.push_back(dynamic_cast<T *>(a));
                 }
             }
