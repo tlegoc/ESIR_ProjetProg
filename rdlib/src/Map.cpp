@@ -34,11 +34,9 @@ namespace rdlib {
         
         // Parse
         nlohmann::json data = nlohmann::json::parse(f);
-        std::cout << data["background"]["image"] << std::endl;
 
         // Map
         std::vector<std::vector<int>> map = data["map"];
-        std::cout << map[0].size() << std::endl;
         for(size_t y = 0; y < map.size(); y++) {
             for(size_t x = 0; x < map[y].size(); x++) {
                 if(map[y][x] == 0) continue;
@@ -47,6 +45,8 @@ namespace rdlib {
                 s_agents.push_back(sprite);
             }
         }
+
+        
         return true;   
     }
 } // rdlib
