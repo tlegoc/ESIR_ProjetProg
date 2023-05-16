@@ -5,6 +5,8 @@
 #include "Hero.h"
 #include "Monster.h"
 #include "SwordAgent.h"
+#include "../items/GenericItem.h"
+#include <typeinfo>
 
 Hero::Hero(vec3 position, float speed, int pv, int max_pv, int damage, int shield, int max_shield)
         : rdlib::ColliderSpriteSheetAgent("assets/character/player.png",
@@ -120,6 +122,22 @@ void Hero::setDamage(int damage) {
 
 void Hero::setShield(int shield) {
     m_shield = shield;
+}
+
+int Hero::getMaxDamage() const {
+    return m_max_damage;
+}
+
+void Hero::setMaxDamage(int max_damage) {
+    m_max_damage = max_damage;
+}
+
+int Hero::getMaxShield() const {
+    return m_max_shield;
+}
+
+void Hero::setMaxShield(int max_shield) {
+    m_max_shield = max_shield;
 };
 
 

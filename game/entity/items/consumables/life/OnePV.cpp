@@ -6,12 +6,12 @@
 
 OnePV::OnePV() : GenericConsumable("assets/PV_Buff/RedFullHeart.png") { }
 
-void OnePV::update() {
 
-}
 
-void OnePV::use(Agent &player) {
-   // player.setLife(player.getLife() + 2);
-   kill();
+void OnePV::use(Hero &player) {
+    if(player.getPv() + 2 <player.getMaxPv() ){
+        player.setPv(player.getPv() + 2);
+    }
+    kill();
 
 }
