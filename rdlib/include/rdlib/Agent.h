@@ -49,6 +49,7 @@ namespace rdlib {
 
     private:
         static std::vector<Agent *> s_objects;
+        static std::vector<Agent *> s_new_objects;
     };
 }
 

@@ -26,6 +26,7 @@ Hero::Hero(vec3 position, float speed, int pv, int max_pv, int damage, int shiel
           m_damage(damage),
           m_shield(shield),
           m_max_shield(max_shield),
+          m_direction(vec2(0, -1)),
           m_speed(speed) {
 
 };

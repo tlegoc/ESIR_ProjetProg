@@ -19,6 +19,8 @@ Projectiles::Projectiles(std::string image,
     m_direction = direction;
     m_speed = speed;
     setPassthrough(true);
+
+    std::cout << "Projectiles::Projectiles" << std::endl;
 }
 
 void Projectiles::update() {
