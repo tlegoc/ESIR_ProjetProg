@@ -4,10 +4,12 @@
 
 #include "rdlib/ColliderAgent.h"
 
+#include <iostream>
+
 namespace rdlib {
 
     bool ColliderAgent::isColliding(ColliderAgent *other) const {
-        return checkCollisions(other->getCenter(), other->getRadius());
+        return checkCollisions(other->getColliderPosition(), other->getColliderSize());
     }
 
     std::vector<ColliderAgent*> ColliderAgent::isColliding() const {
@@ -23,9 +25,14 @@ namespace rdlib {
         return colliding;
     }
 
-    bool ColliderAgent::checkCollisions(vec2 pos, float size) const {
-        // Check if the two circles from the two agents are colliding
-        return glm::distance(pos, getCenter()) < size + getRadius();
+    bool ColliderAgent::checkCollisions(vec2 pos, vec2 size) const {
+        vec2 my_pos = getColliderPosition();
+        vec2 my_size = getColliderSize();
+
+        return (my_pos.x < pos.x + size.x &&
+                my_pos.x + my_size.x > pos.x &&
+                my_pos.y < pos.y + size.y &&
+                my_pos.y + my_size.y > pos.y);
     }
 
 

@@ -15,12 +15,7 @@ class Test : public rdlib::ColliderSpriteAgent {
 public:
     float m_lifetime = 0;
 
-    Test(const std::string &filename) : rdlib::ColliderSpriteAgent(filename) {
-    };
-
-    Test(const std::string &filename, const glm::vec3 &position, float angle, const glm::vec2 &size,
-         const glm::vec3 &color) : rdlib::ColliderSpriteAgent(filename, position, angle, size, color) {
-    };
+    Test(const std::string &filename) : rdlib::ColliderSpriteAgent(filename, vec2(0, 0), vec2(1, 1)) {};
 
     void update() override {
         m_lifetime += rdlib::Time::getDelta();
@@ -82,11 +77,7 @@ class Test2 : public rdlib::ColliderSpriteAgent {
 public:
     float m_lifetime = 0;
 
-    Test2(const std::string &filename) : rdlib::ColliderSpriteAgent(filename) {
-    };
-
-    Test2(const std::string &filename, const glm::vec3 &position, float angle, const glm::vec2 &size,
-         const glm::vec3 &color) : rdlib::ColliderSpriteAgent(filename, position, angle, size, color) {
+    Test2(const std::string &filename) : rdlib::ColliderSpriteAgent(filename, glm::vec2(0, 0), glm::vec2(1, 1)) {
     };
 
     void update() override {
@@ -101,10 +92,11 @@ public:
 int main() {
     // Notre jeu
     rdlib::Engine::instanciate();
+    rdlib::Engine::setCameraZoom(3);
 
-    // rdlib::Agent *s = new Test("Gamejam.png");
-    // rdlib::Agent *s2 = new Test2("Gamejam.png", glm::vec3(0, 0, 0), 0, glm::vec2(.5, .5), glm::vec3(1, 1, 1));
-    // rdlib::Agent *s3 = new Test2("Gamejam.png", glm::vec3(0, 0.6, 0), 0, glm::vec2(.5, .5), glm::vec3(1, 1, 1));
+    Test *s = new Test("assets/ground_stone/tile001.png");
+    s->setSize(vec2(1, 3));
+    rdlib::Agent *s2 = new Test2("assets/ground_stone/tile001.png");
 
     // Rien après cette ligne ne s'éxecute tant que le jeu n'est pas quitté
     while (rdlib::Engine::shouldContinue()) {

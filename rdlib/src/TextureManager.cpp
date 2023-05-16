@@ -17,7 +17,7 @@ namespace rdlib {
         std::cout << "Requesting " << path << std::endl;
         if (s_textures.find(path) != s_textures.end()) return s_textures[path];
 
-        std::cout << "Texture already loaded!" << std::endl;
+        std::cout << "Texture not loaded" << std::endl;
         unsigned int texture;
         glGenTextures(1, &texture);
         glBindTexture(GL_TEXTURE_2D, texture);
@@ -31,7 +31,7 @@ namespace rdlib {
         // load and generate the texture
         int width, height, nb_channels;
         unsigned char *data = stbi_load(path.c_str(), &width, &height, &nb_channels, 0);
-        std::cout << "Loaded: " << path.c_str() << ", nb_channels: " << nb_channels << std::endl;
+        std::cout << "Loading: " << path.c_str() << ", nb_channels: " << nb_channels << std::endl;
         if (data) {
             auto format = nb_channels == 3 ? GL_RGB : GL_RGBA;
             glTexImage2D(GL_TEXTURE_2D, 0, format, width, height, 0, format, GL_UNSIGNED_BYTE, data);

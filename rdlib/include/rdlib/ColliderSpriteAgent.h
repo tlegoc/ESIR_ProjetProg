@@ -11,13 +11,30 @@
 namespace rdlib {
     class ColliderSpriteAgent : public SpriteAgent, public ColliderAgent {
 
-        // Same constructor as sprite
-        using SpriteAgent::SpriteAgent;
+    public:
+        explicit ColliderSpriteAgent(const std::string &image,
+                                     vec2 collider_pos,
+                                     vec2 collider_size,
+                                     vec3 position = vec3(0, 0, 0),
+                                     float angle = 0.0f,
+                                     vec2 size = vec2(1, 1),
+                                     vec3 color = vec3(1.0f, 1.0f, 1.0f)) : SpriteAgent(image,
+                                                                                        position,
+                                                                                        angle,
+                                                                                        size,
+                                                                                        color) {
+            m_collider_pos = collider_pos;
+            m_collider_size = collider_size;
+        };
 
-        // Override getRadius and getCenter from ColliderAgent
-        float getRadius() const override;
 
-        vec2 getCenter() const override;
+        vec2 getColliderPosition() const override;
+
+        vec2 getColliderSize() const override;
+
+    private:
+        vec2 m_collider_pos{};
+        vec2 m_collider_size{};
     };
 } // rdlib
 
