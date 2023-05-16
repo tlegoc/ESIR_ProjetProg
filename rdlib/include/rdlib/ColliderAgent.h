@@ -20,10 +20,10 @@ namespace rdlib {
 
         std::vector<ColliderAgent*> isColliding() const;
 
-        bool checkCollisions(vec2 pos, float size) const;
+        bool checkCollisions(vec2 pos, vec2 size) const;
 
-        virtual float getRadius() const = 0;
-        virtual vec2 getCenter() const = 0;
+        virtual vec2 getColliderPosition() const = 0;
+        virtual vec2 getColliderSize() const = 0;
     };
 }  // rdlib
 
