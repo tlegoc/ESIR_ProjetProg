@@ -6,7 +6,6 @@
 #include <rdlib/SpriteAgent.h>
 #include <rdlib/ColliderSpriteAgent.h>
 #include <rdlib/InputManager.h>
-#include <rdlib/SpriteSheetAgent.h>
 
 #include <iostream>
 #include <thread>
@@ -106,10 +105,6 @@ int main() {
     rdlib::Agent *s = new Test("Gamejam.png");
     rdlib::Agent *s2 = new Test2("Gamejam.png", glm::vec3(0, 0, 0), 0, glm::vec2(.5, .5), glm::vec3(1, 1, 1));
     rdlib::Agent *s3 = new Test2("Gamejam.png", glm::vec3(0, 0.6, 0), 0, glm::vec2(.5, .5), glm::vec3(1, 1, 1));
-
-    auto ssa = new rdlib::SpriteSheetAgent("assets/TX Player.png", uvec2(128/4, 128), .16f);
-
-    ssa->playAnimation({0, 1, 2}, true);
 
     // Rien après cette ligne ne s'éxecute tant que le jeu n'est pas quitté
     while (rdlib::Engine::shouldContinue()) {
