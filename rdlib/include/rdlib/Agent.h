@@ -25,7 +25,7 @@ namespace rdlib {
 
         virtual void update() = 0;
 
-        void kill() { m_status == Status::DEAD; }
+        void kill() { m_status = Status::DEAD; }
 
         static void updateAll();
 

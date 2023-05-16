@@ -1,7 +1,7 @@
 # Rendering lib project file.
 
 message("-- Setting up rdlib")
-add_library(RDLIB SHARED
+add_library(RDLIB
         src/Engine.cpp
         include/rdlib/Agent.h
         src/Agent.cpp
@@ -49,6 +49,7 @@ if (UNIX AND NOT APPLE)
     endif ()
 elseif (WIN32)
     add_compile_definitions(WINDOWS)
+    set(CMAKE_WINDOWS_EXPORT_ALL_SYMBOLS ON)
     message("-- Building on windows, downloading SDL2")
     add_compile_definitions(SDL2_GIT)
     add_subdirectory(thirdparty/SDL)
