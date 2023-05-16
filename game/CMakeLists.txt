@@ -4,6 +4,11 @@
 
 add_executable(Game
         main.cpp
+        entity/character/Hero.cpp
+        entity/character/Hero.h
+        entity/character/Monster.cpp
+        entity/character/Monster.h
+        entity/character/Monster.h
         entity/items/GenericItem.cpp
         entity/items/GenericItem.h
         entity/items/equipments/GenericEquipment.h

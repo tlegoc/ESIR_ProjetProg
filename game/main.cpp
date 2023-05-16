@@ -9,14 +9,20 @@
 
 #include <iostream>
 #include <thread>
+#include "entity/character/Hero.h"
+#include "entity/character/Monster.h"
 #include "entity/items/equipments/weapon/Sword.h"
 
-
-class Test : public rdlib::ColliderSpriteAgent {
+/*class Test : public rdlib::ColliderSpriteAgent {
 public:
     float m_lifetime = 0;
 
-    Test(const std::string &filename) : rdlib::ColliderSpriteAgent(filename, vec2(0, 0), vec2(1, 1)) {};
+    Test(const std::string &filename) : rdlib::ColliderSpriteAgent(filename) {
+    };
+
+    Test(const std::string &filename, const glm::vec3 &position, float angle, const glm::vec2 &size,
+         const glm::vec3 &color) : rdlib::ColliderSpriteAgent(filename, position, angle, size, color) {
+    };
 
     void update() override {
         m_lifetime += rdlib::Time::getDelta();
@@ -74,11 +80,15 @@ public:
     };
 };
 
-class Test2 : public rdlib::ColliderSpriteAgent {
+/*class Test2 : public rdlib::ColliderSpriteAgent {
 public:
     float m_lifetime = 0;
 
-    Test2(const std::string &filename) : rdlib::ColliderSpriteAgent(filename, glm::vec2(0, 0), glm::vec2(1, 1)) {
+    Test2(const std::string &filename) : rdlib::ColliderSpriteAgent(filename) {
+    };
+
+    Test2(const std::string &filename, const glm::vec3 &position, float angle, const glm::vec2 &size,
+         const glm::vec3 &color) : rdlib::ColliderSpriteAgent(filename, position, angle, size, color) {
     };
 
     void update() override {
@@ -88,16 +98,22 @@ public:
             m_color = glm::vec3(1, 1, 1);
         }
     };
-};
+};*/
 
 int main() {
     // Notre jeu
     rdlib::Engine::instanciate();
     rdlib::Engine::setCameraZoom(3);
 
-    Test *s = new Test("assets/ground_stone/tile001.png");
-    s->setSize(vec2(1, 3));
-    rdlib::Agent *s2 = new Test2("assets/ground_stone/tile001.png");
+    //rdlib::Agent *s = new Test("Gamejam.png");
+    //rdlib::Agent *s2 = new Test("Gamejam.png", glm::vec3(0, 0, 0), 0, glm::vec2(.5, .5), glm::vec3(1, 1, 1));
+    //rdlib::Agent *s3 = new Test2("Gamejam.png", glm::vec3(0, 0.6, 0), 0, glm::vec2(.5, .5), glm::vec3(1, 1, 1));
+
+    Hero *s1 = new Hero("Gamejam.png", glm::vec2(.0, .0), glm::vec2(1, 1),glm::vec3(0, 0, 0), 0,
+                      glm::vec2(.5, .5), glm::vec3(1, 1, 1), 20, 50, 2, 1, 2);
+    Monster *s2 = new Monster("assets/character/monster_red.png", glm::vec2(.0, .0), glm::vec2(1, 1), glm::vec3(0, 0, 0), 0,
+                        glm::vec2(.2, .2), glm::vec3(1, 1, 1), 10, 1);
+
 
     // rdlib::Agent *s = new Sword( 10,  ("Sword"),("A sword"));
 
