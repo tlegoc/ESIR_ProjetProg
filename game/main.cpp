@@ -102,9 +102,9 @@ int main() {
     // Notre jeu
     rdlib::Engine::instanciate();
 
-    rdlib::Agent *s = new Test("assets/TX Props.png");
-    rdlib::Agent *s2 = new Test2("assets/TX Props.png", glm::vec3(0, 0, 0), 0, glm::vec2(.5, .5), glm::vec3(1, 1, 1));
-    rdlib::Agent *s3 = new Test2("assets/TX Props.png", glm::vec3(0, 0.6, 0), 0, glm::vec2(.5, .5), glm::vec3(1, 1, 1));
+    // rdlib::Agent *s = new Test("Gamejam.png");
+    // rdlib::Agent *s2 = new Test2("Gamejam.png", glm::vec3(0, 0, 0), 0, glm::vec2(.5, .5), glm::vec3(1, 1, 1));
+    // rdlib::Agent *s3 = new Test2("Gamejam.png", glm::vec3(0, 0.6, 0), 0, glm::vec2(.5, .5), glm::vec3(1, 1, 1));
 
     // Rien après cette ligne ne s'éxecute tant que le jeu n'est pas quitté
     while (rdlib::Engine::shouldContinue()) {
