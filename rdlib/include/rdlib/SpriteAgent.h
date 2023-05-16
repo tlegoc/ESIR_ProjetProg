@@ -2,8 +2,8 @@
 // Created by theo on 12/05/23.
 //
 
-#ifndef ESIR_PROJETPROG_SPRITE_H
-#define ESIR_PROJETPROG_SPRITE_H
+#ifndef ESIR_PROJETPROG_SPRITEAGENT_H
+#define ESIR_PROJETPROG_SPRITEAGENT_H
 
 #include "VisibleAgent.h"
 
@@ -14,14 +14,14 @@ using namespace glm;
 
 namespace rdlib {
 
-    class Sprite : public VisibleAgent {
+    class SpriteAgent : public VisibleAgent {
     public:
         static std::string s_vertex_code;
         static std::string s_fragment_code;
 
 
-        explicit Sprite(const std::string &image, vec3 position = vec3(0, 0, 0), float angle = 0.0f,
-                        vec2 size = vec2(1, 1), vec3 color = vec3(1.0f, 1.0f, 1.0f));
+        explicit SpriteAgent(const std::string &image, vec3 position = vec3(0, 0, 0), float angle = 0.0f,
+                             vec2 size = vec2(1, 1), vec3 color = vec3(1.0f, 1.0f, 1.0f));
 
         void render() override;
 
@@ -48,4 +48,4 @@ namespace rdlib {
 
 } // rdlib
 
-#endif //ESIR_PROJETPROG_SPRITE_H
+#endif //ESIR_PROJETPROG_SPRITEAGENT_H

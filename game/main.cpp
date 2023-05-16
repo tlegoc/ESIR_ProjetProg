@@ -3,7 +3,7 @@
 #include <rdlib/Engine.h>
 #include <rdlib/Agent.h>
 #include <rdlib/Time.h>
-#include <rdlib/Sprite.h>
+#include <rdlib/SpriteAgent.h>
 #include <rdlib/ColliderSpriteAgent.h>
 #include <rdlib/InputManager.h>
 

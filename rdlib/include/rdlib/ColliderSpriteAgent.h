@@ -5,14 +5,14 @@
 #ifndef ESIR_PROJETPROG_COLLIDERSPRITEAGENT_H
 #define ESIR_PROJETPROG_COLLIDERSPRITEAGENT_H
 
-#include "rdlib/Sprite.h"
+#include "rdlib/SpriteAgent.h"
 #include "rdlib/ColliderAgent.h"
 
 namespace rdlib {
-    class ColliderSpriteAgent : public Sprite, public ColliderAgent {
+    class ColliderSpriteAgent : public SpriteAgent, public ColliderAgent {
 
         // Same constructor as sprite
-        using Sprite::Sprite;
+        using SpriteAgent::SpriteAgent;
 
         // Override getRadius and getCenter from ColliderAgent
         float getRadius() const override;

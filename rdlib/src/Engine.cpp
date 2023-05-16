@@ -6,7 +6,7 @@
 
 #include "rdlib/Agent.h"
 #include "rdlib/Time.h"
-#include "rdlib/Sprite.h"
+#include "rdlib/SpriteAgent.h"
 #include "rdlib/InputManager.h"
 
 #include <GL/glew.h>
@@ -85,7 +85,7 @@ namespace rdlib {
         glClearColor(0.0, 0.0, 0.0, 1.0);
         glClear(GL_COLOR_BUFFER_BIT);
 
-        Sprite::renderAll();
+        SpriteAgent::renderAll();
 
         SDL_GL_SwapWindow(s_engine->m_mainwindow);
     }

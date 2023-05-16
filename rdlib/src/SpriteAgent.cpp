@@ -2,7 +2,7 @@
 // Created by theo on 12/05/23.
 //
 
-#include "rdlib/Sprite.h"
+#include "rdlib/SpriteAgent.h"
 
 #define STB_IMAGE_IMPLEMENTATION
 
@@ -16,7 +16,7 @@
 #include "glm/gtc/type_ptr.hpp"
 
 namespace rdlib {
-    std::string Sprite::s_vertex_code = "\n"
+    std::string SpriteAgent::s_vertex_code = "\n"
                                         "#version 330 core\n"
                                         "layout (location = 0) in vec4 vertex; // <vec2 position, vec2 texCoords>\n"
                                         "\n"
@@ -31,7 +31,7 @@ namespace rdlib {
                                         "    gl_Position = camera * model * vec4(vertex.xy, 0.0, 1.0);\n"
                                         "}";
 
-    std::string Sprite::s_fragment_code = "#version 330 core\n"
+    std::string SpriteAgent::s_fragment_code = "#version 330 core\n"
                                           "in vec2 TexCoords;\n"
                                           "out vec4 color;\n"
                                           "\n"
@@ -43,7 +43,7 @@ namespace rdlib {
                                           "    color = vec4(spriteColor, 1.0) * texture(image, TexCoords * vec2(1.0, -1.0));\n"
                                           "}";
 
-    Sprite::Sprite(const std::string& image, vec3 position, float angle, vec2 size, vec3 color) : VisibleAgent() {
+    SpriteAgent::SpriteAgent(const std::string& image, vec3 position, float angle, vec2 size, vec3 color) : VisibleAgent() {
         m_image_id = 0;
         m_pos = position;
         m_angle = angle;
@@ -100,7 +100,7 @@ namespace rdlib {
         glBindVertexArray(0);
     }
 
-    void Sprite::render() {
+    void SpriteAgent::render() {
         // prepare transformations
         glUseProgram(m_shader_id);
         mat4 model = getModelMatrix();
@@ -118,7 +118,7 @@ namespace rdlib {
         glBindVertexArray(0);
     }
 
-    mat4 Sprite::getModelMatrix() {
+    mat4 SpriteAgent::getModelMatrix() {
         // Take into account the position, angle and size
 
         mat4 model = mat4(1.0f);
@@ -130,8 +130,8 @@ namespace rdlib {
         return model;
     }
 
-    void Sprite::renderAll() {
-        for (auto &sprite: Agent::getObjectsOfType<Sprite>()) {
+    void SpriteAgent::renderAll() {
+        for (auto &sprite: Agent::getObjectsOfType<SpriteAgent>()) {
             sprite->render();
         }
     }

@@ -7,8 +7,8 @@ add_library(RDLIB SHARED
         src/Agent.cpp
         src/Time.cpp
         include/rdlib/Time.h
-        src/Sprite.cpp
-        include/rdlib/Sprite.h
+        src/SpriteAgent.cpp
+        include/rdlib/SpriteAgent.h
         include/rdlib/include_sdl.h
         include/rdlib/VisibleAgent.h
         src/Shader.cpp
