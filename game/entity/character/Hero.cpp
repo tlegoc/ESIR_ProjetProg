@@ -2,134 +2,142 @@
 // Created by Thibault on 16/05/2023.
 //
 
+#include "Hero.h"
 #include "Monster.h"
+#include "SwordAgent.h"
 #include "../items/GenericItem.h"
 #include <typeinfo>
 
-Hero::Hero(const std::string &image, vec3 position, float angle,
-           vec2 size, vec3 color, int pv, int max_pv, int m_damage, int m_shield, int m_maxShield)
-        : rdlib::ColliderSpriteAgent(image, vec2(0), vec2(1), position, angle, size, color), m_pv(pv), m_maxPv(max_pv),
-          m_damage(m_damage), m_shield(m_shield), m_maxShield(m_maxShield), m_invincibility(0) {};
+Hero::Hero(vec3 position, float speed, int pv, int max_pv, int damage, int shield, int max_shield)
+        : rdlib::ColliderSpriteSheetAgent("assets/character/player.png",
+                                          vec2(7.0f/32.0f, 7.0f / 64.0f),
+                                          vec2(20.0f/32.0f, 19.0f / 64.0f),
+                                          vec2(32, 64),
+                                          .16f,
+                                          position,
+                                          0,
+                                          vec2(1, 2),
+                                          vec3(1)),
+          m_pv(pv),
+          m_max_pv(max_pv),
+          m_damage(damage),
+          m_shield(shield),
+          m_max_shield(max_shield),
+          m_speed(speed) {
+
+};
 
 
 void Hero::update() {
-    std::cout << " Damage hero " << m_damage << " " << std::endl;
     m_lifetime += rdlib::Time::getDelta();
-    if (m_invincibility > 0) {
-        m_invincibility--;
-    }
-
-    // On fait tourner l'image de 1 degré par seconde
-    if (rdlib::InputManager::isKeyPressed('a')) {
-        m_angle += rdlib::Time::getDelta() * 1;
-    }
-
-    if (rdlib::InputManager::isKeyPressed('e')) {
-        m_angle -= rdlib::Time::getDelta() * 1;
-    }
-
-    // On change la taille de l'image
-    if (rdlib::InputManager::isKeyPressed('r')) {
-        m_size.x += rdlib::Time::getDelta() * 1;
-        m_size.y += rdlib::Time::getDelta() * 1;
-    }
-
-    if (rdlib::InputManager::isKeyPressed('t')) {
-        m_size.x -= rdlib::Time::getDelta() * 1;
-        m_size.y -= rdlib::Time::getDelta() * 1;
-    }
 
     // On bouge en fonction des touches
+    vec2 dir = vec2(0, 0);
     if (rdlib::InputManager::isKeyPressed('z')) {
-        m_pos.y += rdlib::Time::getDelta() * 1;
+        dir.y += 1;
     }
 
     if (rdlib::InputManager::isKeyPressed('s')) {
-        m_pos.y -= rdlib::Time::getDelta() * 1;
+        dir.y -= 1;
     }
 
     if (rdlib::InputManager::isKeyPressed('q')) {
-        m_pos.x -= rdlib::Time::getDelta() * 1;
+        dir.x -= 1;
     }
 
     if (rdlib::InputManager::isKeyPressed('d')) {
-        m_pos.x += rdlib::Time::getDelta() * 1;
+        dir.x += 1;
     }
 
-    if (rdlib::InputManager::isKeyPressed('w')) {
-        rdlib::Engine::setCameraZoom(rdlib::Engine::getCameraZoom() + rdlib::Time::getDelta() * 10);
+    if (glm::length(dir) > 0.001) {
+        dir = glm::normalize(dir);
+        // We move the x direction first,
+        // check collisions and if there is one, we go back
+        m_pos.x += dir.x * m_speed * rdlib::Time::getDelta();
+        if (!isColliding().empty()) {
+            m_pos.x -= dir.x * m_speed * rdlib::Time::getDelta();
+        }
+
+        // We do the same for the y direction
+        m_pos.y += dir.y * m_speed * rdlib::Time::getDelta();
+        if (!isColliding().empty()) {
+            m_pos.y -= dir.y * m_speed * rdlib::Time::getDelta();
+        }
+
+        m_direction = dir;
     }
 
-    if (rdlib::InputManager::isKeyPressed('x')) {
-        rdlib::Engine::setCameraZoom(rdlib::Engine::getCameraZoom() - rdlib::Time::getDelta() * 10);
-    }
-
-    if (!isColliding().empty()) { //inflige des dégâts au monstre qui est touché par le héro
-        m_color = glm::vec3(1, 0, 0);
-        for (auto a: isColliding()) {
-                if (dynamic_cast<Monster *>(a) != nullptr && m_invincibility == 0) {
-                    auto monster = dynamic_cast<Monster *>(a);
-                    monster->setMPv(monster->getMPv() - this->getMDamage());
-                    std::cout << " Vie monstre " << monster->getMPv() << " " << std::endl;
-                    m_invincibility = 100;
-                }
-                if (dynamic_cast<GenericItem *>(a) != nullptr) {
-                    auto item = dynamic_cast<GenericItem *>(a);
-                            item->use(* this);
-                }
-            }
-
+    if (abs(m_direction.x) > abs(m_direction.y)) {
+        if (m_direction.x > 0) {
+            playAnimation({3}, true);
+        } else {
+            playAnimation({2}, true);
+        }
     } else {
-        m_color = glm::vec3(1, 1, 1);
+        if (m_direction.y > 0) {
+            playAnimation({1}, true);
+        } else {
+            playAnimation({0}, true);
+        }
     }
+
+    m_attack_delay -= rdlib::Time::getDelta();
+    if (rdlib::InputManager::isKeyPressed('e') && m_attack_delay < 0) {
+        // Get the position in front of the player
+        vec3 sword_pos = m_pos + vec3(m_direction, 0) * 0.5f;
+        new SwordAgent(sword_pos, getDamage());
+        m_attack_delay = 0.2f;
+    }
+
+    rdlib::Engine::setCameraPosition(m_pos);
 }
 
-int Hero::getMPv() const {
+int Hero::getPv() const {
     return m_pv;
 }
 
 int Hero::getMaxPv() const {
-    return m_maxPv;
+    return m_max_pv;
 }
 
-int Hero::getMDamage() const {
+int Hero::getDamage() const {
     return m_damage;
 }
 
-int Hero::getMShield() const {
+int Hero::getShield() const {
     return m_shield;
 }
 
-void Hero::setMPv(int mPv) {
-    m_pv = mPv;
+void Hero::setPv(int pv) {
+    m_pv = pv;
 }
 
-void Hero::setMaxPv(int maxPv) {
-    m_maxPv = maxPv;
+void Hero::setMaxPv(int max_pv) {
+    m_max_pv = max_pv;
 }
 
-void Hero::setMDamage(int mDamage) {
-    m_damage = mDamage;
+void Hero::setDamage(int damage) {
+    m_damage = damage;
 }
 
-void Hero::setMShield(int mShield) {
-    m_shield = mShield;
+void Hero::setShield(int shield) {
+    m_shield = shield;
 }
 
-int Hero::getMMaxDamage() const {
+int Hero::getMaxDamage() const {
     return m_maxDamage;
 }
 
-void Hero::setMMaxDamage(int mMaxDamage) {
-    m_maxDamage = mMaxDamage;
+void Hero::setMMaxDamage(int max_damage) {
+    m_maxDamage = max_damage;
 }
 
-int Hero::getMMaxShield() const {
+int Hero::getMaxShield() const {
     return m_maxShield;
 }
 
-void Hero::setMMaxShield(int mMaxShield) {
-    m_maxShield = mMaxShield;
+void Hero::setMaxShield(int max_shield) {
+    m_maxShield = max_shield;
 };
 
 

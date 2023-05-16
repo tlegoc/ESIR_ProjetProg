@@ -18,31 +18,34 @@ namespace rdlib {
     unsigned int SpriteAgent::s_shader_id = 0;
 
     const std::string SpriteAgent::s_vertex_code = "\n"
-                                             "#version 330 core\n"
-                                             "layout (location = 0) in vec4 vertex; // <vec2 position, vec2 texCoords>\n"
-                                             "\n"
-                                             "out vec2 TexCoords;\n"
-                                             "\n"
-                                             "uniform mat4 model;\n"
-                                             "uniform mat4 camera;\n"
-                                             "\n"
-                                             "void main()\n"
-                                             "{\n"
-                                             "    TexCoords = vertex.zw;\n"
-                                             "    gl_Position = camera * model * vec4(vertex.xy, 0.0, 1.0);\n"
-                                             "}";
+                                                   "#version 330 core\n"
+                                                   "layout (location = 0) in vec4 vertex; // <vec2 position, vec2 texCoords>\n"
+                                                   "\n"
+                                                   "out vec2 TexCoords;\n"
+                                                   "\n"
+                                                   "uniform mat4 model;\n"
+                                                   "uniform mat4 camera;\n"
+                                                   "uniform vec2 size;\n"
+                                                   "\n"
+                                                   "void main()\n"
+                                                   "{\n"
+                                                   "    TexCoords = vertex.zw;\n"
+                                                   "    gl_Position = camera * model * vec4(vertex.xy, vertex.y*size.y, 1.0);\n"
+                                                   "}";
 
     const std::string SpriteAgent::s_fragment_code = "#version 330 core\n"
-                                               "in vec2 TexCoords;\n"
-                                               "out vec4 color;\n"
-                                               "\n"
-                                               "uniform sampler2D image;\n"
-                                               "uniform vec3 spriteColor;\n"
-                                               "\n"
-                                               "void main()\n"
-                                               "{    \n"
-                                               "    color = vec4(spriteColor, 1.0) * texture(image, TexCoords * vec2(1.0, -1.0));\n"
-                                               "}";
+                                                     "in vec2 TexCoords;\n"
+                                                     "out vec4 color;\n"
+                                                     "\n"
+                                                     "uniform sampler2D image;\n"
+                                                     "uniform vec3 spriteColor;\n"
+                                                     "\n"
+                                                     "void main()\n"
+                                                     "{    \n"
+                                                     "    vec4 t_color = vec4(spriteColor, 1.0) * texture(image, TexCoords * vec2(1.0, -1.0));\n"
+                                                     "    if(t_color.a < 0.1) discard;\n"
+                                                     "    color = t_color;\n"
+                                                     "}";
 
     SpriteAgent::SpriteAgent(const std::string &image, vec3 position, float angle, vec2 size, vec3 color)
             : VisibleAgent() {
@@ -93,6 +96,7 @@ namespace rdlib {
         glUniformMatrix4fv(glGetUniformLocation(s_shader_id, "model"), 1, GL_FALSE, glm::value_ptr(model));
         glUniformMatrix4fv(glGetUniformLocation(s_shader_id, "camera"), 1, GL_FALSE, glm::value_ptr(camera));
         glUniform3f(glGetUniformLocation(s_shader_id, "spriteColor"), m_color.r, m_color.g, m_color.b);
+        glUniform2f(glGetUniformLocation(s_shader_id, "size"), m_size.x, m_size.y);
 
         glActiveTexture(GL_TEXTURE0);
         glBindTexture(GL_TEXTURE_2D, m_texture);
@@ -116,6 +120,11 @@ namespace rdlib {
     }
 
     void SpriteAgent::renderAll() {
+        glEnable(GL_DEPTH_TEST);
+        glDepthFunc(GL_LESS);
+        glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+        glEnable(GL_BLEND);
+        glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
         for (auto &sprite: Agent::getObjectsOfType<SpriteAgent>()) {
             sprite->render();
         }

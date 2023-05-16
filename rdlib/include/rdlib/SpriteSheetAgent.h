@@ -19,6 +19,7 @@ namespace rdlib {
 
         void render() override;
         void playAnimation(std::vector<unsigned int> anim, bool loop = true);
+        bool animationFinished();
 
     private:
         static unsigned int s_shader_id;
