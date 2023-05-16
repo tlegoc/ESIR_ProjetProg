@@ -142,4 +142,35 @@ namespace rdlib {
         }
     }
 
+    vec3 SpriteAgent::getPos() const {
+        return m_pos;
+    }
+
+    void SpriteAgent::setPos(const vec3 pos) {
+        m_pos = pos;
+    }
+
+    float SpriteAgent::getAngle() const {
+        return m_angle;
+    }
+
+    void SpriteAgent::setAngle(float angle) {
+        m_angle = angle;
+    }
+
+    vec2 SpriteAgent::getSize() const {
+        return m_size;
+    }
+
+    void SpriteAgent::setSize(const vec2 size) {
+        m_size = size;
+    }
+
+    vec3 SpriteAgent::getColor() const {
+        return m_color;
+    }
+
+    void SpriteAgent::setColor(const vec3 color) {
+        m_color = color;
+    }
 } // rdlib
