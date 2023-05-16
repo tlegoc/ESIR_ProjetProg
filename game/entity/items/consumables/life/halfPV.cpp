@@ -9,11 +9,10 @@ halfPV::halfPV() : GenericConsumable("assets/PV_Buff/RedHalfHeart.png") {
     //std::cout << "halfPV created" << std::endl;
 }
 
-void halfPV::use(Agent & hero){
-    //hero.setLife(hero.getLife() + 1);
+void halfPV::use(Hero & player){
+    if(player.getMPv() + 1 <player.getMaxPv() ){
+        player.setMPv(player.getMPv() + 1);
+    }
     kill();
 }
 
-void halfPV::update() {
-    //std::cout << "halfPV updated" << std::endl;
-}

@@ -29,8 +29,7 @@ add_executable(Game
         entity/items/consumables/life/OneHeart.h
         entity/items/consumables/life/OneHeart.cpp
         entity/items/consumables/buff/ShieldImprove.cpp
-        entity/items/consumables/buff/DamageBuff.h
-        entity/items/consumables/buff/DamageBuff.cpp)
+        )
 
 target_link_libraries(Game RDLIB)
 

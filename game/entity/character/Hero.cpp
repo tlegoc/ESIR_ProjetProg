@@ -2,8 +2,9 @@
 // Created by Thibault on 16/05/2023.
 //
 
-#include "Hero.h"
 #include "Monster.h"
+#include "../items/GenericItem.h"
+#include <typeinfo>
 
 Hero::Hero(const std::string &image, vec3 position, float angle,
            vec2 size, vec3 color, int pv, int max_pv, int m_damage, int m_shield, int m_maxShield)
@@ -12,6 +13,7 @@ Hero::Hero(const std::string &image, vec3 position, float angle,
 
 
 void Hero::update() {
+    std::cout << " Damage hero " << m_damage << " " << std::endl;
     m_lifetime += rdlib::Time::getDelta();
     if (m_invincibility > 0) {
         m_invincibility--;
@@ -64,16 +66,19 @@ void Hero::update() {
 
     if (!isColliding().empty()) { //inflige des dégâts au monstre qui est touché par le héro
         m_color = glm::vec3(1, 0, 0);
-        if (m_invincibility == 0) {
-            for (auto a: isColliding()) {
-                if (dynamic_cast<Monster *>(a) != nullptr) {
+        for (auto a: isColliding()) {
+                if (dynamic_cast<Monster *>(a) != nullptr && m_invincibility == 0) {
                     auto monster = dynamic_cast<Monster *>(a);
                     monster->setMPv(monster->getMPv() - this->getMDamage());
                     std::cout << " Vie monstre " << monster->getMPv() << " " << std::endl;
                     m_invincibility = 100;
                 }
+                if (dynamic_cast<GenericItem *>(a) != nullptr) {
+                    auto item = dynamic_cast<GenericItem *>(a);
+                            item->use(* this);
+                }
             }
-        }
+
     } else {
         m_color = glm::vec3(1, 1, 1);
     }
@@ -109,6 +114,22 @@ void Hero::setMDamage(int mDamage) {
 
 void Hero::setMShield(int mShield) {
     m_shield = mShield;
+}
+
+int Hero::getMMaxDamage() const {
+    return m_maxDamage;
+}
+
+void Hero::setMMaxDamage(int mMaxDamage) {
+    m_maxDamage = mMaxDamage;
+}
+
+int Hero::getMMaxShield() const {
+    return m_maxShield;
+}
+
+void Hero::setMMaxShield(int mMaxShield) {
+    m_maxShield = mMaxShield;
 };
 
 

@@ -9,6 +9,10 @@ Shield::Shield(int armor, std::string  name, std::string  description) : Generic
 
 }
 
-void Shield::update() {
-
+void Shield::use(Hero & e) {
+    if(e.getMShield() + this->getArmor() < e.getMMaxShield()){
+        e.setMShield(e.getMShield() + this->getArmor());
+    }
+    kill();
 }
+

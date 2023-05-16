@@ -7,6 +7,8 @@
 
 #include <rdlib/SpriteAgent.h>
 #include "rdlib/ColliderSpriteAgent.h"
+#include "../character/Hero.h"
+
 
 class GenericItem : public rdlib::ColliderSpriteAgent {
 
@@ -37,13 +39,13 @@ public:
      * @brief Permet de changer l'état de l'item
      * @param isCollect
      */
-    virtual void setIsCollect(bool isCollect) = 0;
+     void setIsCollect(bool isCollect = true);
 
     /**
      * @brief Permet de mettre à jour l'item
      * @param hero  Héro
      */
-    virtual void use(Agent & hero) = 0;
+     virtual void use(Hero & hero) = 0;
 
 };
 

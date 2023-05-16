@@ -5,7 +5,6 @@
 #ifndef ESIR_PROJETPROG_CHARACTER_H
 #define ESIR_PROJETPROG_CHARACTER_H
 
-#endif //ESIR_PROJETPROG_CHARACTER_H
 
 #include <rdlib/ColliderSpriteAgent.h>
 #include <rdlib/Time.h>
@@ -36,6 +35,13 @@ public:
 
     int getMShield() const;
 
+    int getMMaxDamage() const;
+
+    void setMMaxDamage(int mMaxDamage);
+
+    int getMMaxShield() const;
+
+    void setMMaxShield(int mMaxShield);
 
 /**
  * mise à jour du Hero, déplacement, dégât
@@ -54,5 +60,8 @@ private:
     int m_damage;
     int m_shield;
     int m_maxShield;
+    int m_maxDamage;
     float m_lifetime = 0;
 };
+
+#endif //ESIR_PROJETPROG_CHARACTER_H

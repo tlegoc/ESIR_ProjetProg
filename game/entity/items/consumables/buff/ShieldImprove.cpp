@@ -7,11 +7,11 @@
 ShieldImprove::ShieldImprove(int shieldImprove) : GenericConsumable( " " ),
                                                   m_shieldImprove(shieldImprove) {}
 
-void ShieldImprove::use(Agent & hero) {
-    //hero.setShield(hero.getShield() + m_shieldImprove);
+void ShieldImprove::use(Hero & hero) {
+    if(hero.getMShield() + m_shieldImprove < hero.getMMaxShield()){
+        hero.setMShield(hero.getMShield() + m_shieldImprove);
+    }
     kill();
 }
-
-void ShieldImprove::update() {}
 
 

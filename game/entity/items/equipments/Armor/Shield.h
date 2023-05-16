@@ -19,7 +19,7 @@ public :
      */
     Shield(int armor , std::string  name, std::string  description);
 
-    void update() override;
+    void use (Hero & e) override;
 
 
 };

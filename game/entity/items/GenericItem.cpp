@@ -16,3 +16,11 @@ GenericItem::GenericItem(const std::string &image, vec2 collider_pos, vec2 colli
 bool GenericItem::isCollect() const {
     return m_isCollect;
 }
+
+
+void GenericItem::setIsCollect(bool isCollect){
+    m_isCollect = isCollect;
+}
+
+
+

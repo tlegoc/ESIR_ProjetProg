@@ -15,9 +15,8 @@ public :
 
     halfPV();
 
-    void update() override;
 
-    void use(Agent & hero) override;
+    void use(Hero & hero) override;
 
 
 };

@@ -113,8 +113,8 @@ int main() {
                       glm::vec2(1), glm::vec3(1, 1, 1), 20, 50, 2, 1, 2);
     Monster *s2 = new Monster("assets/character/monster_red.png", glm::vec3(0, 0, 0), 0,
                         glm::vec2(1), glm::vec3(1, 1, 1), 10, 1);
-
-
+    Sword *s3 = new Sword(1, "Epée 1", "Pour Demacaia !");
+    s3->setPos(glm::vec3(1, 1, 0));
     // rdlib::Agent *s = new Sword( 10,  ("Sword"),("A sword"));
 
 

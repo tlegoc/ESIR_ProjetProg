@@ -10,13 +10,10 @@ OneHeart::OneHeart() : GenericConsumable("assets/PV_Buff/heartAdd.jpeg") {
 }
 
 
-void OneHeart::update() {
+void OneHeart::use(Hero &hero) {
 
-}
-
-void OneHeart::use(Agent &hero) {
-    //hero.setmaxPV(hero.getLife()+2);
-    //hero.setLife(hero.getLife()+2);
+    hero.setMaxPv(hero.getMaxPv()+2);
+    hero.setMPv(hero.getMPv()+2);
     kill();
 }
 

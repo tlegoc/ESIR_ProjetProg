@@ -18,13 +18,11 @@ public :
     OnePV();
 
 
-    void update() override;
-
     /**
      * Use the consumable
      * @param hero  The hero who use the consumable
      */
-    void use(Agent & hero) override;
+    void use(Hero & hero) override;
 };
 
 
