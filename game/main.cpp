@@ -9,14 +9,14 @@
 
 #include <iostream>
 #include <thread>
-
+#include "entity/character/Hero.h"
 
 class Test : public rdlib::ColliderSpriteAgent {
 public:
     float m_lifetime = 0;
 
-    Test(const std::string &filename) : rdlib::ColliderSpriteAgent(filename) {
-    };
+    //Test(const std::string &filename) : rdlib::ColliderSpriteAgent(filename) {
+    //};
 
     Test(const std::string &filename, const glm::vec3 &position, float angle, const glm::vec2 &size,
          const glm::vec3 &color) : rdlib::ColliderSpriteAgent(filename, position, angle, size, color) {
@@ -102,9 +102,13 @@ int main() {
     // Notre jeu
     rdlib::Engine::instanciate();
 
-    // rdlib::Agent *s = new Test("Gamejam.png");
-    // rdlib::Agent *s2 = new Test2("Gamejam.png", glm::vec3(0, 0, 0), 0, glm::vec2(.5, .5), glm::vec3(1, 1, 1));
-    // rdlib::Agent *s3 = new Test2("Gamejam.png", glm::vec3(0, 0.6, 0), 0, glm::vec2(.5, .5), glm::vec3(1, 1, 1));
+    //rdlib::Agent *s = new Test("Gamejam.png");
+    //rdlib::Agent *s2 = new Test("Gamejam.png", glm::vec3(0, 0, 0), 0, glm::vec2(.5, .5), glm::vec3(1, 1, 1));
+    //rdlib::Agent *s3 = new Test2("Gamejam.png", glm::vec3(0, 0.6, 0), 0, glm::vec2(.5, .5), glm::vec3(1, 1, 1));
+
+    Hero *s1 = new Hero("Gamejam.png", glm::vec3(0, 0, 0), 0,
+                      glm::vec2(.5, .5), glm::vec3(1, 1, 1), 20, 50, 2, 1);
+
 
     // Rien après cette ligne ne s'éxecute tant que le jeu n'est pas quitté
     while (rdlib::Engine::shouldContinue()) {

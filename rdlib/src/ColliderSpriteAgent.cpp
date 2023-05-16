@@ -4,6 +4,7 @@
 
 #include "rdlib/ColliderSpriteAgent.h"
 
+
 namespace rdlib {
     float ColliderSpriteAgent::getRadius() const {
         return (m_size.x > m_size.y ? m_size.x : m_size.y) / 2;
