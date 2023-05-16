@@ -1,0 +1,221 @@
+{
+    "tiles": {
+        "1": {
+            "src": "assets/ground/tile000.png"
+        },
+        "2": {
+            "src": "assets/ground/tile001.png"
+        },
+        "3": {
+            "src": "assets/ground/tile002.png"
+        },
+        "4": {
+            "src": "assets/ground/tile003.png"
+        },
+        "5": {
+            "src": "assets/ground/tile004.png"
+        },
+        "6": {
+            "src": "assets/ground/tile005.png"
+        },
+        "7": {
+            "src": "assets/ground/tile006.png"
+        },
+        "8": {
+            "src": "assets/ground/tile007.png"
+        },
+        "9": {
+            "src": "assets/ground/tile008.png"
+        },
+        "10": {
+            "src": "assets/ground/tile009.png"
+        },
+        "11": {
+            "src": "assets/ground/tile010.png"
+        },
+        "12": {
+            "src": "assets/ground/tile011.png"
+        },
+        "13": {
+            "src": "assets/ground/tile012.png"
+        },
+        "14": {
+            "src": "assets/ground/tile013.png"
+        },
+        "15": {
+            "src": "assets/ground/tile014.png"
+        },
+        "16": {
+            "src": "assets/ground/tile015.png"
+        },
+        "17": {
+            "src": "assets/ground/tile016.png"
+        },
+        "18": {
+            "src": "assets/ground/tile017.png"
+        },
+        "19": {
+            "src": "assets/ground/tile018.png"
+        },
+        "20": {
+            "src": "assets/ground/tile019.png"
+        },
+        "21": {
+            "src": "assets/ground/tile020.png"
+        },
+        "22": {
+            "src": "assets/ground/tile021.png"
+        },
+        "23": {
+            "src": "assets/ground/tile022.png"
+        },
+        "24": {
+            "src": "assets/ground/tile023.png"
+        },
+        "25": {
+            "src": "assets/ground/tile024.png"
+        },
+        "26": {
+            "src": "assets/ground/tile025.png"
+        },
+        "27": {
+            "src": "assets/ground/tile026.png"
+        },
+        "28": {
+            "src": "assets/ground/tile027.png"
+        },
+        "29": {
+            "src": "assets/ground/tile028.png"
+        },
+        "30": {
+            "src": "assets/ground/tile029.png"
+        },
+        "31": {
+            "src": "assets/ground/tile030.png"
+        },
+        "32": {
+            "src": "assets/ground/tile031.png"
+        },
+        "33": {
+            "src": "assets/ground/tile032.png"
+        },
+        "34": {
+            "src": "assets/ground/tile033.png"
+        },
+        "35": {
+            "src": "assets/ground/tile034.png"
+        },
+        "36": {
+            "src": "assets/ground/tile035.png"
+        },
+        "37": {
+            "src": "assets/ground/tile036.png"
+        },
+        "38": {
+            "src": "assets/ground/tile037.png"
+        },
+        "39": {
+            "src": "assets/ground/tile038.png"
+        },
+        "40": {
+            "src": "assets/ground/tile039.png"
+        },
+        "41": {
+            "src": "assets/ground/tile040.png"
+        },
+        "42": {
+            "src": "assets/ground/tile041.png"
+        },
+        "43": {
+            "src": "assets/ground/tile042.png"
+        },
+        "44": {
+            "src": "assets/ground/tile043.png"
+        },
+        "45": {
+            "src": "assets/ground/tile044.png"
+        },
+        "46": {
+            "src": "assets/ground/tile045.png"
+        },
+        "47": {
+            "src": "assets/ground/tile046.png"
+        },
+        "48": {
+            "src": "assets/ground/tile047.png"
+        },
+        "49": {
+            "src": "assets/ground/tile048.png"
+        },
+        "50": {
+            "src": "assets/ground/tile049.png"
+        },
+        "51": {
+            "src": "assets/ground/tile050.png"
+        },
+        "52": {
+            "src": "assets/ground/tile051.png"
+        },
+        "53": {
+            "src": "assets/ground/tile052.png"
+        },
+        "54": {
+            "src": "assets/ground/tile053.png"
+        },
+        "55": {
+            "src": "assets/ground/tile054.png"
+        },
+        "56": {
+            "src": "assets/ground/tile055.png"
+        },
+        "57": {
+            "src": "assets/ground/tile056.png"
+        },
+        "58": {
+            "src": "assets/ground/tile057.png"
+        },
+        "59": {
+            "src": "assets/ground/tile058.png"
+        },
+        "60": {
+            "src": "assets/ground/tile059.png"
+        },
+        "61": {
+            "src": "assets/ground/tile060.png"
+        },
+        "62": {
+            "src": "assets/ground/tile061.png"
+        },
+        "63": {
+            "src": "assets/ground/tile062.png"
+        },
+        "64": {
+            "src": "assets/ground/tile063.png"
+        }
+    },
+    "colliders": {
+        "1": {
+            "src": "assets/walls/tile018.png",
+            "coll": {
+                "x": 0,
+                "y": 0.75,
+                "w": 1,
+                "h": 0.25
+            }
+        }
+    },
+    "map" : [
+        [5, 1, 4, 1, 2],
+        [3, 61, 33, 36, 13],
+        [1, 33, 33, 33, 1],
+        [7, 35, 33, 45, 15],
+        [14, 11, 1, 7, 1]
+    ],
+    "walls": [
+        {
+            "id": 1,
+            "x": 1,
+            "y": 1
+        }
+    ]
+}
