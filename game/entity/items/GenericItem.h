@@ -24,9 +24,12 @@ public:
      * @param size  taille de l'item
      * @param color  couleur de l'item
      */
-    GenericItem(const std::string& image, vec3 position, bool isCollect = false, float angle = 0, vec2 size =vec2 ( 1,1), vec3 color = vec3(1, 1, 1));
+    explicit GenericItem(const std::string& image, vec3 position = vec3( 0,0,0), bool isCollect = false, float angle = 0, vec2 size =vec2 ( 1,1), vec3 color = vec3(1, 1, 1));
 
-
+    /**
+     * Si l'item est collecter
+     * @return
+     */
     bool isCollect() const;
 };
 

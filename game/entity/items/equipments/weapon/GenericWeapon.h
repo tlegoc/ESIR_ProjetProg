@@ -32,7 +32,7 @@ public:
      * @param name  nom de l'arme
      * @param description  description de l'arme
      */
-    GenericWeapon(const std::string &image, vec3 position, bool isCollect, float angle, vec2 size, vec3 color,int damage, std::string & name, std::string & description);
+    GenericWeapon(std::string & img, int damage, std::string & name, std::string & description);
 
     /**
      * @brief getter de m_damage

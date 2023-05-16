@@ -12,7 +12,7 @@ class GenericEquipment : public GenericItem {
 
 public:
 
-    GenericEquipment(const std::string &image, vec3 position, bool isCollect, float angle, vec2 size, vec3 color);
+    GenericEquipment(const std::string &image, vec3 position = vec3(0, 0, 0));
 
 
 
