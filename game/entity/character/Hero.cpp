@@ -5,15 +5,15 @@
 #include "Hero.h"
 #include "Monster.h"
 
-Hero::Hero(const std::string &image, vec3 position, float angle,
-           vec2 size, vec3 color, int pv, int max_pv, int m_damage, int m_shield, int m_maxShield): rdlib::ColliderSpriteAgent(image, position, angle, size, color), m_pv(pv), m_maxPv(max_pv), m_damage(m_damage), m_shield(m_shield), m_maxShield(m_maxShield), m_invisibility(0){};
+Hero::Hero(const std::string &image, vec2 collider_pos, vec2 collider_size, vec3 position, float angle,
+           vec2 size, vec3 color, int pv, int max_pv, int m_damage, int m_shield, int m_maxShield): rdlib::ColliderSpriteAgent(image, collider_pos, collider_size, position, angle, size, color), m_pv(pv), m_maxPv(max_pv), m_damage(m_damage), m_shield(m_shield), m_maxShield(m_maxShield), m_invincibility(0){};
 
 
 
     void Hero::update() {
             m_lifetime += rdlib::Time::getDelta();
-        if (m_invisibility > 0){
-            m_invisibility--;
+        if (m_invincibility > 0){
+            m_invincibility--;
         }
 
             // On fait tourner l'image de 1 degré par seconde
@@ -63,13 +63,13 @@ Hero::Hero(const std::string &image, vec3 position, float angle,
 
             if (!isColliding().empty()) { //inflige des dégâts au monstre qui est touché par le héro
                 m_color = glm::vec3(1, 0, 0);
-                if(m_invisibility == 0) {
+                if(m_invincibility == 0) {
                     for (auto a: isColliding()) {
                         if (dynamic_cast<Monster *>(a) != nullptr) {
                             auto monster = dynamic_cast<Monster *>(a);
                             monster->setMPv(monster->getMPv() - this->getMDamage());
                             std::cout << " Vie monstre " << monster->getMPv() << " " << std::endl;
-                            m_invisibility = 100;
+                            m_invincibility = 100;
                         }
                     }
                 }
