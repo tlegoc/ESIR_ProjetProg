@@ -15,18 +15,10 @@
 class Hero : public rdlib::ColliderSpriteAgent {
 
 public:
-    Hero(const std::string &image, vec2 collider_pos, vec2 collider_size, vec3 position, float angle, vec2 size, vec3 color, int pv, int max_pv, int m_damage, int m_shield, int maxShield);
+    Hero(const std::string &image, vec3 position, float angle, vec2 size, vec3 color, int pv, int max_pv, int m_damage,
+         int m_shield, int maxShield);
 
-   // Hero(const std::string &image, vec3 position, float angle, vec2 size, vec3 color, int pv);
-
-    int m_pv;
-    int m_maxPv;
-    int m_invincibility;
-    int m_damage;
-    int m_shield;
-    int m_maxShield;
-    float m_lifetime = 0;
-
+    // Hero(const std::string &image, vec3 position, float angle, vec2 size, vec3 color, int pv);
 
     int getMPv() const;
 
@@ -55,4 +47,12 @@ public:
 */
     //void attack ()
 
+private:
+    int m_pv;
+    int m_maxPv;
+    int m_invincibility;
+    int m_damage;
+    int m_shield;
+    int m_maxShield;
+    float m_lifetime = 0;
 };
