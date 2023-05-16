@@ -25,7 +25,9 @@ add_library(RDLIB
         src/SpriteSheetAgent.cpp
         include/rdlib/SpriteSheetAgent.h
         src/TextureManager.cpp
-        include/rdlib/TextureManager.h)
+        include/rdlib/TextureManager.h
+        src/ColliderSpriteSheetAgent.cpp
+        include/rdlib/ColliderSpriteSheetAgent.h)
 
 target_include_directories(RDLIB PUBLIC include)
 

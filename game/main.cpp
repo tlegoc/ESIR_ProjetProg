@@ -11,6 +11,7 @@
 #include <thread>
 #include "entity/character/Hero.h"
 #include "entity/character/Monster.h"
+#include "entity/items/equipments/weapon/Sword.h"
 
 /*class Test : public rdlib::ColliderSpriteAgent {
 public:
@@ -112,6 +113,9 @@ int main() {
                       glm::vec2(.5, .5), glm::vec3(1, 1, 1), 20, 50, 2, 1, 2);
     Monster *s2 = new Monster("assets/character/monster_red.png", glm::vec2(.0, .0), glm::vec2(1, 1), glm::vec3(0, 0, 0), 0,
                         glm::vec2(.2, .2), glm::vec3(1, 1, 1), 10, 1);
+
+
+    // rdlib::Agent *s = new Sword( 10,  ("Sword"),("A sword"));
 
 
     // Rien après cette ligne ne s'éxecute tant que le jeu n'est pas quitté
