@@ -89,6 +89,9 @@ namespace rdlib {
         glUseProgram(s_shader_id);
         mat4 model = getModelMatrix();
         mat4 camera = Engine::getCameraMatrix();
+        // Alpha blend
+        glEnable(GL_BLEND);
+        glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
         glUniformMatrix4fv(glGetUniformLocation(s_shader_id, "model"), 1, GL_FALSE, glm::value_ptr(model));
         glUniformMatrix4fv(glGetUniformLocation(s_shader_id, "camera"), 1, GL_FALSE, glm::value_ptr(camera));
