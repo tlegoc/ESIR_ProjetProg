@@ -25,7 +25,7 @@ public:
      * @param size  Taille de l'item
      * @param color  Couleur de l'item
      */
-    explicit GenericItem(const std::string& image, vec3 position = vec3( 0,0,0), bool isCollect = false, float angle = 0, vec2 size =vec2 ( 0.2,0.2), vec3 color = vec3(1, 1, 1));
+    explicit GenericItem(const std::string& image, vec2 collider_pos, vec2 collider_size, vec3 position = vec3( 0,0,0), bool isCollect = false, float angle = 0, vec2 size =vec2 ( 0.2,0.2), vec3 color = vec3(1, 1, 1));
 
     /**
      * Si l'item est collecter
@@ -37,13 +37,13 @@ public:
      * @brief Permet de changer l'état de l'item
      * @param isCollect
      */
-    void setIsCollect(bool isCollect);
+    virtual void setIsCollect(bool isCollect) = 0;
 
     /**
      * @brief Permet de mettre à jour l'item
      * @param hero  Héro
      */
-    void use(Agent & hero);
+    virtual void use(Agent & hero) = 0;
 
 };
 

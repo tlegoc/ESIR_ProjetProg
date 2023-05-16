@@ -38,7 +38,7 @@ public:
      * @brief getter de m_armor
      * @return  m_armor
      */
-    int getArmor();
+    int getArmor() const;
 
     /**
      * @brief setter de m_armor

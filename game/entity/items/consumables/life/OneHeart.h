@@ -16,9 +16,7 @@ public :
 
     void update() override ;
 
-    void use(Agent & hero);
-
-
+    void use(Agent & hero) override;
 };
 
 

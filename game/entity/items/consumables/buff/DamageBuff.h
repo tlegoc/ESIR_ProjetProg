@@ -16,11 +16,11 @@ public:
 
     DamageBuff(const std::string &image, vec3 position = vec3(0, 0, 0));
 
-    void use(Agent &player);
+    void use(Agent &player) override;
 
     int getDamageBoost() const;
 
-    void update();
+    void update() override;
 
 
 };

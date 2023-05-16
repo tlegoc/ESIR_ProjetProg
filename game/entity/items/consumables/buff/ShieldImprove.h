@@ -16,11 +16,9 @@ public:
 
     ShieldImprove(int shieldImprove);
 
-    void use(Agent & hero);
+    void use(Agent & hero) override;
 
-    void update();
-
-
+    void update() override;
 };
 
 

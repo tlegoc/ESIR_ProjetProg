@@ -5,10 +5,13 @@
 #include "GenericItem.h"
 
 
-GenericItem::GenericItem(const std::string &image, vec3 position, bool isCollect, float angle, vec2 size, vec3 color)
-        : ColliderSpriteAgent(image, position,
-                      angle, size,
-                      color) , m_isCollect(isCollect){}
+GenericItem::GenericItem(const std::string &image, vec2 collider_pos, vec2 collider_size, vec3 position, bool isCollect,
+                         float angle, vec2 size, vec3 color)
+        : ColliderSpriteAgent(image,
+                              collider_pos, collider_size,
+                              position,
+                              angle, size,
+                              color), m_isCollect(isCollect) {}
 
 bool GenericItem::isCollect() const {
     return m_isCollect;

@@ -16,7 +16,7 @@ public:
      * @param image  Path to the image of the equipment
      * @param position  Position of the equipment
      */
-    GenericEquipment(const std::string &image, vec3 position = vec3(0, 0, 0));
+    GenericEquipment(const std::string &image, vec2 collider_pos, vec2 collider_size, vec3 position = vec3(0, 0, 0));
 
 
 

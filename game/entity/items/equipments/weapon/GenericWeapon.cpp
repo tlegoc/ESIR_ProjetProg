@@ -6,7 +6,7 @@
 
 
 GenericWeapon::GenericWeapon(std::string  img, int damage, std::string  name, std::string  description) :
-    GenericEquipment( img), m_damage(damage), m_description(description), m_name(name) {}
+    GenericEquipment( img, vec2(0), vec2(1)), m_damage(damage), m_description(description), m_name(name) {}
 
 int GenericWeapon::getDamage() {
     return m_damage;

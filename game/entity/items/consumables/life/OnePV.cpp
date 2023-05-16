@@ -7,6 +7,7 @@
 OnePV::OnePV() : GenericConsumable("assets/PV_Buff/RedFullHeart.png") { }
 
 void OnePV::update() {
+
 }
 
 void OnePV::use(Agent &player) {

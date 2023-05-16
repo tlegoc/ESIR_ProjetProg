@@ -4,9 +4,9 @@
 
 #include "GenericArmor.h"
 
-GenericArmor::GenericArmor(std::string img, int armor, std::string name, std::string description) : GenericEquipment(img), m_armor(armor), m_description(description), m_name(name) {}
+GenericArmor::GenericArmor(std::string img, int armor, std::string name, std::string description) : GenericEquipment(img, vec2(0), vec2(1)), m_armor(armor), m_description(description), m_name(name) {}
 
-int GenericArmor::getArmor() {
+int GenericArmor::getArmor() const {
     return m_armor;
 }
 
