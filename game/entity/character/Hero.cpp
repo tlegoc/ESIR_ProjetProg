@@ -6,6 +6,7 @@
 #include "Monster.h"
 #include "SwordAgent.h"
 #include "../items/GenericItem.h"
+#include "../../Projectiles.h"
 #include <typeinfo>
 
 #include <rdlib/UserInterface.h>
@@ -51,6 +52,7 @@ void Hero::update() {
         dir.x += 1;
     }
 
+
     if (glm::length(dir) > 0.001) {
         dir = glm::normalize(dir);
         // We move the x direction first,
@@ -88,6 +90,7 @@ void Hero::update() {
         // Get the position in front of the player
         vec3 sword_pos = m_pos + vec3(m_direction, 0) * 0.5f + vec3(0, 0, 2.0f);
         new SwordAgent(sword_pos, getDamage());
+        new Projectiles("assets/sword/arrow.png", m_pos, 1, vec2(0, 1), 10);
         m_attack_delay = 0.2f;
     }
 
