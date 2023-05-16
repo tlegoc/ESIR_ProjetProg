@@ -35,7 +35,7 @@ if (UNIX AND NOT APPLE)
     set(THREADS_PREFER_PTHREAD_FLAG ON)
     find_package(Threads REQUIRED)
 
-    if (${SL2_FOUND})
+    if (${SDL2_FOUND})
         message("-- SDL2 Found")
         include_directories(${SDL2_INCLUDE_DIRS})
         target_link_libraries(RDLIB PUBLIC ${SDL2_LIBRARIES} Threads::Threads)
