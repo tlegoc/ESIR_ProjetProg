@@ -13,15 +13,15 @@
 class Monster : public rdlib::ColliderSpriteAgent{
 
 public:
-    void setMPv(int mPv);
+    void setPv(int pv);
 
-    void setMDamage(int mDamage);
+    void setDamage(int damage);
 
-    int getMPv() const;
+    int getPv() const;
 
-    int getMDamage() const;
+    int getDamage() const;
 
-    Monster(const std::string &image, vec3 position, float angle, vec2 size, vec3 color, int pv, int damage);
+    Monster(const std::string &image, vec3 position, vec2 size, vec3 color, int pv, int damage);
 
     /**
  * mise à jour du Monster, dégât
@@ -31,7 +31,6 @@ public:
 private:
     int m_pv;
     int m_damage;
-    int m_invincibility;
 
 };
 

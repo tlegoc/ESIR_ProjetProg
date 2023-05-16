@@ -43,7 +43,7 @@ namespace rdlib {
                 if (map[y][x] == 0) continue;
                 if (x == 0 && map[y].size() - y == 0) std::cout << "0,0" << std::endl;
                 auto sprite = new SpriteAgent(data["tiles"][std::to_string(map[y][x])]["src"],
-                                              vec3(x, map.size() - y - 1, 0));
+                                              vec3(x, map.size() - y - 1, -1));
                 s_agents.push_back(sprite);
             }
         }

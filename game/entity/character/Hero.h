@@ -7,34 +7,33 @@
 
 #endif //ESIR_PROJETPROG_CHARACTER_H
 
-#include <rdlib/ColliderSpriteAgent.h>
+#include <rdlib/ColliderSpriteSheetAgent.h>
 #include <rdlib/Time.h>
 #include <rdlib/InputManager.h>
 
 
-class Hero : public rdlib::ColliderSpriteAgent {
+class Hero : public rdlib::ColliderSpriteSheetAgent {
 
 public:
-    Hero(const std::string &image, vec3 position, float angle, vec2 size, vec3 color, int pv, int max_pv, int m_damage,
-         int m_shield, int maxShield);
+    Hero(vec3 position, float speed, int pv, int max_pv, int damage, int shield, int max_shield);
 
     // Hero(const std::string &image, vec3 position, float angle, vec2 size, vec3 color, int pv);
 
-    int getMPv() const;
+    int getPv() const;
 
     int getMaxPv() const;
 
-    int getMDamage() const;
+    int getDamage() const;
 
-    void setMPv(int mPv);
+    void setPv(int pv);
 
-    void setMaxPv(int maxPv);
+    void setMaxPv(int max_pv);
 
-    void setMDamage(int mDamage);
+    void setDamage(int damage);
 
-    void setMShield(int mShield);
+    void setShield(int shield);
 
-    int getMShield() const;
+    int getShield() const;
 
 
 /**
@@ -49,10 +48,12 @@ public:
 
 private:
     int m_pv;
-    int m_maxPv;
-    int m_invincibility;
+    int m_max_pv;
     int m_damage;
     int m_shield;
-    int m_maxShield;
+    int m_max_shield;
     float m_lifetime = 0;
+    float m_speed;
+    float m_attack_delay;
+    vec2 m_direction;
 };
