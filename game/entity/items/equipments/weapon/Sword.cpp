@@ -4,7 +4,7 @@
 
 #include "Sword.h"
 
-Sword::Sword(std::string img, int damage, std::string & name, std::string & description) : GenericWeapon(img, damage, name, description) {
+Sword::Sword( int damage, std::string  name, std::string  description) : GenericWeapon("assets/Sword/1.png", damage, name, description) {
 
 }
 

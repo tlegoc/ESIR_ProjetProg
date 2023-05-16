@@ -5,7 +5,7 @@
 #include "GenericWeapon.h"
 
 
-GenericWeapon::GenericWeapon(std::string & img, int damage, std::string & name, std::string & description) :
+GenericWeapon::GenericWeapon(std::string  img, int damage, std::string  name, std::string  description) :
     GenericEquipment( img), m_damage(damage), m_description(description), m_name(name) {}
 
 int GenericWeapon::getDamage() {

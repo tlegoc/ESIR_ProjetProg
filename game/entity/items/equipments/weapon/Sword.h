@@ -12,7 +12,7 @@ class Sword : public GenericWeapon {
 
 public :
 
-    Sword( std::string img, int damage, std::string & name, std::string & description);
+    Sword(int damage , std::string  name, std::string  description);
 
     void update() override;
 
