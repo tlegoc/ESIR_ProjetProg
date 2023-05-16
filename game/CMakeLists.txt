@@ -38,3 +38,7 @@ add_custom_command(TARGET Game POST_BUILD
         COMMAND ${CMAKE_COMMAND} -E copy_directory
         ${CMAKE_CURRENT_SOURCE_DIR}/assets
         ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/assets)
+
+if(WIN32 AND CMAKE_BUILD_TYPE MATCHES Debug)
+        target_compile_options(Game PRIVATE -mconsole)
+endif()
