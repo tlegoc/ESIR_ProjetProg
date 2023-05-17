@@ -127,13 +127,20 @@ void Hero::update() {
     }
 
     rdlib::Engine::setCameraPosition(m_pos);
-    rdlib::UserInterface::addImage("assets/character/player.png", vec2(-0.95f, 0.8f), vec2(0.2f, 0.2f), vec3(1));
 
     if (getPv() <= 0) {
         // killAll();
         // m_on_death();
         kill();
         new GameLoose(m_callback);
+    }
+
+
+    for(int i = 0; i < (getPv()/2); i++) {
+        rdlib::UserInterface::addImage("assets/PV_Buff/HeartFull.png", vec2(-0.95f, 0.8f) + vec2(0.06*i, 0), vec2(0.1, 0.1), vec3(1));
+    }
+    if(getPv() % 2 == 1) {
+        rdlib::UserInterface::addImage("assets/PV_Buff/HeartHalf.png", vec2(-0.95f, 0.8f) + vec2(0.06 * (getPv() / 2), 0), vec2(0.1, 0.1), vec3(1));
     }
 }
 
