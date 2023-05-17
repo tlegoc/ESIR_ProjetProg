@@ -146,7 +146,7 @@ void Hero::update() {
 
     rdlib::Engine::setCameraPosition(m_pos);
 
-    if (getPv() <= 0) {
+    if (getPv() <= 0 && !m_invincible) {
         // killAll();
         // m_on_death();
         kill();

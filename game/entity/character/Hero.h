@@ -62,6 +62,7 @@ private:
     float m_attack_delay{};
     float m_dash_delay{};
     float m_last_fx{};
+    bool m_invincible = false;
     bool m_is_dashing = false;
     vec2 m_direction;
     void (*m_callback)();
