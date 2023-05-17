@@ -17,10 +17,12 @@ private:
     float m_speed;
     float m_lifetime = 10;
     bool m_damage_hero;
+    bool m_damage_monster;
+
 
 public:
 
-    Projectiles(std::string image, vec3 pos, int damage, vec2 direction, float speed, bool damage_hero = true);
+    Projectiles(std::string image, vec3 pos, int damage, vec2 direction, float speed, bool damage_hero = true, bool damage_monster = true);
 
     void update() override;
 

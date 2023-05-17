@@ -7,11 +7,13 @@
 #include "SwordAgent.h"
 #include "../items/GenericItem.h"
 #include "../../Projectiles.h"
+#include "../../GameLoose.h"
+#include "FXAgent.h"
 #include <typeinfo>
 
 #include <rdlib/UserInterface.h>
 
-Hero::Hero(vec3 position, float speed, int pv, int max_pv, int damage, int shield, int max_shield)
+Hero::Hero(vec3 position, float speed, int pv, int max_pv, int damage, int shield, int max_shield, void(*callback)())
         : rdlib::ColliderSpriteSheetAgent("assets/character/player.png",
                                           vec2(7.0f / 32.0f, 7.0f / 64.0f),
                                           vec2(20.0f / 32.0f, 19.0f / 64.0f),
@@ -27,7 +29,8 @@ Hero::Hero(vec3 position, float speed, int pv, int max_pv, int damage, int shiel
           m_shield(shield),
           m_max_shield(max_shield),
           m_direction(vec2(0, -1)),
-          m_speed(speed) {
+          m_speed(speed),
+          m_callback(callback) {
 
 };
 
@@ -70,6 +73,11 @@ void Hero::update() {
         }
 
         m_direction = dir;
+        // Create fx when moving, but not too often
+        if (m_lifetime - m_last_fx > .1) {
+            m_last_fx = m_lifetime;
+            FXAgent::fx(m_pos - vec3(0, .5, 0), .3);
+        }
     }
 
     if (abs(m_direction.x) > abs(m_direction.y)) {
@@ -105,7 +113,7 @@ void Hero::update() {
         // Get the position in front of the player
         vec3 sword_pos = m_pos + vec3(glm::normalize(dir), 0) * 0.9f + vec3(0, 0, 2.0f);
         //new SwordAgent(sword_pos, getDamage());
-        new Projectiles("assets/sword/arrow.png", sword_pos, getDamage(), glm::normalize(dir), 10, false);
+        new Projectiles("assets/sword/arrow.png", sword_pos, getDamage(), glm::normalize(dir), 10, false, true);
         m_attack_delay = 0.2f;
     }
 
@@ -119,7 +127,21 @@ void Hero::update() {
     }
 
     rdlib::Engine::setCameraPosition(m_pos);
-    rdlib::UserInterface::addImage("assets/character/player.png", vec2(-0.95f, 0.8f), vec2(0.2f, 0.2f), vec3(1));
+
+    if (getPv() <= 0) {
+        // killAll();
+        // m_on_death();
+        kill();
+        new GameLoose(m_callback);
+    }
+
+
+    for(int i = 0; i < (getPv()/2); i++) {
+        rdlib::UserInterface::addImage("assets/PV_Buff/HeartFull.png", vec2(-0.95f, 0.8f) + vec2(0.06*i, 0), vec2(0.1, 0.1), vec3(1));
+    }
+    if(getPv() % 2 == 1) {
+        rdlib::UserInterface::addImage("assets/PV_Buff/HeartHalf.png", vec2(-0.95f, 0.8f) + vec2(0.06 * (getPv() / 2), 0), vec2(0.1, 0.1), vec3(1));
+    }
 }
 
 int Hero::getPv() const {

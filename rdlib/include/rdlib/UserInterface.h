@@ -36,7 +36,7 @@ namespace rdlib {
 
         // static void renderText(const std::string& text, vec2 position, vec2 size, vec3 color, float angle = 0);
 
-        static void addImage(const std::string& image, vec2 position, vec2 size, vec3 color, float angle = 0);
+        static void addImage(const std::string& image, vec2 position, vec2 size, vec3 color = vec3(1), float angle = 0);
 
         static std::vector<RenderableElement> m_renderable_elements;
 

@@ -9,11 +9,10 @@
 #include <rdlib/Time.h>
 #include <rdlib/InputManager.h>
 
-
 class Hero : public rdlib::ColliderSpriteSheetAgent {
 
 public:
-    Hero(vec3 position, float speed, int pv, int max_pv, int damage, int shield, int max_shield);
+    Hero(vec3 position, float speed, int pv, int max_pv, int damage, int shield, int max_shield, void(*callback)());
 
     // Hero(const std::string &image, vec3 position, float angle, vec2 size, vec3 color, int pv);
 
@@ -61,7 +60,9 @@ private:
     float m_lifetime = 0;
     float m_speed;
     float m_attack_delay;
+    float m_last_fx;
     vec2 m_direction;
+    void (*m_callback)();
 };
 
 #endif //ESIR_PROJETPROG_CHARACTER_H

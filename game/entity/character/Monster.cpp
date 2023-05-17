@@ -6,13 +6,15 @@
 #include "Hero.h"
 
 Monster::Monster(const std::string &image, vec3 position,
-                 vec2 size, vec3 color, int pv, int damage) : rdlib::ColliderSpriteAgent(image, vec2(0), vec2(1, 1/5.0),
+                 vec2 size, vec3 color, int pv, int damage, vec2 collider_pos, vec2 collider_size) : rdlib::ColliderSpriteAgent(image, collider_pos, collider_size,
                                                                                          position, 0, size, color),
                                                               m_pv(pv), m_damage(damage) {};
 
 void Monster::update() {
     if (m_pv <= 0) {
+        std::cout << "Monster is dead" << std::endl;
         this->kill();
+        std::cout << "on libere" << std::endl;
     }
 }
 
