@@ -40,13 +40,16 @@ void Projectiles::onCollision(rdlib::ColliderAgent *other) {
 
     if (m_damage_hero && dynamic_cast<Hero *>(other) != nullptr) {
         Hero *hero = dynamic_cast<Hero *>(other);
-        hero->setMaxPv(hero->getPv() - m_damage);
+        hero->setPv(hero->getPv() - m_damage);
+        m_lifetime = 0;
+        std::cout << hero->getPv() << std::endl;
     }
 
-    if (dynamic_cast<Monster *>(other) != nullptr) {
+    if (m_damage_monster &&dynamic_cast<Monster *>(other) != nullptr) {
         Monster *monster = dynamic_cast<Monster *>(other);
         monster->setPv(monster->getPv() - m_damage);
-        kill();
+        m_lifetime = 0;
+        std::cout << monster->getPv() << std::endl;
     }
 
 }

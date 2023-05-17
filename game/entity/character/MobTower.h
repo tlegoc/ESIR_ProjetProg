@@ -19,7 +19,7 @@ private :
 
 public:
 
-MobTower(vec3 position);
+    MobTower(vec3 position);
 
     void update() override;
 

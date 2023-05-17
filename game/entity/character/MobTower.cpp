@@ -6,8 +6,9 @@
 #include "Hero.h"
 #include "../../Projectiles.h"
 
-MobTower::MobTower(vec3 position) : Monster("assets/props/tower11x3.png", position, vec2(1, 1), vec3(1, 1, 1), 20, 5, vec2(1/3.0, 0), vec2(1/3.0, 2/4.0)) {
+MobTower::MobTower(vec3 position) : Monster("assets/props/tower11x3.png", position, vec2(1, 1), vec3(1, 1, 1), 20, 5, vec2(1/3.0, 0), vec2(1/3.0, 2/4.0)), m_shoot_delay(1.0f), m_attack_delay(1.0f), m_direction(vec2(0, 0)) {
     m_speed = 0.1;
+
 }
 
 void MobTower::update() {
