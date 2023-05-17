@@ -21,20 +21,26 @@ namespace rdlib {
         }
     }
 
-    bool Map::load(const std::string &mapFile) {
+    bool Map::load(const std::string &mapFile, const std::string& colliderFile) {
         clear();
 
         // Load file
         std::ifstream f(mapFile);
+        std::ifstream f1(colliderFile);
 
         // Check if file is opened
         if (!f.is_open()) {
             std::cout << "Failed to open file (" << mapFile << ")" << std::endl;
             return false;
         }
+        if (!f1.is_open()) {
+            std::cout << "Failed to open file (" << colliderFile << ")" << std::endl;
+            return false;
+        }
 
         // Parse
         nlohmann::json data = nlohmann::json::parse(f);
+        nlohmann::json dataColl = nlohmann::json::parse(f1);
 
         // Map
         std::vector<std::vector<int>> map = data["map"];
@@ -48,17 +54,30 @@ namespace rdlib {
             }
         }
 
-        // Colliders
-        for (auto coll: data["walls"]) {
-            int id = coll["id"];
-            auto colldata = data["colliders"][std::to_string(id)];
-            auto c = new ColliderSpriteAgent(
-                    colldata["src"], vec2(colldata["coll"]["x"], colldata["coll"]["y"]),
-                    vec2(colldata["coll"]["w"], colldata["coll"]["h"]),
-                    vec3(coll["x"], coll["y"], 0));
-            s_agents.push_back(c);
+        //Decoration
+        for(auto dec: data["decorations"]) {
+            vec3 position = vec3(dec["x"], dec["y"], 0);
+            vec2 size = vec2(dec["w"], dec["h"]);
+            auto sprite = new SpriteAgent(dec["src"], position, 0, size);
+            s_agents.push_back(sprite);
         }
 
+        // Colliders
+        for (auto wall: data["walls"]) {
+            int id = wall["id"];
+            auto colldata = dataColl[std::to_string(id)];
+            vec3 position = vec3(wall["x"], wall["y"], 0);
+            
+            auto sprite = new SpriteAgent(colldata["src"], position);
+
+            for(auto coll: colldata["coll"]) {
+                vec2 collpos = vec2(coll["x"], coll["y"]);
+                vec2 collsize = vec2(coll["w"], coll["h"]);
+                auto c = new ColliderSpriteAgent(colldata["src"], collpos, collsize, position);
+                s_agents.push_back(c);
+            }
+            s_agents.push_back(sprite);
+        }
 
         return true;
     }

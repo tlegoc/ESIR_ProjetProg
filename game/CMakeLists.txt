@@ -30,8 +30,23 @@ add_executable(Game
         entity/items/consumables/life/OneHeart.cpp
         entity/items/consumables/buff/ShieldImprove.cpp
         entity/character/SwordAgent.cpp
-        entity/character/SwordAgent.h Projectiles.h Projectiles.cpp entity/character/Boss.cpp entity/character/Boss.h entity/character/MobTower.h entity/character/MobTower.cpp)
-
+        entity/character/SwordAgent.h
+        Projectiles.h
+        Projectiles.cpp
+        entity/character/Boss.cpp
+        entity/character/Boss.h
+        entity/character/FXAgent.h
+        entity/character/FXAgent.cpp 
+        entity/character/BossMeteor.cpp 
+        entity/character/BossMeteor.h 
+        GameWin.cpp 
+        GameWin.h 
+        GameLoose.cpp 
+        GameLoose.h 
+        CreateGame.h
+        entity/character/MobTower.h 
+        entity/character/MobTower.cpp)
+        
 target_link_libraries(Game RDLIB)
 
 add_custom_command(TARGET Game POST_BUILD
