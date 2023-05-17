@@ -19,14 +19,12 @@ Projectiles::Projectiles(std::string image,
     m_direction = direction;
     m_speed = speed;
     setPassthrough(true);
-
-    std::cout << "Projectiles::Projectiles" << std::endl;
 }
 
 void Projectiles::update() {
     vec2 deplacement = m_direction * m_speed * rdlib::Time::getDelta();
     setPos(getPos() + vec3(deplacement, 0));
-    for (auto &collider: isColliding(true)) {
+    for (auto &collider: isColliding()) {
         onCollision(collider);
     }
     m_lifetime -= rdlib::Time::getDelta();
@@ -36,10 +34,10 @@ void Projectiles::update() {
 
 void Projectiles::onCollision(rdlib::ColliderAgent *other) {
 
-    // if (dynamic_cast<Hero *>(other) != nullptr) {
-    //     Hero *hero = dynamic_cast<Hero *>(other);
-    //     hero->setMaxPv(hero->getPv() - m_damage);
-    // }
+    if (dynamic_cast<Hero *>(other) != nullptr) {
+        Hero *hero = dynamic_cast<Hero *>(other);
+        hero->setMaxPv(hero->getPv() - m_damage);
+    }
 
     if (dynamic_cast<Monster *>(other) != nullptr) {
         auto *monster = dynamic_cast<Monster *>(other);
