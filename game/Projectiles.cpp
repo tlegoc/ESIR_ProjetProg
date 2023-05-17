@@ -15,7 +15,7 @@ Projectiles::Projectiles(std::string image,
         : ColliderSpriteAgent(image,
                               vec2(0),
                               vec2(1),
-                                  pos) {
+                                  pos, 0, vec2(.5)) {
     m_damage = damage;
     m_direction = direction;
     m_speed = speed;
