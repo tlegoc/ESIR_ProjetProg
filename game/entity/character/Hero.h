@@ -61,6 +61,7 @@ private:
     float m_lifetime = 0;
     float m_speed;
     float m_attack_delay;
+    float m_last_fx;
     vec2 m_direction;
 };
 

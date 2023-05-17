@@ -7,6 +7,7 @@
 #include "SwordAgent.h"
 #include "../items/GenericItem.h"
 #include "../../Projectiles.h"
+#include "FXAgent.h"
 #include <typeinfo>
 
 #include <rdlib/UserInterface.h>
@@ -70,6 +71,11 @@ void Hero::update() {
         }
 
         m_direction = dir;
+        // Create fx when moving, but not too often
+        if (m_lifetime - m_last_fx > .1) {
+            m_last_fx = m_lifetime;
+            FXAgent::fx(m_pos - vec3(0, .5, 0), .3);
+        }
     }
 
     if (abs(m_direction.x) > abs(m_direction.y)) {
