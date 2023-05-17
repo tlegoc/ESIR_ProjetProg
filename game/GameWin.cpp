@@ -13,7 +13,7 @@ GameWin::GameWin(void(*callback)()) : rdlib::Agent(), m_callback(callback) {
 
 void GameWin::update() {
 
-    rdlib::UserInterface::addImage("assets/ui/win.png", vec2(-0.5, 0), vec2(2, 1));
+    rdlib::UserInterface::addImage("assets/ui/win.png", vec2(-0.5), vec2(2, 1));
 
     if (rdlib::InputManager::isKeyPressed('e')) {
         killAll();

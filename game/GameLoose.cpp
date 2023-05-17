@@ -13,7 +13,7 @@ GameLoose::GameLoose(void(*callback)()) : rdlib::Agent(), m_callback(callback) {
 
 void GameLoose::update() {
 
-    rdlib::UserInterface::addImage("assets/ui/restart.png", vec2(-0.5, 0), vec2(2, 1));
+    rdlib::UserInterface::addImage("assets/ui/restart.png", vec2(-0.5), vec2(2, 1));
 
     if (rdlib::InputManager::isKeyPressed('e')) {
         killAll();

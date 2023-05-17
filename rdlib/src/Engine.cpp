@@ -85,7 +85,7 @@ namespace rdlib {
     }
 
     void Engine::render() {
-        glClearColor(0.0, 0.0, 0.0, 1.0);
+        glClearColor(.2, .2, .2, 1);
         glClear(GL_COLOR_BUFFER_BIT);
 
         SpriteAgent::renderAll();
