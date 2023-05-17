@@ -81,14 +81,14 @@ void Boss::update() {
                     m_pos -= vec3(0, 1, 0) * m_speed * rdlib::Time::getDelta();
                 } else if (m_lifetime > 5) {
                     // Create 10 meteors in a circle around the player
-                    for (int i = 0; i < 30; i++) {
+                    for (int i = 0; i < 40; i++) {
                         // Create the target position
                         // A random vec3 of length between 3 and 5
                         // use rand()
-                        auto target = vec3(rand() % 10 - 5, rand() % 10 - 5, 0);
+                        auto target = vec3(rand() % 100 - 50, rand() % 100 - 50, 0);
                         float length = (rand() % 100 - 50) / 100.0 * 2.0 + 3.0;
                         target = glm::normalize(target) * length;
-                        target += getPos();
+                        target += getPos() - vec3(0, 1, 0);
 
                         auto origin = target + vec3(0, 10, 0);
                         new BossMeteor(origin, target, 1);

@@ -56,11 +56,13 @@ private:
     int m_damage;
     int m_shield;
     int m_max_shield;
-    int m_max_damage;
+    int m_max_damage{};
     float m_lifetime = 0;
     float m_speed;
-    float m_attack_delay;
-    float m_last_fx;
+    float m_attack_delay{};
+    float m_dash_delay{};
+    float m_last_fx{};
+    bool m_is_dashing = false;
     vec2 m_direction;
     void (*m_callback)();
 };

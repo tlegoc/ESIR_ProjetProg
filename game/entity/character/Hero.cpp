@@ -56,29 +56,7 @@ void Hero::update() {
         dir.x += 1;
     }
 
-
-    if (glm::length(dir) > 0.001) {
-        dir = glm::normalize(dir);
-        // We move the x direction first,
-        // check collisions and if there is one, we go back
-        m_pos.x += dir.x * m_speed * rdlib::Time::getDelta();
-        if (!isColliding(true).empty()) {
-            m_pos.x -= dir.x * m_speed * rdlib::Time::getDelta();
-        }
-
-        // We do the same for the y direction
-        m_pos.y += dir.y * m_speed * rdlib::Time::getDelta();
-        if (!isColliding(true).empty()) {
-            m_pos.y -= dir.y * m_speed * rdlib::Time::getDelta();
-        }
-
-        m_direction = dir;
-        // Create fx when moving, but not too often
-        if (m_lifetime - m_last_fx > .1) {
-            m_last_fx = m_lifetime;
-            FXAgent::fx(m_pos - vec3(0, .5, 0), .1);
-        }
-    }
+    dir = glm::normalize(dir);
 
     if (abs(m_direction.x) > abs(m_direction.y)) {
         if (m_direction.x > 0) {
@@ -94,6 +72,46 @@ void Hero::update() {
         }
     }
 
+
+    // Dash
+    m_dash_delay -= rdlib::Time::getDelta();
+    if (rdlib::InputManager::isKeyPressed(' ') && m_dash_delay < 0) {
+        m_dash_delay = .1;
+        m_is_dashing = true;
+    }
+
+    if (m_is_dashing) {
+        if (m_dash_delay <= 0) {
+            m_is_dashing = false;
+        }
+
+        dir *= 3.0;
+    }
+
+    // Wall collisions
+    if (glm::length(dir) > 0.001) {
+        // We move the x direction first,
+        // check collisions and if there is one, we go back
+        m_pos.x += dir.x * m_speed * rdlib::Time::getDelta();
+        if (!isColliding(true).empty()) {
+            m_pos.x -= dir.x * m_speed * rdlib::Time::getDelta();
+        }
+
+        // We do the same for the y direction
+        m_pos.y += dir.y * m_speed * rdlib::Time::getDelta();
+        if (!isColliding(true).empty()) {
+            m_pos.y -= dir.y * m_speed * rdlib::Time::getDelta();
+        }
+
+        m_direction = dir;
+        // Create fx when moving
+        if (m_lifetime - m_last_fx > .1) {
+            m_last_fx = m_lifetime;
+            FXAgent::fx(m_pos - vec3(0, .5, 0), .1);
+        }
+    }
+
+    // Attacking
     m_attack_delay -= rdlib::Time::getDelta();
     if (rdlib::InputManager::isKeyPressed('a') && m_attack_delay < 0) {
         vec2 dir = vec2(0);
