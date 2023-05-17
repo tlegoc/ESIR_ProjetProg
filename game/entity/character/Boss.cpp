@@ -6,7 +6,7 @@
 
 #include "Hero.h"
 
-Boss::Boss(vec3 position) : Monster("assets/character/boss.png", position, vec2(3, 3), vec3(1, 1, 1), 100, 10, vec2(1/3.0, 0), vec2(1/3.0, 3/4.0)) {
+Boss::Boss(vec3 position) : Monster("assets/character/boss.png", position, vec2(3, 3), vec3(1, 1, 1), 100, 10, vec2(1/3.0, 0), vec2(1/3.0, 2/4.0)) {
 
 }
 
