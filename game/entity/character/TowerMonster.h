@@ -1,14 +1,13 @@
 //
-// Created by kiurow590 on 17/05/23.
+// Created by theo on 17/05/23.
 //
 
-#ifndef ESIR_PROJETPROG_MOBTOWER_H
-#define ESIR_PROJETPROG_MOBTOWER_H
-
+#ifndef ESIR_PROJETPROG_TOWERMONSTER_H
+#define ESIR_PROJETPROG_TOWERMONSTER_H
 
 #include "Monster.h"
 
-class MobTower : public Monster {
+class TowerMonster : public Monster {
 
 private :
 
@@ -19,7 +18,7 @@ private :
 
 public:
 
-    MobTower(vec3 position);
+    TowerMonster(vec3 position);
 
     void update() override;
 
@@ -36,4 +35,4 @@ public:
 };
 
 
-#endif //ESIR_PROJETPROG_MOBTOWER_H
+#endif //ESIR_PROJETPROG_TOWERMONSTER_H

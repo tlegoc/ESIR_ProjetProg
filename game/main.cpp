@@ -10,8 +10,6 @@
 #include "entity/character/Monster.h"
 #include "entity/items/equipments/weapon/Sword.h"
 #include "entity/character/Boss.h"
-#include "entity/character/MobTower.h"
-
 int main() {
     // Notre jeu
     rdlib::Engine::instanciate();

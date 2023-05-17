@@ -12,9 +12,9 @@ Monster::Monster(const std::string &image, vec3 position,
 
 void Monster::update() {
     if (m_pv <= 0) {
-        //std::cout << "Monster is dead" << std::endl;
+        std::cout << "Monster is dead" << std::endl;
         this->kill();
-        //std::cout << "on libere" << std::endl;
+        std::cout << "on libere" << std::endl;
     }
 }
 
