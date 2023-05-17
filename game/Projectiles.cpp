@@ -11,15 +11,16 @@ Projectiles::Projectiles(std::string image,
                          int damage,
                          vec2 direction,
                          float speed,
-                         bool damage_hero)
+                         bool damage_hero, bool damage_monster)
         : ColliderSpriteAgent(image,
                               vec2(0),
                               vec2(1),
-                              pos) {
+                                  pos, 0, vec2(.5)) {
     m_damage = damage;
     m_direction = direction;
     m_speed = speed;
     m_damage_hero = damage_hero;
+    m_damage_monster = damage_monster;
     setPassthrough(true);
 }
 
@@ -30,21 +31,25 @@ void Projectiles::update() {
         onCollision(collider);
     }
     m_lifetime -= rdlib::Time::getDelta();
-    if (m_lifetime <= 0)
+    if (m_lifetime <= 0){
         kill();
+    }
 }
 
 void Projectiles::onCollision(rdlib::ColliderAgent *other) {
 
     if (m_damage_hero && dynamic_cast<Hero *>(other) != nullptr) {
         Hero *hero = dynamic_cast<Hero *>(other);
-        hero->setMaxPv(hero->getPv() - m_damage);
+        hero->setPv(hero->getPv() - m_damage);
+        m_lifetime = 0;
+        std::cout << hero->getPv() << std::endl;
     }
 
-    if (dynamic_cast<Monster *>(other) != nullptr) {
-        auto *monster = dynamic_cast<Monster *>(other);
+    if (m_damage_monster &&dynamic_cast<Monster *>(other) != nullptr) {
+        Monster *monster = dynamic_cast<Monster *>(other);
         monster->setPv(monster->getPv() - m_damage);
-        kill();
+        m_lifetime = 0;
+        std::cout << monster->getPv() << std::endl;
     }
 
 }

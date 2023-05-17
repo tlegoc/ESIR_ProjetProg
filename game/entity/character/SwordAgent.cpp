@@ -14,7 +14,7 @@ SwordAgent::SwordAgent(glm::vec3 position, int damage) : ColliderSpriteSheetAgen
 
     playAnimation({0, 1, 2, 3, 4, 5}, false);
     for (auto a: isColliding()) {
-        auto *monster = dynamic_cast<Monster *>(a);
+        Monster *monster = dynamic_cast<Monster *>(a);
         if (monster) {
             monster->setPv(monster->getPv() - damage);
         }

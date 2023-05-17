@@ -11,6 +11,7 @@
 #include "entity/character/Monster.h"
 #include "entity/character/Boss.h"
 #include "entity/items/equipments/weapon/Sword.h"
+#include "entity/character/TowerMonster.h"
 
 void createGame() {
     rdlib::Map::load("assets/map/map.json", "assets/map/collider.json");
@@ -23,6 +24,9 @@ void createGame() {
 
     Sword *s3 = new Sword(3, "Epée 1", "Pour Demacaia !");
     s3->setPos(glm::vec3(2, 1, 2));
+
+    TowerMonster *s5 = new TowerMonster(glm::vec3(2, 3, 0));
+
 
     Boss *s4 = new Boss(glm::vec3(2, 3, 0), createGame);
 }
