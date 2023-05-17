@@ -14,6 +14,7 @@
 #include "entity/character/Monster.h"
 #include "entity/items/equipments/weapon/Sword.h"
 #include "entity/character/Boss.h"
+#include "entity/character/MobTower.h"
 
 /*class Test : public rdlib::ColliderSpriteAgent {
 public:
@@ -122,7 +123,9 @@ int main() {
     Sword *s3 = new Sword(3, "Epée 1", "Pour Demacaia !");
     s3->setPos(glm::vec3(2, 1, 2));
 
-    Boss *s4 = new Boss(glm::vec3(2, 3, 0));
+    MobTower mobTower = MobTower(glm::vec3(2, 2, 0));
+
+    //Boss *s4 = new Boss(glm::vec3(2, 3, 0));
 
     // Rien après cette ligne ne s'éxecute tant que le jeu n'est pas quitté
     while (rdlib::Engine::shouldContinue()) {
