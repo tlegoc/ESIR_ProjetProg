@@ -49,15 +49,15 @@ void Boss::update() {
                 } else if (m_lifetime < 3 && m_lifetime > 2.9) {
                     m_pos -= vec3(0, 1, 0) * m_speed * rdlib::Time::getDelta();
                 } else if (m_lifetime > 3) {
-                    FXAgent::fx(m_pos - vec3(0, 1, 0), 2);
-                    FXAgent::fx(m_pos - vec3(0, 1, 0), 2);
-                    FXAgent::fx(m_pos - vec3(0, 1, 0), 2);
-                    FXAgent::fx(m_pos - vec3(0, 1, 0), 2);
-                    FXAgent::fx(m_pos - vec3(0, 1, 0), 2);
-                    FXAgent::fx(m_pos - vec3(0, 1, 0), 2);
-                    FXAgent::fx(m_pos - vec3(0, 1, 0), 2);
-                    FXAgent::fx(m_pos - vec3(0, 1, 0), 2);
-                    FXAgent::fx(m_pos - vec3(0, 1, 0), 2);
+                    //FXAgent::fx(m_pos - vec3(0, 1, 0), 2);
+                    //FXAgent::fx(m_pos - vec3(0, 1, 0), 2);
+                    //FXAgent::fx(m_pos - vec3(0, 1, 0), 2);
+                    //FXAgent::fx(m_pos - vec3(0, 1, 0), 2);
+                    //FXAgent::fx(m_pos - vec3(0, 1, 0), 2);
+                    //FXAgent::fx(m_pos - vec3(0, 1, 0), 2);
+                    //FXAgent::fx(m_pos - vec3(0, 1, 0), 2);
+                    //FXAgent::fx(m_pos - vec3(0, 1, 0), 2);
+                    //FXAgent::fx(m_pos - vec3(0, 1, 0), 2);
 
                     // if the hero is in range, damage him
                     auto hero = Agent::getObjectsOfType<Hero>();
