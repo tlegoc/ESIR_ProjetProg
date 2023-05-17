@@ -4,7 +4,7 @@
 
 #include "OnePV.h"
 
-OnePV::OnePV() : GenericConsumable("assets/buffs/RedFullHeart.png") { }
+OnePV::OnePV(vec3 pos) : GenericConsumable("assets/PV_Buff/HeartFull.png", pos) { }
 
 
 
@@ -13,5 +13,4 @@ void OnePV::use(Hero *player) {
         player->setPv(player->getPv() + 2);
     }
     kill();
-
 }

@@ -25,10 +25,10 @@ void createGame() {
     //Sword *s3 = new Sword(3, "Epée 1", "Pour Demacaia !");
     //s3->setPos(glm::vec3(2, 1, 2));
 
-    //TowerMonster *s5 = new TowerMonster(glm::vec3(2, 3, 0));
+    TowerMonster *s5 = new TowerMonster(glm::vec3(7, 10, 0));
 
 
-    //Boss *s4 = new Boss(glm::vec3(2, 3, 0), createGame);
+    Boss *s4 = new Boss(glm::vec3(4, 20, 0), createGame);
 }
 
 #endif //ESIR_PROJETPROG_CREATEGAME_H

@@ -6,6 +6,8 @@
 #include "Hero.h"
 #include "../../Projectiles.h"
 
+#include "../items/consumables/life/OnePV.h"
+
 TowerMonster::TowerMonster(glm::vec3 position) : Monster("assets/props/tower11x3.png", position, vec2(1, 3), vec3(1, 1, 1), 20, 5,
                                                          vec2(1 / 3.0, 0), vec2(1 / 3.0, 2 / 4.0)), m_shoot_delay(1.0f),
                                                  m_attack_delay(1.0f), m_direction(vec2(0, 0)) {
@@ -30,7 +32,10 @@ void TowerMonster::update() {
         }
     }
 
-    Monster::update();
+    if (getPv() <= 0) {
+        new OnePV(getPos());
+        this->kill();
+    }
 }
 
 float TowerMonster::getSpeed() const {

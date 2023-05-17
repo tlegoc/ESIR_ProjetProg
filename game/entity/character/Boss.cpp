@@ -13,26 +13,30 @@
 Boss::Boss(vec3 position, void(*callback)()) : Monster("assets/character/boss.png", position, vec2(3, 3), vec3(1, 1, 1), 100, 10,
                                     vec2(1 / 3.0, 0), vec2(1 / 3.0, 2 / 4.0)) {
     m_callback = callback;
+    m_lifetime = 0;
+    m_speed = 3;
 }
 
 void Boss::update() {
-    auto hero = Agent::getObjectsOfType<Hero>();
-    if (!hero.empty()) {
-        auto hero_pos = hero[0]->getPos();
-        auto hero_dir = glm::normalize(hero_pos - getPos());
-        auto hero_dist = glm::distance(hero_pos, getPos());
+    //auto hero = Agent::getObjectsOfType<Hero>();
+    //if (!hero.empty()) {
+    //    auto hero_pos = hero[0]->getPos();
+    //    auto hero_dir = glm::normalize(hero_pos - getPos());
+    //    auto hero_dist = glm::distance(hero_pos, getPos());
+    //    if (hero_dist < 5 || m_triggered) {
+    //        m_triggered = true;
+    //        m_hero_direction = hero_dir;
+    //        m_speed = 3;
+    //    } else {
+    //        m_speed = 0;
+    //    }
+    //}
 
-        if (hero_dist < 5 || m_triggered) {
-            m_triggered = true;
-            m_hero_direction = hero_dir;
-            m_speed = 3;
-        } else {
-            m_speed = 0;
-        }
-    }
+    m_triggered = true;
 
-    if (m_triggered) {
+    if (true) {
         if (m_lifetime < 2) {
+            std::cout << "Stage 1" << std::endl;
             if (m_lifetime < 0.5) {
                 m_pos += vec3(1, 0, 0) * m_speed * rdlib::Time::getDelta();
             } else if (m_lifetime < 1.5) {
@@ -44,20 +48,21 @@ void Boss::update() {
 
         } else if (m_lifetime < 4) {
             if (m_stage != 2) {
+                std::cout << "Stage 2" << std::endl;
                 if (m_lifetime > 2.8 && m_lifetime < 2.9) {
                     m_pos += vec3(0, 1, 0) * m_speed * rdlib::Time::getDelta();
                 } else if (m_lifetime < 3 && m_lifetime > 2.9) {
                     m_pos -= vec3(0, 1, 0) * m_speed * rdlib::Time::getDelta();
                 } else if (m_lifetime > 3) {
-                    //FXAgent::fx(m_pos - vec3(0, 1, 0), 2);
-                    //FXAgent::fx(m_pos - vec3(0, 1, 0), 2);
-                    //FXAgent::fx(m_pos - vec3(0, 1, 0), 2);
-                    //FXAgent::fx(m_pos - vec3(0, 1, 0), 2);
-                    //FXAgent::fx(m_pos - vec3(0, 1, 0), 2);
-                    //FXAgent::fx(m_pos - vec3(0, 1, 0), 2);
-                    //FXAgent::fx(m_pos - vec3(0, 1, 0), 2);
-                    //FXAgent::fx(m_pos - vec3(0, 1, 0), 2);
-                    //FXAgent::fx(m_pos - vec3(0, 1, 0), 2);
+                    FXAgent::fx(m_pos - vec3(0, 1, 0), 2);
+                    FXAgent::fx(m_pos - vec3(0, 1, 0), 2);
+                    FXAgent::fx(m_pos - vec3(0, 1, 0), 2);
+                    FXAgent::fx(m_pos - vec3(0, 1, 0), 2);
+                    FXAgent::fx(m_pos - vec3(0, 1, 0), 2);
+                    FXAgent::fx(m_pos - vec3(0, 1, 0), 2);
+                    FXAgent::fx(m_pos - vec3(0, 1, 0), 2);
+                    FXAgent::fx(m_pos - vec3(0, 1, 0), 2);
+                    FXAgent::fx(m_pos - vec3(0, 1, 0), 2);
 
                     // if the hero is in range, damage him
                     auto hero = Agent::getObjectsOfType<Hero>();
@@ -74,6 +79,7 @@ void Boss::update() {
             }
         } else if (m_lifetime < 6) {
             if (m_stage != 3) {
+                std::cout << "Stage 3" << std::endl;
                 if (m_lifetime > 4.8 && m_lifetime < 4.9) {
                     m_pos += vec3(0, 1, 0) * m_speed * rdlib::Time::getDelta();
                 } else if (m_lifetime < 5 && m_lifetime > 4.9) {
@@ -101,6 +107,8 @@ void Boss::update() {
 
     if (getPv() <= 0) {
         new GameWin(m_callback);
+
+        FXAgent::fx(m_pos - vec3(0, 1, 0), .5);
         kill();
     }
 }

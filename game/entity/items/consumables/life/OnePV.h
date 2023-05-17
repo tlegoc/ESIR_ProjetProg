@@ -15,8 +15,9 @@ public :
     /**
      * Constructor of the class OnePV
      */
-    OnePV();
+    OnePV(vec3 pos);
 
+    void update() override {};
 
     /**
      * Use the consumable

@@ -19,10 +19,7 @@ public:
      */
     GenericConsumable(const std::string &image, vec3 position = vec3(0, 0, 0));
 
-    virtual void use() = 0;
-
-
-
+    virtual void use(Hero *hero) = 0;
 };
 
 
