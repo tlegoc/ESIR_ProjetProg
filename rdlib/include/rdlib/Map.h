@@ -14,7 +14,7 @@ namespace rdlib {
         static void clear();
 
     public:
-        static bool load(const std::string &mapFile);
+        static bool load(const std::string &mapFile, const std::string& colliderFile);
     };
 } // rdlib
 
