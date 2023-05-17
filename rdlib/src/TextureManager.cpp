@@ -14,7 +14,6 @@ namespace rdlib {
     std::map<std::string, unsigned int> TextureManager::s_textures = {};
 
     unsigned int TextureManager::getTexture(std::string path) {
-        std::cout << "Requesting " << path << std::endl;
         if (s_textures.find(path) != s_textures.end()) return s_textures[path];
 
         std::cout << "Texture not loaded" << std::endl;

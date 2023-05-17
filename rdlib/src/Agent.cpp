@@ -10,12 +10,13 @@
 
 namespace rdlib {
     std::vector<Agent *> Agent::s_objects = {};
+    std::vector<Agent *> Agent::s_new_objects = {};
 
     /// \brief Constructor
     /// \details Must be called by all subclasses
     Agent::Agent() {
         m_status = Status::ALIVE;
-        s_objects.push_back(this);
+        s_new_objects.push_back(this);
     }
 
     Agent::~Agent() = default;
@@ -31,6 +32,8 @@ namespace rdlib {
                 it++;
             }
         }
+        s_objects.insert(s_objects.end(), s_new_objects.begin(), s_new_objects.end());
+        s_new_objects.clear();
     }
 
     void Agent::finalize() {
@@ -43,7 +46,7 @@ namespace rdlib {
     }
 
     void Agent::killAll() {
-        for (auto a : s_objects) {
+        for (auto a: s_objects) {
             a->m_status = Status::DEAD;
         }
     }

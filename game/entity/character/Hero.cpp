@@ -6,6 +6,7 @@
 #include "Monster.h"
 #include "SwordAgent.h"
 #include "../items/GenericItem.h"
+#include "../../Projectiles.h"
 #include <typeinfo>
 
 #include <rdlib/UserInterface.h>
@@ -25,6 +26,7 @@ Hero::Hero(vec3 position, float speed, int pv, int max_pv, int damage, int shiel
           m_damage(damage),
           m_shield(shield),
           m_max_shield(max_shield),
+          m_direction(vec2(0, -1)),
           m_speed(speed) {
 
 };
@@ -50,6 +52,7 @@ void Hero::update() {
     if (rdlib::InputManager::isKeyPressed('d')) {
         dir.x += 1;
     }
+
 
     if (glm::length(dir) > 0.001) {
         dir = glm::normalize(dir);
@@ -86,8 +89,9 @@ void Hero::update() {
     m_attack_delay -= rdlib::Time::getDelta();
     if (rdlib::InputManager::isKeyPressed('a') && m_attack_delay < 0) {
         // Get the position in front of the player
-        vec3 sword_pos = m_pos + vec3(m_direction, 0) * 0.5f + vec3(0, 0, 2.0f);
-        new SwordAgent(sword_pos, getDamage());
+        vec3 sword_pos = m_pos + vec3(m_direction, 0) * 0.9f + vec3(0, 0, 2.0f);
+        //new SwordAgent(sword_pos, getDamage());
+        new Projectiles("assets/sword/arrow.png", sword_pos, getDamage(), m_direction, 10);
         m_attack_delay = 0.2f;
     }
 

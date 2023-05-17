@@ -55,7 +55,7 @@ namespace rdlib {
             auto c = new ColliderSpriteAgent(
                     colldata["src"], vec2(colldata["coll"]["x"], colldata["coll"]["y"]),
                     vec2(colldata["coll"]["w"], colldata["coll"]["h"]),
-                    vec3(coll["x"], coll["y"], 1));
+                    vec3(coll["x"], coll["y"], 0));
             s_agents.push_back(c);
         }
 

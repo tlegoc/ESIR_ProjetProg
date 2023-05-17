@@ -118,7 +118,7 @@ int main() {
     std::cout << "--- Creating hero" << std::endl;
     Hero *s1 = new Hero(glm::vec3(1, 0, 0), 2, 20, 50, 2, 1, 2);
 
-    Sword *s3 = new Sword(1, "Epée 1", "Pour Demacaia !");
+    Sword *s3 = new Sword(3, "Epée 1", "Pour Demacaia !");
     s3->setPos(glm::vec3(2, 1, 2));
 
     // Rien après cette ligne ne s'éxecute tant que le jeu n'est pas quitté
