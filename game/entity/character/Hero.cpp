@@ -113,7 +113,7 @@ void Hero::update() {
         // Get the position in front of the player
         vec3 sword_pos = m_pos + vec3(glm::normalize(dir), 0) * 0.9f + vec3(0, 0, 2.0f);
         //new SwordAgent(sword_pos, getDamage());
-        new Projectiles("assets/sword/arrow.png", sword_pos, getDamage(), glm::normalize(dir), 10, false);
+        new Projectiles("assets/sword/arrow.png", sword_pos, getDamage(), glm::normalize(dir), 10, false, true);
         m_attack_delay = 0.2f;
     }
 
