@@ -4,6 +4,7 @@
 
 #include "FXAgent.h"
 
+
 void FXAgent::update() {
     if (animationFinished()) {
         kill();

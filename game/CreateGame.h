@@ -16,19 +16,19 @@
 void createGame() {
     rdlib::Map::load("assets/map/map.json", "assets/map/collider.json");
 
-    Monster *s2 = new Monster("assets/character/monster_red.png", glm::vec3(0, 0, 0),
-                              glm::vec2(1), glm::vec3(1, 1, 1), 10, 1);
+    //Monster *s2 = new Monster("assets/character/monster_red.png", glm::vec3(0, 0, 0),
+     //                         glm::vec2(1), glm::vec3(1, 1, 1), 10, 1);
 
     std::cout << "--- Creating hero" << std::endl;
-    Hero *s1 = new Hero(glm::vec3(1, 0, 0), 2, 20, 50, 2, 1, 2, createGame);
+    Hero *s1 = new Hero(glm::vec3(3, 3, 0), 2, 20, 50, 2, 1, 2, createGame);
 
-    Sword *s3 = new Sword(3, "Epée 1", "Pour Demacaia !");
-    s3->setPos(glm::vec3(2, 1, 2));
+    //Sword *s3 = new Sword(3, "Epée 1", "Pour Demacaia !");
+    //s3->setPos(glm::vec3(2, 1, 2));
 
-    TowerMonster *s5 = new TowerMonster(glm::vec3(2, 3, 0));
+    //TowerMonster *s5 = new TowerMonster(glm::vec3(2, 3, 0));
 
 
-    Boss *s4 = new Boss(glm::vec3(2, 3, 0), createGame);
+    //Boss *s4 = new Boss(glm::vec3(2, 3, 0), createGame);
 }
 
 #endif //ESIR_PROJETPROG_CREATEGAME_H
