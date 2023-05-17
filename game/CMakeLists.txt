@@ -30,7 +30,7 @@ add_executable(Game
         entity/items/consumables/life/OneHeart.cpp
         entity/items/consumables/buff/ShieldImprove.cpp
         entity/character/SwordAgent.cpp
-        entity/character/SwordAgent.h Projectiles.h Projectiles.cpp)
+        entity/character/SwordAgent.h Projectiles.h Projectiles.cpp entity/character/Boss.cpp entity/character/Boss.h)
 
 target_link_libraries(Game RDLIB)
 

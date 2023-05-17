@@ -21,7 +21,7 @@ public:
 
     int getDamage() const;
 
-    Monster(const std::string &image, vec3 position, vec2 size, vec3 color, int pv, int damage);
+    Monster(const std::string &image, vec3 position, vec2 size, vec3 color, int pv, int damage, vec2 collider_pos = vec2(0), vec2 collider_size = vec2(1));
 
     /**
  * mise à jour du Monster, dégât
