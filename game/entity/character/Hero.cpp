@@ -88,10 +88,24 @@ void Hero::update() {
 
     m_attack_delay -= rdlib::Time::getDelta();
     if (rdlib::InputManager::isKeyPressed('a') && m_attack_delay < 0) {
+        vec2 dir = vec2(0);
+        if (abs(m_direction.x) > abs(m_direction.y)) {
+            if (m_direction.x > 0) {
+                dir = vec2(1, 0);
+            } else {
+                dir = vec2(-1, 0);
+            }
+        } else {
+            if (m_direction.y > 0) {
+                dir = vec2(0, 1);
+            } else {
+                dir = vec2(0, -1);
+            }
+        }
         // Get the position in front of the player
-        vec3 sword_pos = m_pos + vec3(m_direction, 0) * 0.9f + vec3(0, 0, 2.0f);
+        vec3 sword_pos = m_pos + vec3(glm::normalize(dir), 0) * 0.9f + vec3(0, 0, 2.0f);
         //new SwordAgent(sword_pos, getDamage());
-        new Projectiles("assets/sword/arrow.png", sword_pos, getDamage(), m_direction, 10);
+        new Projectiles("assets/sword/arrow.png", sword_pos, getDamage(), glm::normalize(dir), 10, false);
         m_attack_delay = 0.2f;
     }
 

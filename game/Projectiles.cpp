@@ -10,7 +10,8 @@ Projectiles::Projectiles(std::string image,
                          vec3 pos,
                          int damage,
                          vec2 direction,
-                         float speed)
+                         float speed,
+                         bool damage_hero)
         : ColliderSpriteAgent(image,
                               vec2(0),
                               vec2(1),
@@ -18,6 +19,7 @@ Projectiles::Projectiles(std::string image,
     m_damage = damage;
     m_direction = direction;
     m_speed = speed;
+    m_damage_hero = damage_hero;
     setPassthrough(true);
 }
 
@@ -34,7 +36,7 @@ void Projectiles::update() {
 
 void Projectiles::onCollision(rdlib::ColliderAgent *other) {
 
-    if (dynamic_cast<Hero *>(other) != nullptr) {
+    if (m_damage_hero && dynamic_cast<Hero *>(other) != nullptr) {
         Hero *hero = dynamic_cast<Hero *>(other);
         hero->setMaxPv(hero->getPv() - m_damage);
     }
