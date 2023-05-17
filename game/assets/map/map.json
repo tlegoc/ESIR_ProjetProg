@@ -191,31 +191,621 @@
         },
         "64": {
             "src": "assets/ground/tile063.png"
+        },
+        "101": {
+            "src": "assets/ground_stone/tile001.png"
+        },
+        "102": {
+            "src": "assets/ground_stone/tile002.png"
+        },
+        "103": {
+            "src": "assets/ground_stone/tile003.png"
+        },
+        "104": {
+            "src": "assets/ground_stone/tile004.png"
+        },
+        "105": {
+            "src": "assets/ground_stone/tile005.png"
+        },
+        "106": {
+            "src": "assets/ground_stone/tile006.png"
+        },
+        "107": {
+            "src": "assets/ground_stone/tile007.png"
+        },
+        "108": {
+            "src": "assets/ground_stone/tile008.png"
+        },
+        "109": {
+            "src": "assets/ground_stone/tile009.png"
+        },
+        "110": {
+            "src": "assets/ground_stone/tile010.png"
+        },
+        "111": {
+            "src": "assets/ground_stone/tile011.png"
+        },
+        "112": {
+            "src": "assets/ground_stone/tile012.png"
+        },
+        "113": {
+            "src": "assets/ground_stone/tile013.png"
+        },
+        "114": {
+            "src": "assets/ground_stone/tile014.png"
+        },
+        "115": {
+            "src": "assets/ground_stone/tile015.png"
+        },
+        "116": {
+            "src": "assets/ground_stone/tile016.png"
+        },
+        "117": {
+            "src": "assets/ground_stone/tile017.png"
+        },
+        "118": {
+            "src": "assets/ground_stone/tile018.png"
+        },
+        "119": {
+            "src": "assets/ground_stone/tile019.png"
+        },
+        "120": {
+            "src": "assets/ground_stone/tile020.png"
+        },
+        "121": {
+            "src": "assets/ground_stone/tile021.png"
+        },
+        "122": {
+            "src": "assets/ground_stone/tile022.png"
+        },
+        "123": {
+            "src": "assets/ground_stone/tile023.png"
+        },
+        "124": {
+            "src": "assets/ground_stone/tile024.png"
+        },
+        "125": {
+            "src": "assets/ground_stone/tile025.png"
+        },
+        "126": {
+            "src": "assets/ground_stone/tile026.png"
+        },
+        "127": {
+            "src": "assets/ground_stone/tile027.png"
+        },
+        "128": {
+            "src": "assets/ground_stone/tile028.png"
+        },
+        "129": {
+            "src": "assets/ground_stone/tile029.png"
+        },
+        "130": {
+            "src": "assets/ground_stone/tile030.png"
+        },
+        "131": {
+            "src": "assets/ground_stone/tile031.png"
+        },
+        "132": {
+            "src": "assets/ground_stone/tile032.png"
+        },
+        "133": {
+            "src": "assets/ground_stone/tile033.png"
+        },
+        "134": {
+            "src": "assets/ground_stone/tile034.png"
+        },
+        "135": {
+            "src": "assets/ground_stone/tile035.png"
+        },
+        "137": {
+            "src": "assets/ground_stone/tile036.png"
+        },
+        "138": {
+            "src": "assets/ground_stone/tile037.png"
+        },
+        "139": {
+            "src": "assets/ground_stone/tile038.png"
+        },
+        "140": {
+            "src": "assets/ground_stone/tile039.png"
+        },
+        "141": {
+            "src": "assets/ground_stone/tile040.png"
+        },
+        "142": {
+            "src": "assets/ground_stone/tile041.png"
+        },
+        "143": {
+            "src": "assets/ground_stone/tile042.png"
+        },
+        "144": {
+            "src": "assets/ground_stone/tile043.png"
+        },
+        "145": {
+            "src": "assets/ground_stone/tile044.png"
+        },
+        "146": {
+            "src": "assets/ground_stone/tile045.png"
+        },
+        "147": {
+            "src": "assets/ground_stone/tile046.png"
+        },
+        "148": {
+            "src": "assets/ground_stone/tile047.png"
+        },
+        "149": {
+            "src": "assets/ground_stone/tile048.png"
+        },
+        "150": {
+            "src": "assets/ground_stone/tile049.png"
+        },
+        "151": {
+            "src": "assets/ground_stone/tile050.png"
+        },
+        "152": {
+            "src": "assets/ground_stone/tile051.png"
+        },
+        "153": {
+            "src": "assets/ground_stone/tile052.png"
+        },
+        "154": {
+            "src": "assets/ground_stone/tile053.png"
+        },
+        "155": {
+            "src": "assets/ground_stone/tile054.png"
+        },
+        "156": {
+            "src": "assets/ground_stone/tile055.png"
+        },
+        "157": {
+            "src": "assets/ground_stone/tile056.png"
+        },
+        "158": {
+            "src": "assets/ground_stone/tile057.png"
+        },
+        "159": {
+            "src": "assets/ground_stone/tile058.png"
+        },
+        "160": {
+            "src": "assets/ground_stone/tile059.png"
+        },
+        "161": {
+            "src": "assets/ground_stone/tile060.png"
+        },
+        "162": {
+            "src": "assets/ground_stone/tile061.png"
+        },
+        "163": {
+            "src": "assets/ground_stone/tile062.png"
+        },
+        "201": {
+            "src": "assets/props/chest1x2_animated.png"
+        },
+        "202": {
+            "src": "assets/props/matraque.png"
+        },
+        "203": {
+            "src": "assets/props/portal3x3.png"
+        },
+        "204": {
+            "src": "assets/props/rock2x2.png"
+        },
+        "205": {
+            "src": "assets/props/tower11x3.png"
+        },
+        "206": {
+            "src": "assets/props/tower21x3.png"
         }
     },
-    "colliders": {
-        "1": {
-            "src": "assets/walls/tile018.png",
-            "coll": {
-                "x": 0,
-                "y": 0.75,
-                "w": 1,
-                "h": 0.25
-            }
+
+    "decorations": [
+        {
+            "src":"assets/props/portal3x3.png",
+            "x": 7,
+            "y": 9,
+            "w": 1,
+            "h": 1
+        },
+        {
+            "src":"assets/props/TX escalier.png",
+            "x": 5,
+            "y": 6,
+            "w": 1,
+            "h": 1
+        },
+        {
+            "src":"assets/props/TX rock.png",
+            "x": 6,
+            "y": 3,
+            "w": 1,
+            "h": 1
+        },
+        {
+            "src":"assets/props/TX tombe.png",
+            "x": 2,
+            "y": 10,
+            "w": 2,
+            "h": 1
         }
-    },
+    ],
+
     "map" : [
-        [5, 1, 4, 1, 2],
-        [3, 61, 33, 36, 13],
-        [1, 33, 33, 33, 1],
-        [7, 35, 33, 45, 15],
-        [14, 11, 1, 7, 1]
+        [32, 37, 37, 37, 37, 37, 37, 37, 32],
+        [35, 33, 50, 33, 33, 33, 33, 57, 36],
+        [35, 41, 33, 42, 33, 33, 33, 33, 36],
+        [35, 33, 33,33, 33, 49, 33, 50, 36],
+        [35, 33, 33,33, 33, 33,33, 49, 36],
+        [35, 57, 33, 58, 33, 33, 33, 33, 36],
+        [35, 33, 33, 33, 33, 33, 34, 33, 36],
+        [1, 1, 1, 41, 42, 49, 1, 1, 1],
+        [1, 1, 1, 33, 34, 33, 1, 1, 1],
+        [1, 1, 1, 42, 62, 61, 1, 1, 1],
+        [1, 1, 1, 41, 42, 49, 1, 1, 1],
+        [5, 1, 4, 1, 2, 1, 30, 1, 22],
+        [3, 1, 1, 1, 1, 1, 1, 29, 1],
+        [1, 11, 1, 1, 27, 41, 41, 41, 1],
+        [7, 1, 1, 1, 15, 1, 14, 1, 30],
+        [14, 11, 1, 7, 1, 14, 1, 5, 27],
+        [1, 1, 1, 1, 1, 1, 1, 1, 1],
+        [14, 11, 1, 7, 1, 1, 1, 1, 1],
+        [5, 1, 4, 1, 2, 1, 1, 1, 1],
+        [3, 61, 33, 36, 13, 1, 1, 1, 1],
+        [1, 33, 33, 33, 1, 1, 1, 1, 1],
+        [7, 35, 33, 45, 15, 1, 1, 1, 1],
+        [14, 11, 1, 7, 1, 1, 1, 1, 1]
     ],
     "walls": [
         {
+            "comment": "----------------------------------------ligne du bas---------------------------------",
+            "id": 8,
+            "x": 0,
+            "y": 0
+        },
+        {
+            "id": 2,
+            "x": 1,
+            "y": 0
+        },
+        {
+            "id": 2,
+            "x": 2,
+            "y": 0
+        },
+        {
+            "id": 2,
+            "x": 3,
+            "y": 0
+        },
+        {
+            "id": 2,
+            "x": 4,
+            "y": 0
+        },
+        {
+            "id": 2,
+            "x": 5,
+            "y": 0
+        },
+        {
+            "id": 2,
+            "x": 6,
+            "y": 0
+        },
+        {
+            "id": 2,
+            "x": 7,
+            "y": 0
+        },
+        {
+            "id": 7,
+            "x": 8,
+            "y": 0
+        },
+        {
+            "comment": "----------------------------------------ligne à gauche---------------------------------",
+            "id": 3,
+            "x": 0,
+            "y": 1
+        },
+        {
+            "id": 3,
+            "x": 0,
+            "y": 2
+        },
+        {
+            "id": 3,
+            "x": 0,
+            "y": 3
+        },
+        {
+            "id": 3,
+            "x": 0,
+            "y": 4
+        },
+        {
+            "id": 3,
+            "x": 0,
+            "y": 5
+        },
+        {
+            "id": 3,
+            "x": 0,
+            "y": 6
+        },
+        {
+            "id": 3,
+            "x": 0,
+            "y": 7
+        },
+        {
+            "id": 3,
+            "x": 0,
+            "y": 8
+        },
+        {
+            "id": 3,
+            "x": 0,
+            "y": 9
+        },
+        {
+            "id": 3,
+            "x": 0,
+            "y": 10
+        },
+        {
+            "id": 3,
+            "x": 0,
+            "y": 11
+        },
+        {
+            "id": 3,
+            "x": 0,
+            "y": 12
+        },
+        {
+            "id": 3,
+            "x": 0,
+            "y": 13
+        },
+        {
+            "id": 3,
+            "x": 0,
+            "y": 14
+        },
+        {
+            "id": 3,
+            "x": 0,
+            "y": 15
+        },
+        {
+            "id": 3,
+            "x": 0,
+            "y": 16
+        },
+        {
+            "id": 3,
+            "x": 0,
+            "y": 17
+        },
+        {
+            "id": 3,
+            "x": 0,
+            "y": 18
+        },
+        {
+            "id": 3,
+            "x": 0,
+            "y": 19
+        },
+        {
+            "id": 3,
+            "x": 0,
+            "y": 20
+        },
+        {
+            "id": 3,
+            "x": 0,
+            "y": 21
+        },
+        {
+            "comment": "----------------------------------------ligne haute---------------------------------",
+            "id": 5,
+            "x": 0,
+            "y": 22
+        },
+        {
             "id": 1,
             "x": 1,
+            "y": 22
+        },
+        {
+            "id": 1,
+            "x": 2,
+            "y": 22
+        },
+        {
+            "id": 1,
+            "x": 3,
+            "y": 22
+        },
+        {
+            "id": 1,
+            "x": 4,
+            "y": 22
+        },
+        {
+            "id": 1,
+            "x": 5,
+            "y": 22
+        },
+        {
+            "id": 1,
+            "x": 6,
+            "y": 22
+        },
+        {
+            "id": 1,
+            "x": 7,
+            "y": 22
+        },
+        {
+            "id": 6,
+            "x": 8,
+            "y": 22
+        },
+        {
+            "comment": "----------------------------------------ligne à droite---------------------------------",
+            "id": 4,
+            "x": 8,
             "y": 1
+        },
+        {
+            "id": 4,
+            "x": 8,
+            "y": 2
+        },
+        {
+            "id": 4,
+            "x": 8,
+            "y": 3
+        },
+        {
+            "id": 4,
+            "x": 8,
+            "y": 4
+        },
+        {
+            "id": 4,
+            "x": 8,
+            "y": 5
+        },
+        {
+            "id": 4,
+            "x": 8,
+            "y": 6
+        },
+        {
+            "id": 4,
+            "x": 8,
+            "y": 7
+        },
+        {
+            "id": 4,
+            "x": 8,
+            "y": 8
+        },
+        {
+            "id": 4,
+            "x": 8,
+            "y": 9
+        },
+        {
+            "id": 4,
+            "x": 8,
+            "y": 10
+        },
+        {
+            "id": 4,
+            "x": 8,
+            "y": 11
+        },
+        {
+            "id": 4,
+            "x": 8,
+            "y": 12
+        },
+        {
+            "id": 4,
+            "x": 8,
+            "y": 13
+        },
+        {
+            "id": 4,
+            "x": 8,
+            "y": 14
+        },
+        {
+            "id": 4,
+            "x": 8,
+            "y": 15
+        },
+        {
+            "id": 4,
+            "x": 8,
+            "y": 16
+        },
+        {
+            "id": 4,
+            "x": 8,
+            "y": 17
+        },
+        {
+            "id": 4,
+            "x": 8,
+            "y": 18
+        },
+        {
+            "id": 4,
+            "x": 8,
+            "y": 19
+        },
+        {
+            "id": 4,
+            "x": 8,
+            "y": 20
+        },
+        {
+            "id": 4,
+            "x": 8,
+            "y": 21
+        },
+        {
+            "comment": "----------------------------------------ligne milieux---------------------------------",
+            "id": 23,
+            "x": 1,
+            "y": 6
+        },
+        {
+            "comment": "----------------------------------------ligne milieux---------------------------------",
+            "id": 23,
+            "x": 0,
+            "y": 6
+        },
+        {
+            "id": 23,
+            "x": 1,
+            "y": 6
+        },
+        {
+            "id": 23,
+            "x": 2,
+            "y": 6
+        },
+        {
+            "id": 23,
+            "x": 3,
+            "y": 6
+        },
+
+        {
+            "id": 23,
+            "x": 4,
+            "y": 6
+        },
+        {
+            "id": 23,
+            "x": 6,
+            "y": 6
+        },
+        {
+            "id": 23,
+            "x": 7,
+            "y": 6
+        },
+        {
+            "id": 23,
+            "x": 8,
+            "y": 6
         }
     ]
 }
