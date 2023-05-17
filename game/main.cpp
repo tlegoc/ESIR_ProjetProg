@@ -16,7 +16,7 @@
 #include "entity/character/Boss.h"
 
 void createGame() {
-    rdlib::Map::load("assets/map/map.json");
+    rdlib::Map::load("assets/map/map.json", "assets/map/collider.json");
 
     Monster *s2 = new Monster("assets/character/monster_red.png", glm::vec3(0, 0, 0),
                               glm::vec2(1), glm::vec3(1, 1, 1), 10, 1);
