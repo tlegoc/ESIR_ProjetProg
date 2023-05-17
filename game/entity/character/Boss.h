@@ -17,6 +17,8 @@ private:
     vec3 m_hero_direction;
     float m_speed;
     bool m_triggered = false;
+    float m_lifetime;
+    int m_stage = 0;
 };
 
 
