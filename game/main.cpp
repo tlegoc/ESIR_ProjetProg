@@ -16,7 +16,7 @@ int main() {
     rdlib::Engine::setCameraZoom(3);
   
     createGame();
- 
+
     // Rien après cette ligne ne s'éxecute tant que le jeu n'est pas quitté
     while (rdlib::Engine::shouldContinue()) {
         rdlib::Engine::update();

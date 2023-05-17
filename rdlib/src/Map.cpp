@@ -49,14 +49,14 @@ namespace rdlib {
                 if (map[y][x] == 0) continue;
                 if (x == 0 && map[y].size() - y == 0) std::cout << "0,0" << std::endl;
                 auto sprite = new SpriteAgent(data["tiles"][std::to_string(map[y][x])]["src"],
-                                              vec3(x, map.size() - y - 1, -1));
+                                              vec3(x, map.size() - y - 1, -3));
                 s_agents.push_back(sprite);
             }
         }
 
         //Decoration
         for(auto dec: data["decorations"]) {
-            vec3 position = vec3(dec["x"], dec["y"], 0);
+            vec3 position = vec3(dec["x"], dec["y"], -2);
             vec2 size = vec2(dec["w"], dec["h"]);
             auto sprite = new SpriteAgent(dec["src"], position, 0, size);
             s_agents.push_back(sprite);
