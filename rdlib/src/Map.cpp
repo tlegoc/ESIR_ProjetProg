@@ -54,6 +54,14 @@ namespace rdlib {
             }
         }
 
+        //Decoration
+        for(auto dec: data["decorations"]) {
+            vec3 position = vec3(dec["x"], dec["y"], 0);
+            vec2 size = vec2(dec["w"], dec["h"]);
+            auto sprite = new SpriteAgent(dec["src"], position, 0, size);
+            s_agents.push_back(sprite);
+        }
+
         // Colliders
         for (auto wall: data["walls"]) {
             int id = wall["id"];
@@ -70,7 +78,6 @@ namespace rdlib {
             }
             s_agents.push_back(sprite);
         }
-
 
         return true;
     }
