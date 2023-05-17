@@ -43,7 +43,7 @@ add_executable(Game
         GameWin.h 
         GameLoose.cpp 
         GameLoose.h 
-        CreateGame.h entity/character/TowerMonster.cpp entity/character/TowerMonster.h)
+        CreateGame.h entity/character/TowerMonster.cpp entity/character/TowerMonster.h entity/character/GroundSlamFx.cpp entity/character/GroundSlamFx.h)
         
 target_link_libraries(Game RDLIB)
 

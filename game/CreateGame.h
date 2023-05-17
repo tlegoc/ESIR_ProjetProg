@@ -20,7 +20,7 @@ void createGame() {
      //                         glm::vec2(1), glm::vec3(1, 1, 1), 10, 1);
 
     std::cout << "--- Creating hero" << std::endl;
-    Hero *s1 = new Hero(glm::vec3(3, 3, 0), 2, 20, 50, 2, 1, 2, createGame);
+    Hero *s1 = new Hero(glm::vec3(3, 3, 1), 2, 20, 50, 2, 1, 2, createGame);
 
     //Sword *s3 = new Sword(3, "Epée 1", "Pour Demacaia !");
     //s3->setPos(glm::vec3(2, 1, 2));

@@ -142,7 +142,7 @@ namespace rdlib {
                                       aspect * s_engine->m_camera_zoom + s_engine->m_camera_position.x,
                                       -s_engine->m_camera_zoom + s_engine->m_camera_position.y,
                                       s_engine->m_camera_zoom + s_engine->m_camera_position.y,
-                                      -5.0f, 5.0f);
+                                      -20.0f, 20.0f);
 
         return camera;
     }

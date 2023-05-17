@@ -9,9 +9,11 @@
 #include "FXAgent.h"
 #include "BossMeteor.h"
 #include "../../GameWin.h"
+#include "GroundSlamFx.h"
 
-Boss::Boss(vec3 position, void(*callback)()) : Monster("assets/character/boss.png", position, vec2(3, 3), vec3(1, 1, 1), 100, 10,
-                                    vec2(1 / 3.0, 0), vec2(1 / 3.0, 2 / 4.0)) {
+Boss::Boss(vec3 position, void(*callback)()) : Monster("assets/character/boss.png", position, vec2(3, 3), vec3(1, 1, 1),
+                                                       100, 10,
+                                                       vec2(1 / 3.0, 0), vec2(1 / 3.0, 2 / 4.0)) {
     m_callback = callback;
     m_lifetime = 0;
     m_speed = 3;
@@ -55,15 +57,8 @@ void Boss::update() {
                 } else if (m_lifetime < 3 && m_lifetime > 2.9) {
                     m_pos -= vec3(0, 1, 0) * m_speed * rdlib::Time::getDelta();
                 } else if (m_lifetime > 3) {
-                    FXAgent::fx(m_pos - vec3(0, 1, 0), 2);
-                    FXAgent::fx(m_pos - vec3(0, 1, 0), 2);
-                    FXAgent::fx(m_pos - vec3(0, 1, 0), 2);
-                    FXAgent::fx(m_pos - vec3(0, 1, 0), 2);
-                    FXAgent::fx(m_pos - vec3(0, 1, 0), 2);
-                    FXAgent::fx(m_pos - vec3(0, 1, 0), 2);
-                    FXAgent::fx(m_pos - vec3(0, 1, 0), 2);
-                    FXAgent::fx(m_pos - vec3(0, 1, 0), 2);
-                    FXAgent::fx(m_pos - vec3(0, 1, 0), 2);
+                    new GroundSlamFx(getPos() + vec3(0, -1, 1));
+
 
                     // if the hero is in range, damage him
                     auto hero = Agent::getObjectsOfType<Hero>();
@@ -88,9 +83,13 @@ void Boss::update() {
                     // Create 10 meteors in a circle around the player
                     for (int i = 0; i < 30; i++) {
                         // Create the target position
-                        // A random vec3 between -3 and 3
-                        auto target = vec3(rand() % 6 - 3, rand() % 6 - 3, 0);
-                        target += getPos() - vec3(0, 1, 0);
+                        // A random vec3 of length between 3 and 5
+                        // use rand()
+                        auto target = vec3(rand() % 10 - 5, rand() % 10 - 5, 0);
+                        float length = (rand() % 100 - 50) / 100.0 * 2.0 + 3.0;
+                        target = glm::normalize(target) * length;
+                        target += getPos();
+
                         auto origin = target + vec3(0, 10, 0);
                         new BossMeteor(origin, target, 1);
                     }

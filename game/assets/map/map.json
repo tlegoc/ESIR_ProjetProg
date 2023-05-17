@@ -409,9 +409,9 @@
         {
             "src":"assets/props/TX escalier.png",
             "x": 4.5,
-            "y": 6,
+            "y": 5.5,
             "w": 2,
-            "h": 2
+            "h": 3
         },
         {
             "src":"assets/props/TX rock.png",

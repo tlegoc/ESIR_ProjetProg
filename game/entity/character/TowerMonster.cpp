@@ -8,6 +8,8 @@
 
 #include "../items/consumables/life/OnePV.h"
 
+#include "FXAgent.h"
+
 TowerMonster::TowerMonster(glm::vec3 position) : Monster("assets/props/tower11x3.png", position, vec2(1, 3), vec3(1, 1, 1), 20, 5,
                                                          vec2(1 / 3.0, 0), vec2(1 / 3.0, 2 / 4.0)), m_shoot_delay(1.0f),
                                                  m_attack_delay(1.0f), m_direction(vec2(0, 0)) {
@@ -35,6 +37,7 @@ void TowerMonster::update() {
     if (getPv() <= 0) {
         new OnePV(getPos());
         this->kill();
+        FXAgent::fx(m_pos, .3);
     }
 }
 
@@ -51,5 +54,5 @@ void TowerMonster::tirer() {
     auto hero = Agent::getObjectsOfType<Hero>();
     vec3 hero_pos = hero[0]->getPos();
     vec3 direction = glm::normalize(hero_pos - getPos());
-    new Projectiles("assets/sword/arrow.png", getPos(), getDamage(), direction, 5, true, false);
+    new Projectiles("assets/sword/arrow.png", getPos() + vec3(0, 0, 1), getDamage(), direction, 5, true, false);
 }
