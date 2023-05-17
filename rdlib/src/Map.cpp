@@ -67,13 +67,14 @@ namespace rdlib {
             int id = wall["id"];
             auto colldata = dataColl[std::to_string(id)];
             vec3 position = vec3(wall["x"], wall["y"], 0);
+            vec2 size = vec2(wall["w"], wall["h"]);
             
-            auto sprite = new SpriteAgent(colldata["src"], position);
+            auto sprite = new SpriteAgent(colldata["src"], position, 0, size);
 
             for(auto coll: colldata["coll"]) {
                 vec2 collpos = vec2(coll["x"], coll["y"]);
                 vec2 collsize = vec2(coll["w"], coll["h"]);
-                auto c = new ColliderSpriteAgent(colldata["src"], collpos, collsize, position);
+                auto c = new ColliderSpriteAgent(colldata["src"], collpos, collsize, position, 0, size);
                 s_agents.push_back(c);
             }
             s_agents.push_back(sprite);
