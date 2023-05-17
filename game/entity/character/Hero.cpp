@@ -7,12 +7,13 @@
 #include "SwordAgent.h"
 #include "../items/GenericItem.h"
 #include "../../Projectiles.h"
+#include "../../GameLoose.h"
 #include "FXAgent.h"
 #include <typeinfo>
 
 #include <rdlib/UserInterface.h>
 
-Hero::Hero(vec3 position, float speed, int pv, int max_pv, int damage, int shield, int max_shield)
+Hero::Hero(vec3 position, float speed, int pv, int max_pv, int damage, int shield, int max_shield, void(*callback)())
         : rdlib::ColliderSpriteSheetAgent("assets/character/player.png",
                                           vec2(7.0f / 32.0f, 7.0f / 64.0f),
                                           vec2(20.0f / 32.0f, 19.0f / 64.0f),
@@ -28,7 +29,8 @@ Hero::Hero(vec3 position, float speed, int pv, int max_pv, int damage, int shiel
           m_shield(shield),
           m_max_shield(max_shield),
           m_direction(vec2(0, -1)),
-          m_speed(speed) {
+          m_speed(speed),
+          m_callback(callback) {
 
 };
 
@@ -126,6 +128,13 @@ void Hero::update() {
 
     rdlib::Engine::setCameraPosition(m_pos);
     rdlib::UserInterface::addImage("assets/character/player.png", vec2(-0.95f, 0.8f), vec2(0.2f, 0.2f), vec3(1));
+
+    if (getPv() <= 0) {
+        // killAll();
+        // m_on_death();
+        kill();
+        new GameLoose(m_callback);
+    }
 }
 
 int Hero::getPv() const {

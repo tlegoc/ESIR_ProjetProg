@@ -104,8 +104,7 @@ namespace rdlib {
         glActiveTexture(0);
     }
 
-    void UserInterface::addImage(const std::string &image, glm::vec2 position, glm::vec2 size, glm::vec3 color,
-                                 float angle) {
+    void UserInterface::addImage(const std::string &image, glm::vec2 position, glm::vec2 size, glm::vec3 color, float angle) {
         RenderableElement element;
         element.image = image;
         element.position = position;

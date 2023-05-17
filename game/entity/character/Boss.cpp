@@ -8,10 +8,11 @@
 #include <rdlib/Time.h>
 #include "FXAgent.h"
 #include "BossMeteor.h"
+#include "../../GameWin.h"
 
-Boss::Boss(vec3 position) : Monster("assets/character/boss.png", position, vec2(3, 3), vec3(1, 1, 1), 100, 10,
+Boss::Boss(vec3 position, void(*callback)()) : Monster("assets/character/boss.png", position, vec2(3, 3), vec3(1, 1, 1), 100, 10,
                                     vec2(1 / 3.0, 0), vec2(1 / 3.0, 2 / 4.0)) {
-
+    m_callback = callback;
 }
 
 void Boss::update() {
@@ -97,5 +98,9 @@ void Boss::update() {
 
     m_lifetime += rdlib::Time::getDelta();
     m_lifetime = fmod(m_lifetime, 6);
-    Monster::update();
+
+    if (getPv() <= 0) {
+        new GameWin(m_callback);
+        kill();
+    }
 }
