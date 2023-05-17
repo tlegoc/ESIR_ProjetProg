@@ -32,11 +32,13 @@ void Boss::update() {
     //    }
     //}
 
+    // We had bugs with the player detection, so we just trigger the boss
+    // He can't move far so it's not really a problem
     m_triggered = true;
 
-    if (true) {
+    if (m_triggered) {
+
         if (m_lifetime < 2) {
-            std::cout << "Stage 1" << std::endl;
             if (m_lifetime < 0.5) {
                 m_pos += vec3(1, 0, 0) * m_speed * rdlib::Time::getDelta();
             } else if (m_lifetime < 1.5) {
@@ -48,7 +50,6 @@ void Boss::update() {
 
         } else if (m_lifetime < 4) {
             if (m_stage != 2) {
-                std::cout << "Stage 2" << std::endl;
                 if (m_lifetime > 2.8 && m_lifetime < 2.9) {
                     m_pos += vec3(0, 1, 0) * m_speed * rdlib::Time::getDelta();
                 } else if (m_lifetime < 3 && m_lifetime > 2.9) {
@@ -79,13 +80,11 @@ void Boss::update() {
             }
         } else if (m_lifetime < 6) {
             if (m_stage != 3) {
-                std::cout << "Stage 3" << std::endl;
                 if (m_lifetime > 4.8 && m_lifetime < 4.9) {
                     m_pos += vec3(0, 1, 0) * m_speed * rdlib::Time::getDelta();
                 } else if (m_lifetime < 5 && m_lifetime > 4.9) {
                     m_pos -= vec3(0, 1, 0) * m_speed * rdlib::Time::getDelta();
                 } else if (m_lifetime > 5) {
-                    std::cout << "meteor" << std::endl;
                     // Create 10 meteors in a circle around the player
                     for (int i = 0; i < 30; i++) {
                         // Create the target position

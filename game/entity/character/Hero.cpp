@@ -76,7 +76,7 @@ void Hero::update() {
         // Create fx when moving, but not too often
         if (m_lifetime - m_last_fx > .1) {
             m_last_fx = m_lifetime;
-            //FXAgent::fx(m_pos - vec3(0, .5, 0), .3);
+            FXAgent::fx(m_pos - vec3(0, .5, 0), .1);
         }
     }
 

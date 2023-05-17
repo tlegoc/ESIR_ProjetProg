@@ -19,7 +19,7 @@ void FXAgent::fx(glm::vec3 position, float range) {
                 (float) (rand() % 100) / 100 * range * 2 - range,
                 0);
 
-        auto *fx = new FXAgent("assets/ui/fx.png", uvec2(16), .016f, position + offset);
+        auto *fx = new FXAgent("assets/ui/fx3.png", uvec2(16), .04f, position + offset);
         fx->playAnimation({0, 1, 2, 3, 4, 5}, false);
     }
 }
