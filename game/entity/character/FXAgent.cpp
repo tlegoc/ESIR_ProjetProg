@@ -4,8 +4,11 @@
 
 #include "FXAgent.h"
 
+#include <iostream>
+
 void FXAgent::update() {
     if (animationFinished()) {
+        std::cout << "Oui" << std::endl;
         kill();
     }
 }
